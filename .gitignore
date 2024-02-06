@@ -3,3 +3,5 @@
 *.gz
 *.toc
 *.out
+*.ipynb_checkpoints
+*.synctex
