@@ -33,4 +33,49 @@
 \maketitle
 \tableofcontents
 
+\section{Введение}
+\[
+    p(A+B) = p(A) + p(B) - p(AB)
+\]
+\begin{figure}[H]
+    \centering
+    \def\svgwidth{0.4\columnwidth}
+    \incfig{tp1}
+    % \caption{}
+    \label{fig:tp1}
+\end{figure}
+\[ 
+    \overline{A + B} = \overline{A}\cdot\overline{B}
+\]
+\[
+    \overline{A \cdot B} = \overline{A} + \overline{B}   
+\]
+\[
+    A(B + C) = A B + B C
+\]
+\[
+    A + BC = (A + B)(A + C)
+\]
+\[
+    A - B \coloneqq A \setminus B
+\]
+\section{Независимость}
+\fbox{События независимы если \(p(AB) = p(A)p(B)\) }
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c}
+             & 0 & 1  \\
+             \hline
+             0 & \(\frac{1}{4}\)  & \(\frac{1}{4}\)   \\
+             \hline
+             1 & \(\frac{1}{4}\)  & \(\frac{1}{4}\)  \\
+    \end{tabular}
+    % \caption{Таблица вероятности}
+    \label{tab:1}
+\end{table}
+\fbox{Условная вероятность: \(p(A \mid B) = \frac{p(AB)}{p(B)}\) }
+\\Для независимых событий:
+\[
+    p(A \mid  B) = p(A)
+\]
 \end{document}
