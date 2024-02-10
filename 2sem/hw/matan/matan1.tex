@@ -122,4 +122,89 @@ $\exists x_1 < x_2 < x_3 \mid f(x_1) < f(x_2) > f(x_3) \lor f(x_1) > f(x_2) < f(
 $Q(y)$ - интервалы. Тогда так как из покрытия открытого множества интервалами можно выбрать счётное подпокрытие $\mathbb{R} = \bigsqcup_{n \in \mathbb{N}} Q(y_n)$.
 Но тогда мы получили дизъюнктное разбиение действительной прямой непустыми интервалами - противоречие со связностью.
 \section{T11}
+Я честно посмотрел онлайн семинар с решением, но не записал сюда
+\section{T12}
+(б)
+\[
+    \begin{dcases}
+        \exp{-\frac{1}{x^{2} + y^{2}}}, (x, y) \not = (0, 0)\\
+        0, (x, y) = (0, 0)\\
+    \end{dcases}
+\]
+Найдём частные производные:
+\[
+    \partial_x f(0, 0) = \lim_{x \to 0}{\frac{\exp{-\frac{1}{x^2}}}{x}} = 0 
+\]
+\[
+    \partial_y f(0, 0) = \lim_{y \to 0}{\frac{\exp{-\frac{1}{x^2}}}{y}}{y} = 0
+\]
+Проверим дифференцируемость функции:
+\[
+    \frac{1}{\rho }\vert \exp{-\frac{1}{{h^1}^{2} + {h^2}^{2}  }} \vert = \frac{1}{\rho }\vert \exp{-\frac{1}{\rho^{2} }} \vert \to 0, \rho \to 0
+\]
+(в)
+\[
+    f(x, y) = \ln(1 + \sqrt[3]{x^{2} y})
+\]
+Частные производные равны нулю: 
+\[
+    \vert \frac{1}{\rho }\ln(1 + \sqrt[3]{x^{2} y}) \vert = \vert \frac{1}{\rho }\ln(1 + \rho \sqrt[3]{\cos^{2}{\phi} \sin \phi}) \vert
+\]
+Предел такого выражения зависит от напрвдения, например при \(\phi = 0\) предел равен 0, а при других углах \(1\). Тогад разность приращения и дифференциала
+не равна \(o(\rho )\), что недифференцируемость функции.   
+
+\section{T14}
+\[
+    f(x, y, z) = (1 + x)^\alpha(1 + y)^\beta(1 + z^\gamma)
+\]
+\[
+    \ln{f(x, y, z)} = \alpha\ln(1 + x) + \beta\ln(1 + y) + \ln(1 + z^\gamma)
+\]
+\[
+    d \ln{f(x, y, z)} = \frac{d f(x, y, z)}{f(x, y, z)} = \frac{\alpha dx}{1 + x} + \frac{\beta dy}{1 + y} + \frac{\gamma z^{\gamma - 1}dz}{1 + z^{\gamma} }
+\]
+\[
+    d f(0, 0, 0) = \alpha dx + \beta dy
+\]
+\[
+    d^2 f(x, y, z) = d \left( f(x, y, z) \cdot d \ln{f(x, y, z)} \right) = d f(x, y, z) \otimes d \ln{f(x, y, z)} + f(x, y, z) \cdot d^2 \ln{f(x, y, z)} 
+\]
+Первое слагаеемое:
+\[
+    d f(0, 0, 0) \otimes d \ln{f(0, 0, 0)} = (\alpha dx + \beta dy)^{2}
+\]
+Второе слагаемое:
+\[
+    d^2 \ln{f(x, y, z)} = -\frac{\alpha dx^{2}}{(1 + x)^{2}} - \frac{\beta dy^{2}}{(1 + y)^{2}} + \frac{\gamma (\gamma - 1) z^{\gamma -2} - \gamma z^{2\gamma -2}}{(1 + z^{\gamma})^{2} }
+\]
+Тогда второй дифференциал в нуле равен:
+\[
+    d^2 f(0, 0, 0) = (\alpha dx + \beta dy)^{2} - \alpha dx^{2} - \beta dy^{2} = (\alpha^{2} - \alpha)dx^{2}  + (\alpha ^{2} -\alpha ^{2} )dy^{2} + 2\alpha \beta dx \otimes dy
+\]
+\section{T15}
+\[
+    f^3 - 3xyf - 2 = 0, f(1, 1) = 2
+\]
+\[
+    3f^2 df - 3yf dx - 3xf dy - 3xy df = 0 \implies df = \frac{dx + dy}{f^2 - xy}
+\]
+Значение \(df(1, 1) = \frac{dx + dy}{3}\) 
+\[
+    d^2 f = d \left( \frac{1}{f^2 - xy} \right) \otimes (dx + dy) 
+\]
+\[
+    d \left( \frac{1}{f^2 - xy} \right) = -\frac{2f df - ydx - x dy}{(f^2 - xy)^2} = -\frac{4df - dx - dy}{9}
+\]
+\[
+    d^2 f(1, 1) = (dx + dy) \otimes -\frac{\frac{4}{3}dx + \frac{4}{3}dy - dx - dy}{9} = \frac{1}{27}(dx + dy)^2 
+\]
+Тогда частные производные одинаковы и равны: \(\frac{1}{27}\). 
+\section{T16}
+\[
+    f(x, y, z) = \ln{x + y + z} = \ln g
+\]
+\[
+    d^n f(x, y, z) = \partial_{g^n} f \cdot dg^n = \frac{(-1)^{n - 1} (n - 1)!}{(x + y + z)^n} \cdot (dx + dy + dz)^n
+\]
+То есть все частные производные равны между собой и равны: \(\frac{(-1)^{n - 1} (n - 1)!}{(x + y + z)^n}\). 
 \end{document}
