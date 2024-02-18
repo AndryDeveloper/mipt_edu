@@ -5,3 +5,5 @@
 *.out
 *.ipynb_checkpoints
 *.synctex
+build/
+venv/

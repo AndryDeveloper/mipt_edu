@@ -23,6 +23,8 @@ class Table:
 
     def __repr__(self):
         return self.data.__repr__()
+    def to_latex(self):
+        return self.data.style.to_latex()
 
 
 class Environment:
