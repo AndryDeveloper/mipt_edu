@@ -15,7 +15,7 @@ if not os.path.isdir('build'):
     subprocess.run(['cmake', '-B', 'build', '-DCMAKE_BUILD_TYPE=Debug'])
 print('compile programm')
 subprocess.run(['cmake', '--build' ,'build'])
-print('running c++ backend(1 part)')
+print('running c++ backend')
 subprocess.run(['build/main'])
 print('process results')
 df = pd.read_csv('data/linear_search.csv')
@@ -57,4 +57,43 @@ ax.set_xlabel(r"N")
 ax.set_ylabel(r"Time")
 ax.set_title(r'Поиск суммы O(n) поиск')
 fig.savefig(r'figures/sum_search_2_search.png')
+
+df1 = pd.read_csv('data/strategy_a_1.csv')
+df2 = pd.read_csv('data/strategy_a_2.csv')
+
+fig, ax = plt.subplots(figsize=(14, 10))
+ax.plot(df1.N, df1.time, label='poisson')
+ax.plot(df2.N, df2.time, label='rect')
+ax.legend()
+
+ax.set_xlabel(r"N")
+ax.set_ylabel(r"Time")
+ax.set_title(r'Стратегия А')
+fig.savefig(r'figures/strategy_a.png')
+
+df1 = pd.read_csv('data/strategy_b_1.csv')
+df2 = pd.read_csv('data/strategy_b_2.csv')
+
+fig, ax = plt.subplots(figsize=(14, 10))
+ax.plot(df1.N, df1.time, label='poisson')
+ax.plot(df2.N, df2.time, label='rect')
+ax.legend()
+
+ax.set_xlabel(r"N")
+ax.set_ylabel(r"Time")
+ax.set_title(r'Стратегия B')
+fig.savefig(r'figures/strategy_b.png')
+
+df1 = pd.read_csv('data/strategy_c_1.csv')
+df2 = pd.read_csv('data/strategy_c_2.csv')
+
+fig, ax = plt.subplots(figsize=(14, 10))
+ax.plot(df1.N, df1.time, label='poisson')
+ax.plot(df2.N, df2.time, label='rect')
+ax.legend()
+
+ax.set_xlabel(r"N")
+ax.set_ylabel(r"Time")
+ax.set_title(r'Стратегия С')
+fig.savefig(r'figures/strategy_с.png')
 print('saving results')
