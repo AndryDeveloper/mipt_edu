@@ -4,15 +4,36 @@
 #include <fstream>
 #include <algorithm>
 using namespace std;
+template<typename T>
 
-#define MAX_N 10000
+#define MAX_N_SQUARE 100'000
+#define MIN_N_SQUARE 100
+#define N_RANGE_SQUARE 5000
+#define N_REPEATED_SQUARE 5
+
+#define MAX_N_STRATEGYS 10'000
+#define MIN_N_STRATEGYS 1000
+#define N_RANGE_STRATEGYS 500
+#define N_REPEATED_STRATEGYS 500'000
+
+#define MAX_N 1'001'000
 #define MIN_N 100
-#define N_RANGE 1000
-#define N_REPEATED_LINEAR 500'000
+#define N_RANGE 50000
+#define N_REPEATED_LINEAR 25'000
 #define N_REPEATED_LOGARIFMIC 500'000
-#define N_REPEATED_SQUARE 1
 #define PBSTR "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 #define PBWIDTH 60
+
+void print_first_elements (T *array, size_t length_to_print) {
+    cout << "{";
+    for (size_t i = 0; i < length_to_print; i++) {
+        if (0 != i) {
+            cout << ", ";
+        }
+        cout << array[i];
+    }
+    cout << "...}\n";
+}
 
 void print_progress(double percentage)
 {
@@ -120,9 +141,13 @@ void strategy_C(unsigned *arr, unsigned *arr_counts, unsigned N, unsigned search
       {
         if (arr_counts[i - 1] < arr_counts[i])
         {
-          unsigned tmp = arr[i];
+          unsigned tmp1 = arr[i];
           arr[i] = arr[i - 1];
-          arr[i - 1] = tmp;
+          arr[i - 1] = tmp1;
+
+          unsigned tmp2 = arr_counts[i];
+          arr_counts[i] = arr_counts[i - 1];
+          arr_counts[i - 1] = tmp2;
         }
       }
       break;
@@ -172,46 +197,43 @@ unsigned check_time(unsigned int *arr, unsigned N, default_random_engine rng, un
   }
   case 5:
   {
-    std::poisson_distribution<unsigned> dstr((N - 1) / 2);
+    binomial_distribution<unsigned> dstr(N, 0.5);
     random_shuffle(&arr[0], &arr[N]);
-    for (unsigned cnt = N_REPEATED_LINEAR; cnt != 0; --cnt)
+    for (unsigned cnt = N_REPEATED_STRATEGYS; cnt != 0; --cnt)
     {
       strategy_A(arr, N, dstr(rng));
     }
-    sort(arr, arr + N);
     break;
   }
   case 6:
   {
-    std::poisson_distribution<unsigned> dstr((N - 1) / 2);
+    binomial_distribution<unsigned> dstr(N, 0.5);
     random_shuffle(&arr[0], &arr[N]);
-    for (unsigned cnt = N_REPEATED_LINEAR; cnt != 0; --cnt)
+    for (unsigned cnt = N_REPEATED_STRATEGYS; cnt != 0; --cnt)
     {
       strategy_B(arr, N, dstr(rng));
     }
-    sort(arr, arr + N);
     break;
   }
   case 7:
   {
     uniform_int_distribution<unsigned> dstr(0, N);
     random_shuffle(&arr[0], &arr[N]);
-    for (unsigned cnt = N_REPEATED_LINEAR; cnt != 0; --cnt)
+    for (unsigned cnt = N_REPEATED_STRATEGYS; cnt != 0; --cnt)
     {
       strategy_A(arr, N, dstr(rng));
     }
-    sort(arr, arr + N);
     break;
   }
   case 8:
   {
     uniform_int_distribution<unsigned> dstr(0, N);
     random_shuffle(&arr[0], &arr[N]);
-    for (unsigned cnt = N_REPEATED_LINEAR; cnt != 0; --cnt)
+    for (unsigned cnt = N_REPEATED_STRATEGYS; cnt != 0; --cnt)
     {
       strategy_B(arr, N, dstr(rng));
     }
-    sort(arr, arr + N);
+
     break;
   }
   default:
@@ -228,26 +250,22 @@ unsigned check_time(unsigned int *arr, unsigned N, default_random_engine rng, un
   {
   case 9: 
   {
-    std::poisson_distribution<unsigned> dstr((N - 1) / 2);
+    binomial_distribution<unsigned> dstr(N, 0.5);
     random_shuffle(&arr[0], &arr[N]);
-    for (unsigned cnt = N_REPEATED_LINEAR; cnt != 0; --cnt)
+    for (unsigned cnt = N_REPEATED_STRATEGYS; cnt != 0; --cnt)
     {
       strategy_C(arr, arr_counts, N, dstr(rng));
     }
-    sort(arr, arr + N);
-    fill(arr_counts, arr_counts + N, 0);
     break;
   }
   case 10: 
   {
     uniform_int_distribution<unsigned> dstr(0, N);
     random_shuffle(&arr[0], &arr[N]);
-    for (unsigned cnt = N_REPEATED_LINEAR; cnt != 0; --cnt)
+    for (unsigned cnt = N_REPEATED_STRATEGYS; cnt != 0; --cnt)
     {
       strategy_C(arr, arr_counts, N, dstr(rng));
     }
-    sort(arr, arr + N);
-    fill(arr_counts, arr_counts + N, 0);
     break;
   }
   
@@ -262,72 +280,91 @@ unsigned check_time(unsigned int *arr, unsigned N, default_random_engine rng, un
 
 int main()
 {
-  const unsigned N_range[] = {MIN_N, MAX_N, N_RANGE};
   static unsigned arr[MAX_N] = {0};
   static unsigned sort_arr[MAX_N] = {0};
-  static unsigned arr_counts[MAX_N] = {0};
+  static unsigned normal_sort_arr[MAX_N_STRATEGYS] = {0};
+  static unsigned arr_counts[MAX_N_STRATEGYS] = {0};
 
   const unsigned seed = 42;
   default_random_engine rng(seed);
-  uniform_int_distribution<unsigned> dstr(0, N_range[1] - 1);
+  uniform_int_distribution<unsigned> dstr(0, MAX_N - 1);
 
-  for (unsigned i = 0; i < N_range[1]; i++)
+  for (unsigned i = 0; i < MAX_N_STRATEGYS; i++)
+  {
+    normal_sort_arr[i] = i;
+  }
+
+  for (unsigned i = 0; i < MAX_N; i++)
   {
     unsigned p = dstr(rng);
     arr[i] = p;
     sort_arr[i] = p;
   }
-  sort(sort_arr, sort_arr + N_range[1]);
+  sort(sort_arr, sort_arr + MAX_N);
 
   // cout << "First test started" << endl;
   // ofstream output_file_1("data/linear_search.csv");
   // output_file_1 << "N" << "," << "time" << "\n";
-  // for (unsigned N = N_range[0], i = 0; N <= N_range[1]; N += N_range[2], i++){
+  // for (unsigned N = MIN_N, i = 0; N <= MAX_N; N += N_RANGE, i++){
   //   output_file_1 << N << "," << check_time(arr, N, rng, 1) << "\n";
-  //   print_progress(static_cast<double>(N) / static_cast<double>(N_range[1]));
+  //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N));
   // }
   // cout << endl;
 
   // cout << "Second test started" << endl;
   // ofstream output_file_2("data/binary_search.csv");
   // output_file_2 << "N" << "," << "time" << "\n";
-  // for (unsigned N = N_range[0], i = 0; N <= N_range[1]; N += N_range[2], i++){
+  // for (unsigned N = MIN_N, i = 0; N <= MAX_N; N += N_RANGE, i++){
   //   output_file_2 << N << "," << check_time(sort_arr, N, rng, 2) << "\n";
-  //   print_progress(static_cast<double>(N) / static_cast<double>(N_range[1]));
+  //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N));
   // }
   // cout << endl;
 
   // cout << "Third test start(sum search O(n^2))" << endl;
   // ofstream output_file_3("data/sum_search_1.csv");
   // output_file_3 << "N" << "," << "time" << "\n";
-  // for (unsigned N = N_range[0], i = 0; N <= N_range[1]; N += N_range[2], i++){
-  //   print_progress(static_cast<double>(N) / static_cast<double>(N_range[1]));
-  //   output_file_3 << N << "," << check_time(arr, N, rng, 3) << "\n";
+  // for (unsigned N = MIN_N_SQUARE, i = 0; N <= MAX_N_SQUARE; N += N_RANGE_SQUARE, i++){
+  //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_SQUARE));
+  //   output_file_3 << N << "," << check_time(normal_sort_arr, N, rng, 3) << "\n";
   // }
   // cout << endl;
 
   // cout << "Fourth test start(sum search O(n))" << endl;
   // ofstream output_file_4("data/sum_search_2.csv");
   // output_file_4 << "N" << "," << "time" << "\n";
-  // for (unsigned N = N_range[0], i = 0; N <= N_range[1]; N += N_range[2], i++){
-  //   print_progress(static_cast<double>(N) / static_cast<double>(N_range[1]));
-  //   output_file_4 << N << "," << check_time(sort_arr, N, rng, 4) << "\n";
+  // for (unsigned N = MIN_N, i = 0; N <= MAX_N; N += N_RANGE, i++){
+  //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N));
+  //   output_file_4 << N << "," << check_time(normal_sort_arr, N, rng, 4) << "\n";
   // }
   // cout << endl;
 
-  cout << "Fifth test start (Strategy A poisson dist)" << endl;
-  ofstream output_file_5("data/strategy_a_1.csv");
-  output_file_5 << "N"
-                << ","
-                << "time"
-                << "\n";
-  for (unsigned N = N_range[0], i = 0; N <= N_range[1]; N += N_range[2], i++)
-  {
-    print_progress(static_cast<double>(N) / static_cast<double>(N_range[1]));
-    output_file_5 << N << "," << check_time(sort_arr, N, rng, 5) << "\n";
-  }
-  sort(sort_arr, sort_arr + N_range[1]);
-  cout << endl;
+  // cout << "Fifth test start (Strategy A poisson dist)" << endl;
+  // ofstream output_file_5("data/strategy_a_1.csv");
+  // output_file_5 << "N"
+  //               << ","
+  //               << "time"
+  //               << "\n";
+  // for (unsigned N = MIN_N_STRATEGYS, i = 0; N <= MAX_N_STRATEGYS; N += N_RANGE_STRATEGYS, i++)
+  // {
+  //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
+  //   output_file_5 << N << "," << check_time(normal_sort_arr, N, rng, 5) << "\n";
+  // }
+  // sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
+  // cout << endl;
+
+  // cout << "Seventh test start (Strategy A rect dist)" << endl;
+  // ofstream output_file_7("data/strategy_a_2.csv");
+  // output_file_7 << "N"
+  //               << ","
+  //               << "time"
+  //               << "\n";
+  // for (unsigned N = MIN_N_STRATEGYS, i = 0; N <= MAX_N_STRATEGYS; N += N_RANGE_STRATEGYS, i++)
+  // {
+  //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
+  //   output_file_7 << N << "," << check_time(normal_sort_arr, N, rng, 7) << "\n";
+  // }
+  // sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
+  // cout << endl;
 
   cout << "Sixth test start (Strategy B poisson dist)" << endl;
   ofstream output_file_6("data/strategy_b_1.csv");
@@ -335,26 +372,12 @@ int main()
                 << ","
                 << "time"
                 << "\n";
-  for (unsigned N = N_range[0], i = 0; N <= N_range[1]; N += N_range[2], i++)
+  for (unsigned N = MIN_N_STRATEGYS, i = 0; N <= MAX_N_STRATEGYS; N += N_RANGE_STRATEGYS, i++)
   {
-    print_progress(static_cast<double>(N) / static_cast<double>(N_range[1]));
-    output_file_6 << N << "," << check_time(sort_arr, N, rng, 6) << "\n";
+    print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
+    output_file_6 << N << "," << check_time(normal_sort_arr, N, rng, 6) << "\n";
   }
-  sort(sort_arr, sort_arr + N_range[1]);
-  cout << endl;
-
-  cout << "Seventh test start (Strategy A rect dist)" << endl;
-  ofstream output_file_7("data/strategy_a_2.csv");
-  output_file_7 << "N"
-                << ","
-                << "time"
-                << "\n";
-  for (unsigned N = N_range[0], i = 0; N <= N_range[1]; N += N_range[2], i++)
-  {
-    print_progress(static_cast<double>(N) / static_cast<double>(N_range[1]));
-    output_file_7 << N << "," << check_time(sort_arr, N, rng, 7) << "\n";
-  }
-  sort(sort_arr, sort_arr + N_range[1]);
+  sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
   cout << endl;
 
   cout << "Eighth test start (Strategy B rect dist)" << endl;
@@ -363,40 +386,46 @@ int main()
                 << ","
                 << "time"
                 << "\n";
-  for (unsigned N = N_range[0], i = 0; N <= N_range[1]; N += N_range[2], i++)
+  for (unsigned N = MIN_N_STRATEGYS, i = 0; N <= MAX_N_STRATEGYS; N += N_RANGE_STRATEGYS, i++)
   {
-    print_progress(static_cast<double>(N) / static_cast<double>(N_range[1]));
-    output_file_8 << N << "," << check_time(sort_arr, N, rng, 8) << "\n";
+    print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
+    output_file_8 << N << "," << check_time(normal_sort_arr, N, rng, 8) << "\n";
   }
-  sort(sort_arr, sort_arr + N_range[1]);
+  sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
   cout << endl;
 
-  cout << "Ninth test start (Strategy C poisson dist)" << endl;
-  ofstream output_file_9("data/strategy_c_1.csv");
-  output_file_9 << "N"
-                << ","
-                << "time"
-                << "\n";
-  for (unsigned N = N_range[0], i = 0; N <= N_range[1]; N += N_range[2], i++)
-  {
-    print_progress(static_cast<double>(N) / static_cast<double>(N_range[1]));
-    output_file_9 << N << "," << check_time(sort_arr, N, rng, 9, arr_counts) << "\n";
-  }
-  sort(sort_arr, sort_arr + N_range[1]);
-  cout << endl;
+  // cout << "Ninth test start (Strategy C poisson dist)" << endl;
+  // ofstream output_file_9("data/strategy_c_1.csv");
+  // output_file_9 << "N"
+  //               << ","
+  //               << "time"
+  //               << "\n";
+  // for (unsigned N = MIN_N_STRATEGYS, i = 0; N <= MAX_N_STRATEGYS; N += N_RANGE_STRATEGYS, i++)
+  // {
+  //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
+  //   output_file_9 << N << "," << check_time(normal_sort_arr, N, rng, 9, arr_counts) << "\n";
+  //   fill(arr_counts, arr_counts + N, 0);
+  // }
 
-  cout << "Tenth test start (Strategy C rect dist)" << endl;
-  ofstream output_file_10("data/strategy_c_2.csv");
-  output_file_10 << "N"
-                << ","
-                << "time"
-                << "\n";
-  for (unsigned N = N_range[0], i = 0; N <= N_range[1]; N += N_range[2], i++)
-  {
-    print_progress(static_cast<double>(N) / static_cast<double>(N_range[1]));
-    output_file_10 << N << "," << check_time(sort_arr, N, rng, 10, arr_counts) << "\n";
-  }
-  
-  cout << endl;
+  // // cout << arr_counts[0] << ' ' << arr_counts[1] << endl;
+
+  // sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
+  // cout << endl;
+
+  // cout << "Tenth test start (Strategy C rect dist)" << endl;
+  // ofstream output_file_10("data/strategy_c_2.csv");
+  // output_file_10 << "N"
+  //               << ","
+  //               << "time"
+  //               << "\n";
+  // for (unsigned N = MIN_N_STRATEGYS, i = 0; N <= MAX_N_STRATEGYS; N += N_RANGE_STRATEGYS, i++)
+  // {
+  //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
+  //   output_file_10 << N << "," << check_time(normal_sort_arr, N, rng, 10, arr_counts) << "\n";
+  //   fill(arr_counts, arr_counts + N, 0);
+  // }
+  // sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
+  // fill(arr_counts, arr_counts + MAX_N_STRATEGYS, 0);
+  // cout << endl;
   return 0;
 }
