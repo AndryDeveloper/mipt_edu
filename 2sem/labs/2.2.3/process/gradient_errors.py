@@ -4,6 +4,8 @@ from typing import Tuple
 import pandas as pd
 from science_notation import science_notation
 import json
+from scipy.optimize import curve_fit
+import numpy as np
 
 
 class Table:
@@ -105,57 +107,46 @@ class Environment:
         :param mode: 'classic' if f =  a + bx, 'zero' if f = bx.
         :return: params a, b (a, b) if 'classic' mode else (0, b).
         """
-        errors_x, errors_y = self.get_error(x), self.get_error(y)
-        x, y = torch.tensor(x), torch.tensor(y)
+        errors_x, errors_y = self.get_error(x).numpy(), self.get_error(y).numpy()
+        x, y = torch.tensor(x).numpy(), torch.tensor(y).numpy()
         if reverse_axis is None:
-            reverse_axis = (torch.mean(errors_x / x) > torch.mean(errors_y / y)) and auto_reverse
+            reverse_axis = (np.mean(errors_x / x) > np.mean(errors_y / y)) and auto_reverse
         if reverse_axis:
             print('Using reversed axis')
             x, y = y, x
             errors_x, errors_y = errors_y, errors_x
-
-        if 0 in errors_y:
-            print('Using mnk method')
-            errors_y = torch.ones(len(errors_y))
-
-        ws = 1 / errors_y ** 2
-        sws = sum(ws)
-        x_mean = 1 / sws * sum(ws * x)
-        y_mean = 1 / sws * sum(ws * y)
-        xy_mean = 1 / sws * sum(ws * x * y)
-        x2_mean = 1 / sws * sum(ws * x ** 2)
-        y2_mean = 1 / sws * sum(ws * y ** 2)
-
+        
         if mode == 'classic':
-            b = (xy_mean - x_mean * y_mean) / (x2_mean - x_mean ** 2)
-            a = y_mean - b * x_mean
-            
-            error_b = torch.sqrt(abs(1 / (len(x) - 2) * ((y2_mean - y_mean ** 2) / (x2_mean - x_mean ** 2) - b ** 2)))
-            error_a = error_b * torch.sqrt(x2_mean)
+            function = lambda x, a, b: a + b*x
+            popt, pcov = curve_fit(function, xdata = x, ydata = y, sigma = errors_y)
+            a, b = popt
+            error_a = np.sqrt(pcov[0,0])
+            error_b = np.sqrt(pcov[1,1])
         else:
-            b = xy_mean / x2_mean
-            a = torch.tensor(0.)
-            
-            error_b = torch.sqrt(abs(1 / (len(x) - 1) * (y2_mean / x2_mean - b ** 2)))
-            error_a = torch.tensor(0.)
+            function = lambda x, b: b*x
+            popt, pcov = curve_fit(function, xdata = x, ydata = y, sigma = errors_y)
+            b = popt[0]
+            a = 0
+            error_a = 0
+            error_b = np.sqrt(pcov[0,0])
 
         if reverse_axis:
             error_b, error_a = error_b / b ** 2, (((a * error_b) / b ** 2) ** 2 + (error_a / b) ** 2) ** 0.5
             b, a = 1 / b, -a / b
 
-        a = torch.tensor(a.item(), requires_grad=True, dtype=torch.float64)
+        a = torch.tensor(a, requires_grad=True, dtype=torch.float64)
         self.__all_values.append(a)
-        self.__all_errors.append(error_a.item())
+        self.__all_errors.append(error_a)
 
-        b = torch.tensor(b.item(), requires_grad=True, dtype=torch.float64)
+        b = torch.tensor(b, requires_grad=True, dtype=torch.float64)
         self.__all_values.append(b)
-        self.__all_errors.append(error_b.item())
+        self.__all_errors.append(error_b)
 
         setattr(self, params_name['a'], a)
         setattr(self, params_name['b'], b)
         
-        self.config[params_name['a']] = science_notation(a.detach().item(), error_a.item())
-        self.config[params_name['b']] = science_notation(b.detach().item(), error_b.item())
+        self.config[params_name['a']] = science_notation(a.detach().item(), error_a)
+        self.config[params_name['b']] = science_notation(b.detach().item(), error_b)
 
         return a, b
 
