@@ -105,9 +105,12 @@
 \section{2.2}
 \[
     \sum_{n=1}^{\infty} \left( 1 + \frac{\alpha \ln n}{n} \right)^n = 
-    \sum_{n=1}^{\infty} 1 + \alpha \ln n + O(\frac{\ln ^2 n}{n^2})
+    \sum_{n=1}^{\infty} e^{n\ln \left( 1 + \frac{\alpha \ln n}{n} \right) } = 
+    \sum_{n=1}^{\infty} e^{\alpha \ln n + O(\frac{\ln^2 n}{n^2})} = 
+    \sum_{n=1}^{\infty} e^{O(\frac{\ln^2 n}{n^2})} \cdot n^\alpha = 
+    \sum_{n=1}^{\infty} O(n^\alpha)
 \]
-То есть ряд расходится для любого $\alpha$ 
+То есть ряд сходится при $\alpha < -1$. 
 \section{2.3}
 a)
 \[
@@ -151,8 +154,34 @@ $\sum_{k=n+1}^{m} \vert b_k \vert < M$.
 \]
 Так как сумма сходится, то исходный предел существует.
 
-\section{3.2}
+\section{2.6}
+Работоспособность формулы равносильна выполнению
+\[
+    \lim_{n \to \infty} \sum_{k=2}^{n} \ln k + n - n\ln n - \frac{1}{2} \ln n 
+\]
+Что эквивалентно 
+\[
+    \sum_{n=2}^{\infty} \ln k + 1 - \ln \frac{k^k}{(k-1)^{k-1} } - \frac{1}{2} \ln \frac{k}{k-1} = 
+    \sum_{n=2}^{\infty} \ln k + 1 - \ln \frac{k^{k-1}}{(k-1)^{k-1} } - \ln k - \frac{1}{2} \ln \frac{k}{k-1} = 
+    \sum_{n=1}^{\infty} 1 - (k - \frac{1}{2})\ln \frac{1}{1 - \frac{1}{k}}
+\]
+Тогда раскладывая логарифм в Тейлора:
+\[
+    \sum_{n=1}^{\infty} 1 - \left( k - \frac{1}{2} \right) \ln \left( 1 + \frac{1}{k} + \frac{1}{k^2} + O(\frac{1}{k^3}) \right)  = 
+    \sum_{n=1}^{\infty} 1 - \left( k - \frac{1}{2} \right) \left( \frac{1}{k} + \frac{1}{2k^2} + O(\frac{1}{k^3}) \right)  = 
+    \sum_{n=1}^{\infty} -\frac{1}{4k^2} + O(\frac{1}{k^2})
+\]
+Такой ряд сходится.
 
+\section{3.2}
+Построим последовательность $b_n$. Первые $k$ членов равны последовательности $1 \cdot a_n$, $k$ выберается 
+такое, что $\sum_{n=1}^{\infty} a_n - \sum_{n=1}^{k} a_n = O(\frac{1}{1^3})$. Далее выбираются $b_n$ как $2 \cdot a_n$ до тех пор пока 
+$\sum_{n=1}^{\infty} a_n - \sum_{n=1}^{k} a_n = O(\frac{1}{2^3})$. Таким образом оценим сумму $b_n$(S = $\sum_{n=1}^{\infty} a_n$):
+\[
+    \sum_{n=1}^{\infty} b_n \leq S + 2 \cdot \left( S - \sum_{n=1}^{k_1} a_n \right) + \dots = 
+    S + 2 O(\frac{1}{2^3}) + \dots n O(\frac{1}{n^3}) + \dots = S + \sum_{k=1}^{\infty} O(\frac{1}{k^2})
+\]
+Конечный ряд сходится, а значит частичные суммы $b_n$ ограничены, а значит ряд $\sum_{n=1}^{\infty} b_n$ сходится.                
 
 \section{3.3}
 а) Пусть $a_n = \frac{(-1)^n}{\sqrt{n}}$, тогда сумма $\sum_{n=1}^{\infty} a_n$ сходится по признаку Лейбница. В то время как 

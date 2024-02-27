@@ -12,8 +12,8 @@ template<typename T>
 #define N_REPEATED_SQUARE 5
 
 #define MAX_N_STRATEGYS 10'000
-#define MIN_N_STRATEGYS 1000
-#define N_RANGE_STRATEGYS 500
+#define MIN_N_STRATEGYS 1'000
+#define N_RANGE_STRATEGYS 800
 #define N_REPEATED_STRATEGYS 500'000
 
 #define MAX_N 1'001'000
@@ -106,11 +106,13 @@ void strategy_A(unsigned *arr, unsigned N, unsigned search_element)
 {
   for (unsigned i = 0; i < N; i++)
   {
-    if (arr[i] == search_element && i != 0)
+    if (arr[i] == search_element)
     {
-      unsigned tmp = arr[i];
-      arr[i] = arr[0];
-      arr[0] = tmp;
+      if (i != 0){
+        unsigned tmp = arr[i];
+        arr[i] = arr[0];
+        arr[0] = tmp;
+      }
       break;
     }
   }
@@ -120,11 +122,13 @@ void strategy_B(unsigned *arr, unsigned N, unsigned search_element)
 {
   for (unsigned i = 0; i < N; i++)
   {
-    if (arr[i] == search_element && i != 0)
+    if (arr[i] == search_element)
     {
-      unsigned tmp = arr[i];
-      arr[i] = arr[i - 1];
-      arr[i - 1] = tmp;
+      if (i != 0){
+        unsigned tmp = arr[i];
+        arr[i] = arr[i - 1];
+        arr[i - 1] = tmp;
+      }
       break;
     }
   }
@@ -197,11 +201,17 @@ unsigned check_time(unsigned int *arr, unsigned N, default_random_engine rng, un
   }
   case 5:
   {
-    binomial_distribution<unsigned> dstr(N, 0.5);
-    random_shuffle(&arr[0], &arr[N]);
+    uniform_real_distribution<> dist(0., 1.);
+    uniform_int_distribution<unsigned> dstr(0, N - 1);
     for (unsigned cnt = N_REPEATED_STRATEGYS; cnt != 0; --cnt)
     {
-      strategy_A(arr, N, dstr(rng));
+      if (dist(rng) > 0.9){
+        strategy_A(arr, N, dstr(rng));
+      }
+      else {
+        strategy_A(arr, N, (N - 1) / 2);
+      }
+
     }
     break;
   }
@@ -348,6 +358,7 @@ int main()
   // {
   //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
   //   output_file_5 << N << "," << check_time(normal_sort_arr, N, rng, 5) << "\n";
+  //   sort(normal_sort_arr, normal_sort_arr + N);
   // }
   // sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
   // cout << endl;
@@ -362,6 +373,7 @@ int main()
   // {
   //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
   //   output_file_7 << N << "," << check_time(normal_sort_arr, N, rng, 7) << "\n";
+  //   sort(normal_sort_arr, normal_sort_arr + N);
   // }
   // sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
   // cout << endl;
@@ -394,38 +406,38 @@ int main()
   sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
   cout << endl;
 
-  // cout << "Ninth test start (Strategy C poisson dist)" << endl;
-  // ofstream output_file_9("data/strategy_c_1.csv");
-  // output_file_9 << "N"
-  //               << ","
-  //               << "time"
-  //               << "\n";
-  // for (unsigned N = MIN_N_STRATEGYS, i = 0; N <= MAX_N_STRATEGYS; N += N_RANGE_STRATEGYS, i++)
-  // {
-  //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
-  //   output_file_9 << N << "," << check_time(normal_sort_arr, N, rng, 9, arr_counts) << "\n";
-  //   fill(arr_counts, arr_counts + N, 0);
-  // }
+  cout << "Ninth test start (Strategy C poisson dist)" << endl;
+  ofstream output_file_9("data/strategy_c_1.csv");
+  output_file_9 << "N"
+                << ","
+                << "time"
+                << "\n";
+  for (unsigned N = MIN_N_STRATEGYS, i = 0; N <= MAX_N_STRATEGYS; N += N_RANGE_STRATEGYS, i++)
+  {
+    print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
+    output_file_9 << N << "," << check_time(normal_sort_arr, N, rng, 9, arr_counts) << "\n";
+    fill(arr_counts, arr_counts + N, 0);
+    sort(normal_sort_arr, normal_sort_arr + N);
+  }
 
-  // // cout << arr_counts[0] << ' ' << arr_counts[1] << endl;
+  sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
+  cout << endl;
 
-  // sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
-  // cout << endl;
-
-  // cout << "Tenth test start (Strategy C rect dist)" << endl;
-  // ofstream output_file_10("data/strategy_c_2.csv");
-  // output_file_10 << "N"
-  //               << ","
-  //               << "time"
-  //               << "\n";
-  // for (unsigned N = MIN_N_STRATEGYS, i = 0; N <= MAX_N_STRATEGYS; N += N_RANGE_STRATEGYS, i++)
-  // {
-  //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
-  //   output_file_10 << N << "," << check_time(normal_sort_arr, N, rng, 10, arr_counts) << "\n";
-  //   fill(arr_counts, arr_counts + N, 0);
-  // }
-  // sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
-  // fill(arr_counts, arr_counts + MAX_N_STRATEGYS, 0);
-  // cout << endl;
+  cout << "Tenth test start (Strategy C rect dist)" << endl;
+  ofstream output_file_10("data/strategy_c_2.csv");
+  output_file_10 << "N"
+                << ","
+                << "time"
+                << "\n";
+  for (unsigned N = MIN_N_STRATEGYS, i = 0; N <= MAX_N_STRATEGYS; N += N_RANGE_STRATEGYS, i++)
+  {
+    print_progress(static_cast<double>(N) / static_cast<double>(MAX_N_STRATEGYS));
+    output_file_10 << N << "," << check_time(normal_sort_arr, N, rng, 10, arr_counts) << "\n";
+    fill(arr_counts, arr_counts + N, 0);
+    sort(normal_sort_arr, normal_sort_arr + N);
+  }
+  sort(normal_sort_arr, normal_sort_arr + MAX_N_STRATEGYS);
+  fill(arr_counts, arr_counts + MAX_N_STRATEGYS, 0);
+  cout << endl;
   return 0;
 }
