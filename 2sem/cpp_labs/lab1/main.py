@@ -1,8 +1,11 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
 import subprocess
 import os
+
+matplotlib.use('Agg')
 
 if not os.path.isdir('figures'):
     os.mkdir('figures')
@@ -19,7 +22,6 @@ print('running c++ backend')
 subprocess.run(['build/main'])
 print('process results')
 df = pd.read_csv('data/linear_search.csv')
-
 fig, ax = plt.subplots(figsize=(14, 10))
 ax.plot(df.N, df.time)
 
@@ -62,8 +64,8 @@ df1 = pd.read_csv('data/strategy_a_1.csv')
 df2 = pd.read_csv('data/strategy_a_2.csv')
 
 fig, ax = plt.subplots(figsize=(14, 10))
-ax.plot(df1.N, df1.time, label='poisson')
-ax.plot(df2.N, df2.time, label='rect')
+ax.plot(df1.N, df1.time, label='uninformal')
+ax.plot(df2.N, df2.time, label='unformal')
 ax.legend()
 
 ax.set_xlabel(r"N")
@@ -75,8 +77,8 @@ df1 = pd.read_csv('data/strategy_b_1.csv')
 df2 = pd.read_csv('data/strategy_b_2.csv')
 
 fig, ax = plt.subplots(figsize=(14, 10))
-ax.plot(df1.N, df1.time, label='poisson')
-ax.plot(df2.N, df2.time, label='rect')
+ax.plot(df1.N, df1.time, label='uninformal')
+ax.plot(df2.N, df2.time, label='unformal')
 ax.legend()
 
 ax.set_xlabel(r"N")
@@ -88,8 +90,8 @@ df1 = pd.read_csv('data/strategy_c_1.csv')
 df2 = pd.read_csv('data/strategy_c_2.csv')
 
 fig, ax = plt.subplots(figsize=(14, 10))
-ax.plot(df1.N, df1.time, label='poisson')
-ax.plot(df2.N, df2.time, label='rect')
+ax.plot(df1.N, df1.time, label='uninformal')
+ax.plot(df2.N, df2.time, label='unformal')
 ax.legend()
 
 ax.set_xlabel(r"N")
