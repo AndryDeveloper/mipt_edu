@@ -1,0 +1,3 @@
+void check_shaker_time(unsigned *arr, unsigned N, std::default_random_engine& rng, float& time_full, float& time_forward, float& time_backward);
+void check_comb_time(unsigned *arr, unsigned N, std::default_random_engine& rng, float& time, float& iterations);
+void check_shell_time(unsigned *arr, unsigned N, std::default_random_engine& rng, float& time1,float& time2,float& time3, float& iterations1,float& iterations2,float& iterations3);
