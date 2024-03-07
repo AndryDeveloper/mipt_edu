@@ -30,17 +30,28 @@ void shaker_sort(unsigned *arr, unsigned begin_idx, unsigned end_idx){
     }
 }
 
-// Не знаю но она неправильно сортирует()
+void bubble_sort_forward(unsigned *arr, unsigned begin_idx, unsigned end_idx){
+    while (begin_idx < end_idx){
+        forward_step(arr, begin_idx, end_idx);
+        end_idx--;
+    }
+}
+
+void bubble_sort_backward(unsigned *arr, unsigned begin_idx, unsigned end_idx){
+    while (begin_idx < end_idx){
+        backward_step(arr, end_idx, begin_idx);
+        begin_idx++;
+    }
+}
+
 unsigned comb_sort(unsigned *arr, unsigned begin_idx, unsigned end_idx){
     unsigned N = end_idx - begin_idx + 1;
     unsigned step = end_idx - begin_idx;
     double factor = 1.25;
     unsigned iters = 0;
     
-	while (step >= 1)
-	{   
-		for (int i = 0; i + step < N; i++)
-		{
+	while (step >= 1){   
+		for (int i = 0; i + step < N; i++){
 			if (arr[i] > arr[i + step])
 			{
                 unsigned tmp = arr[i];

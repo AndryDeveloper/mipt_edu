@@ -15,7 +15,7 @@ float& time_backward)
     shuffle(&arr[0], &arr[ARR_LENGTH], rng);
     auto begin = chrono::steady_clock::now();
     unsigned iter = 0;
-    for (unsigned i = 0; i < ARR_LENGTH - N; i += N){
+    for (unsigned i = 0; i < ARR_LENGTH / 50 - N; i += N){
         shaker_sort(arr, i, i + N - 1);
         iter++;
     }
@@ -23,8 +23,30 @@ float& time_backward)
     auto time_span = chrono::duration_cast<chrono::milliseconds>(end - begin);
     sort(arr, arr + MAX_N);
     time_full = static_cast<float>(time_span.count()) / static_cast<float>(iter);
-    time_forward = 0.;
-    time_backward = 0.;
+
+    shuffle(&arr[0], &arr[ARR_LENGTH], rng);
+    begin = chrono::steady_clock::now();
+    iter = 0;
+    for (unsigned i = 0; i < ARR_LENGTH / 50 - N; i += N){
+        bubble_sort_forward(arr, i, i + N - 1);
+        iter++;
+    }
+    end = chrono::steady_clock::now();
+    time_span = chrono::duration_cast<chrono::milliseconds>(end - begin);
+    sort(arr, arr + MAX_N);
+    time_forward = static_cast<float>(time_span.count()) / static_cast<float>(iter);
+
+    shuffle(&arr[0], &arr[ARR_LENGTH], rng);
+    begin = chrono::steady_clock::now();
+    iter = 0;
+    for (unsigned i = 0; i < ARR_LENGTH / 50 - N; i += N){
+        bubble_sort_backward(arr, i, i + N - 1);
+        iter++;
+    }
+    end = chrono::steady_clock::now();
+    time_span = chrono::duration_cast<chrono::milliseconds>(end - begin);
+    sort(arr, arr + MAX_N);
+    time_backward = static_cast<float>(time_span.count()) / static_cast<float>(iter);
 }
 
 void check_comb_time(unsigned *arr, 
