@@ -1,0 +1,196 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Практика 5.}
+\author{Шахматов Андрей, Б02-304}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{1.1}
+На множестве $E$ выполняется $\lim_{n \to \infty} \sup \vert f_n(x) - f(x) \vert  = 0$, а 
+на множестве $G$ выполняется \\ $\lim_{n \to \infty} \sup \vert f_n(x) - f(x) \vert  = 0$. Так как
+супремум на $E \cup G$ не превосходит максимума от супремумумов на каждом из множеств, но тогда 
+так как $\sup_E \vert f_n(x) - f(x) \vert  \to 0$ и $\sup_G \vert f_n(x) - f(x) \vert  \to 0$, то
+\[
+    \sup_{E \cup G} \vert f_n(x) - f(x) \vert  = \max \{ \sup_E \vert f_n(x) - f(x) \vert , \sup_G \vert f_n(x) - f(x) \vert \} \to 0
+\] 
+\section{1.2}
+\[
+    \sup \vert f_n g_n \vert \leq M \sup \vert f_n \vert \to 0 
+\]  
+\section{1.3}
+\[
+    \sum_{n=1}^{\infty} \frac{\sin nx}{n^2} \leq \sum_{n=1}^{\infty} \frac{1}{n^2}
+\]
+по признаку Вейерштрасса сходится равномерно, а значит так как каждая из $S_n$ непрерывна, то $S = \lim_{n \to \infty} S_n$ - непрерывна. 
+Найдём производные $S_n$:
+\[
+    S_n^{\prime} = \sum_{n=1}^{N} \frac{\cos nx}{n} 
+\]
+Так как при $x = 0$, сумма $S_n^{\prime}$ расходится, то теорему о почленном дифференцировании применять нельзя.  
+\section{2.1}
+Выберем такое $N$ из определения равномерной сходимости $\forall x \in (0, 1) \, \forall n, m > N \, \vert f_n(x) - f_m(x) \vert < \varepsilon$. 
+Для каждой из $f_n$ и $f_m$ найдутся такие окрестности $U_n$ и $U_m$, то для любых $x_0$ из этих окрестностей 
+$\vert f_n(x_0) - f_n(0) \vert < \varepsilon$ и $\vert f_m(x_0) - f_m(0) \vert < \varepsilon$, тогда для каждых $f_n$ и $f_m$ найдётся 
+$x_0 \in U_n \cap U_m$ выполняются оба из этих неравенств. Тогда: 
+\[
+    \vert f_m(0) - f_n(0) \vert \leq \vert f_m(0) - f_m(x_0) \vert + 
+    \vert f_m(x_0) - f_n(x_0) \vert + 
+    \vert f_n(x_0) - f_n(0) \vert \leq 3 \varepsilon
+\]      
+Тогда так как функция сходится в 0, то она равномерно сходится на всём отрезке. 
+\section{2.2}
+Рассмотрим $g_n = n^m e^{-nx}$ на отрезке $[a, b] \in (0, +\infty)$, тогда: 
+\[
+    \sum_{n=1}^{\infty} g_n \leq \sum_{n=1}^{\infty} n^m e^{-an}  
+\]
+Ряд сходится по признаку Коши: $\lim_{n \to \infty} n^{\frac{m}{n}} e^{-a} = e^{-a} < 1$. 
+Тогда так как $g_n$ - является $m$ почленной производной исходного ряда, и каждая $g_n$ cходится 
+равномерно на $[a, b]$, то по теореме о дифференцируемости, исходная функция $f$ бесконечно дифференцируема на $[a, b]$. 
+Но так как $[a, b]$ можно брать произвольным, то $f$ дифференцируема на всём $(0, +\infty )$.     
+\section{2.3}
+\section{2.4}
+Рассмотрим ряд $\sum_{n=1}^{\infty} f_n(x)$, где 
+\[
+    f_n(x) = 
+    \begin{cases}
+        \frac{1}{n}, x = n \\
+        0, x \neq n
+    \end{cases} 
+\]  
+Такой функциональный ряд будет поточечно сходится к функции: 
+\[
+    f(x) = 
+    \begin{cases}
+        \frac{1}{n}, x \in \mathbb{N} \\
+        0, x \notin \mathbb{N}
+    \end{cases}
+\]
+Для $x \notin \mathbb{N}$ очевидно функция сходится равномерно. 
+Тогда для заданного $\varepsilon$, выберем $N = \left[\frac{1}{\varepsilon}\right] + 1$, тогда для любого 
+$n > N$: 
+\[
+    \sup \vert f_n(x) - f(x) \vert \leq \frac{1}{n} < \varepsilon.
+\]  
+Так происходит так как взяв $x < n$ $f_n(x) - f(x) = 0$, а взяв $x \geq n$ $\vert f_n(x) - f(x) \vert \leq \frac{1}{n}$.
+
+При этом взяв последовательность $x_n = n$ ряд 
+\[
+    \sum_{n=1}^{\infty} f_n(x_n) = \sum_{n=1}^{\infty} \frac{1}{n}
+\] 
+расходится.
+\section{2.5}
+Рассмотрим по определению: 
+\[
+    \vert f_n(x_n) - f(x) \vert \leq  
+    \vert f_n(x_n) - f_n(x) \vert + \vert f_n(x) - f(x) \vert \leq 2 \varepsilon.
+\]
+$\vert f_n(x_n) - f_n(x) \vert < \varepsilon $ так как функции непрерывны(по Гейне), 
+$\vert f_n(x) - f(x) \vert < \varepsilon $ из равномерной сходимости.
+\section{2.6}
+а)
+\[
+    \sum_{n=1}^{\infty} \frac{\sin nx}{\ln (n^2 + x)}
+\]
+Рассмотрим сумму из отрицания критерия Коши с $\forall N \, x(N) = \frac{1}{2N}, p(N) = N, n(N) = N$:
+\[
+    \left| \sum_{k=n}^{p + n} \frac{\sin \frac{k}{2N}}{\ln (k^2 + \frac{1}{2N})} \right| = 
+    \frac{\sin \frac{1}{2}}{\ln (N^2 + \frac{1}{2N})} + \dots + \frac{\sin 1}{\ln (4N^2 + \frac{1}{2N})} \geq 
+    \frac{N \sin \frac{1}{2}}{\ln (4N^2 + \frac{1}{2N})} > \frac{N \sin \frac{1}{2}}{2 \ln 4N} \geq \frac{\sin \frac{1}{2}}{2\ln 4} = \varepsilon 
+\] 
+Ряд не сходится равномерно.\\
+б)
+\[
+    \sum_{n=1}^{\infty} \frac{\sin nx \cdot \sin x}{\ln (n^2 + x)}
+\]
+\[
+    \sin x \sum_{k=1}^{n} \sin nx = \sin x \frac{\sin \left( \frac{n+1}{2} x \right) \sin \left( \frac{n}{2}x \right) }{\sin \frac{x}{2}} = 
+    2 \cos \frac{x}{2} \sin \left( \frac{n+1}{2} x \right) \sin \left( \frac{n}{2}x \right) \leq 2
+\]
+Частичные суммы ограничены. Докажем, что $f_n = \frac{1}{\ln (n^2 + x)}$
+монотонна по $n$ и равномерно сходится к $0$:
+\[
+    \frac{1}{\ln (n^2 + x)} < \frac{1}{2 \ln n} \to 0.
+\]
+$f_n$ - монотонна из-за монотонности логарифма. 
+Тогда по признаку Дирихле получим что исходный ряд сходится равномерно.
+\section{2.7}
+а) 
+\[
+    \sum_{n=1}^{\infty} \cos nx = \frac{\sin \left( \frac{nx}{2} \right)  \cos \left( \frac{(n+1)x}{2} \right) }{\sin \frac{x}{2}} \leq \frac{2}{\delta}
+\]
+Тогда по признаку Дирихле $\sum_{n=1}^{\infty} a_n \cos nx$ сходится равномерно. \\
+б) 
+Условие: $\sum_{n=1}^{\infty} a_n$ сходится: \\
+1) Если $\sum_{n=1}^{\infty} a_n$ сходится, то: 
+\[
+    \sum_{n=1}^{\infty} a_n \cos nx \leq \sum_{n=1}^{\infty} a_n
+\]
+Сходится по признаку Вейерштрасса. \\
+2) От противного, если $\sum_{n=1}^{\infty} a_n$ не сходится, то при $x = 0$: 
+\[
+    \sum_{n=1}^{\infty} a_n \cos (0 \cdot n) = \sum_{n=1}^{\infty} a_n
+\]
+расходится.
+\section{3.1}
+\[
+    \sup \{(f - g) + g\} \geq \sup (f - g) + \sup g \implies \sup (f - g) \leq \sup f - \sup g
+\]  
+Тогда: 
+\[
+    \vert \sup f - \sup f_n \vert \leq \sup \vert f - f_n \vert \to 0 \implies \lim_{n \to \infty} \sup f_n = \sup f
+\] 
+
+
+\section{3.2}
+а) Неверно. Пусть $f_n = x + \frac{1}{n} \to x$, $g_n = \frac{1}{n} \to 0$, тогда $f g = x \cdot 0 = 0$, 
+Но $f_n g_n = \frac{x}{n} + \frac{1}{n^2}$, взяв последовательность $x_n = n$ получим, что 
+\[
+    \vert f_n g_n \vert = \vert 1 + \frac{1}{n^2} \vert \geq 1 = \varepsilon   
+\]     
+б) Верно. Доказательство: 
+Так как $f, g$ - ограничены, то $\vert f \vert, \vert g \vert < M$ и так как они являются равномерными 
+пределами $f_n, g_n$, то $\vert f_n \vert - \vert f \vert \leq \vert f_n - f \vert < \varepsilon$, тогда 
+$\vert f_n \vert \leq \varepsilon + M$. Взяв $\varepsilon = M$ получим $\vert f_n \vert, \vert g_n \vert \leq 2M$ начиная с 
+некоторого $N$.
+\[
+    \vert f_n g_n - f g \vert \leq f_n \vert g_n - g \vert + g \vert f_n - f \vert < 3 \varepsilon M.  
+\]
+\section{3.3}
+Предположим противное, тогда $\forall N \, \exists n_0 > 2 N$: 
+\[
+    \vert n_0 a_{n_0} \vert \geq \varepsilon \implies \vert a_{n_0} \vert \geq \frac{\varepsilon}{n_0} 
+\]
+Рассмотрим сумму из критерия Коши с $n(N) = N$, $m(N) = n_0, x(N) = \frac{1}{2N}$: 
+\[
+    \vert \sum_{k=n}^{m} a_k \sin \frac{k}{2N} \vert \geq (n_0 - N) a_{n_0} \sin \frac{1}{2} \geq 
+    \varepsilon \left( 1 - \frac{N}{n_0} \right) \sin \frac{1}{2} \geq \frac{\varepsilon}{2} \sin \frac{1}{2}
+\]  
+\end{document}

@@ -38,16 +38,16 @@ int main()
   for (unsigned i = 0; i < ARR_LENGTH; i++){
     arr[i] = i;
   }
-  cout << "Shaker sort" << endl;
-  ofstream output_file_1("data/shaker.csv");
-  output_file_1 << "N" << "," << "time_full" << ',' << "time_forward" << ',' << "time_backward" << "\n";;
-  for (unsigned N = MIN_N; N <= MAX_N; N += STEP){
-    float time_full, time_forward, time_backward = 0.;
-    check_shaker_time(arr, N, rng, time_full, time_forward, time_backward);
-    output_file_1 << N << "," << time_full << ',' << time_forward << ',' << time_backward << "\n";
-    print_progress(static_cast<double>(N) / static_cast<double>(MAX_N));
-  }
-  cout << endl;
+  // cout << "Shaker sort" << endl;
+  // ofstream output_file_1("data/shaker.csv");
+  // output_file_1 << "N" << "," << "time_full" << ',' << "time_forward" << ',' << "time_backward" << "\n";;
+  // for (unsigned N = MIN_N; N <= MAX_N; N += STEP){
+  //   float time_full, time_forward, time_backward = 0.;
+  //   check_shaker_time(arr, N, rng, time_full, time_forward, time_backward);
+  //   output_file_1 << N << "," << time_full << ',' << time_forward << ',' << time_backward << "\n";
+  //   print_progress(static_cast<double>(N) / static_cast<double>(MAX_N));
+  // }
+  // cout << endl;
 
   cout << "Comb sort" << endl;
   ofstream output_file_2("data/comb.csv");

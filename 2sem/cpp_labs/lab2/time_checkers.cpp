@@ -15,7 +15,7 @@ float& time_backward)
     shuffle(&arr[0], &arr[ARR_LENGTH], rng);
     auto begin = chrono::steady_clock::now();
     unsigned iter = 0;
-    for (unsigned i = 0; i < ARR_LENGTH / 50 - N; i += N){
+    for (unsigned i = 0; i < ARR_LENGTH - N; i += N){
         shaker_sort(arr, i, i + N - 1);
         iter++;
     }
@@ -27,7 +27,7 @@ float& time_backward)
     shuffle(&arr[0], &arr[ARR_LENGTH], rng);
     begin = chrono::steady_clock::now();
     iter = 0;
-    for (unsigned i = 0; i < ARR_LENGTH / 50 - N; i += N){
+    for (unsigned i = 0; i < ARR_LENGTH - N; i += N){
         bubble_sort_forward(arr, i, i + N - 1);
         iter++;
     }
@@ -39,7 +39,7 @@ float& time_backward)
     shuffle(&arr[0], &arr[ARR_LENGTH], rng);
     begin = chrono::steady_clock::now();
     iter = 0;
-    for (unsigned i = 0; i < ARR_LENGTH / 50 - N; i += N){
+    for (unsigned i = 0; i < ARR_LENGTH - N; i += N){
         bubble_sort_backward(arr, i, i + N - 1);
         iter++;
     }
