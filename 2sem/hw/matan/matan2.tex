@@ -33,8 +33,71 @@
 \maketitle
 \tableofcontents
 
+\section{T1}
+б)
+\[
+    f_n(x) = \frac{x}{n} \ln \frac{x}{n} \to 0, n \to 0
+\]
+При $x > 1$ выберем последовательность $x_n = 2n$: 
+\[
+    f_n(x_n) = 2 \ln 2 = \varepsilon
+\]
+При $0 < x < 1$ исследуем функцию на монотонность: 
+\[
+    f_n^{\prime}(x) = \frac{1}{n} \left( \ln \frac{x}{n} + 1 \right) 
+\] 
+Тогда функция $\vert f_n(x) \vert $ возрастает при $x < \frac{n}{e}$, то есть при $n > 3$ функция 
+монотонна на $(0, 1)$. Тогда она принимает максимальное значение в точке $x = 1$: 
+\[
+    \vert f_n(x) \vert \leq \frac{1}{n} \ln \frac{1}{n} \to 0, n \to \infty
+\]
+\\г)
+\[
+    f_n(x) = n \arctg \frac{x}{n} \to x
+\]
+При $x > 1$ выберем $x_n = 2n$: 
+\[
+    n \arctg 2 \geq \arctg 2 = \varepsilon 
+\]  
+При $0 < x < 1$: 
+\[
+    \vert f_n(x) - x \vert = \vert n(\frac{x}{n} + \frac{1}{2(1 + \varepsilon^2)} (\frac{x}{n})^2) - x \vert \leq \frac{1}{2n} \to 0, n \to \infty.   
+\]
+\\д) 
+\[
+    f_n = x^n - x^{n+1} = x^n(1 - x) \to 0 
+\]
+Рассмотрим $f_{n+1}(x) - f_n(x)$: 
+\[
+    f_{n+1}(x) - f_n(x) = x^{n+1}(1 - x) - x^n(1 - x) = x^n(1 - x)(x - 1) \leq 0  
+\] 
+То есть $f_n$ - монотонна по $n$, тогда по признаку Дини сходимость равномерная. 
+\\е)
+\[
+    f_n = x^n - x^{2n} = x^n(1 - x^n) \to 0 
+\]
+Функция достигает максимума в точке $x^n = \frac{1}{2} \implies f_{max} = \frac{1}{4} \implies \sup f_n(x) = \frac{1}{4} \not \to 0$ 
+\section{T2}
+Потом сделаю... 
+\section{T3}
+\section{T4}
+Докажем по признаку Абеля, для этого нужно доказать, что $b_n = \frac{1}{n^x}$ монотонна и ограничена. 
+Ограниченность очевидна $b_n \leq 1$, покажем монотонность: 
+\[
+    \frac{\frac{1}{(n+1)^x}}{\frac{1}{n^x}} = \frac{1}{\left( 1 + \frac{1}{n} \right)^x } \leq 1 
+\] 
+последовательность убывает при любом фиксированном $x$. 
+
 \section{T6}
 Запишем $w_f(t_n) = \sup \{\vert f(x) - f(x + \delta ) \vert \mid \delta \leq  t_n\} \geq \vert f(x) - f(x - t_n) \vert $. 
 Тогда по теореме Кантора функция равномерно-непрерывна, тогда $w_f(t_n) \to 0, t_n \to 0$.   
+\section{T7. Признак Дини}
+Рассмотри множество $Q_n = \{x \mid \vert f_n(x) - f(x) \vert \leq \varepsilon\}$, 
+каждое из таких множеств является открытым, так как $\vert f_n(x) - f(x) \vert$ - непрерывна, и 
+множество задаётся строгим неравенством. Так как $f_n \to f$ следует, что $[a, b] \subset \bigcup_{n=1}^{\infty} Q_n$. 
+Из того, что функции монотонны по $n$ следует вложеннность $Q_n$ $Q_1 \subset Q_2 \subset \dots \subset Q_n$.
+Тогда так как $[a, b]$ - компакт следует, что из $\bigcup_{n=1}^{\infty} Q_n$ можно выбрать конечное подпокрытие 
+$Q_k \cup \dots \cup Q_N = Q_N$. Получили, что найдётся $N$, такое что $\forall n > N$ $\forall x \in [a, b]$ $x \in Q_N \subset Q_n$.              
+
 
 \end{document}
