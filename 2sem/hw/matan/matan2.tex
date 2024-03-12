@@ -61,7 +61,7 @@
 \]  
 При $0 < x < 1$: 
 \[
-    \vert f_n(x) - x \vert = \vert n(\frac{x}{n} + \frac{1}{2(1 + \varepsilon^2)} (\frac{x}{n})^2) - x \vert \leq \frac{1}{2n} \to 0, n \to \infty.   
+    \left\vert f_n(x) - x \right\vert  = \left\vert n \left[ \frac{x}{n} + \frac{1}{2(1 + \varepsilon^2)} \left( \frac{x}{n} \right)^2 \right]   - x \right\vert  \leq \frac{1}{2n} \to 0, n \to \infty.   
 \]
 \\д) 
 \[
@@ -78,8 +78,79 @@
 \]
 Функция достигает максимума в точке $x^n = \frac{1}{2} \implies f_{max} = \frac{1}{4} \implies \sup f_n(x) = \frac{1}{4} \not \to 0$ 
 \section{T2}
-Потом сделаю... 
+б) 
+\[
+    \sum_{n=1}^{\infty} \frac{\sqrt{x} }{n}\sin \frac{x}{n} 
+\]
+При $x \in (0, 1)$: 
+\[
+    \sum_{n=1}^{\infty} \left\vert \frac{\sqrt{x} }{n}\sin \frac{x}{n} \right\vert  \leq \sum_{n=1}^{\infty} \frac{x \sqrt{x}}{n^2} \leq \sum_{n=1}^{\infty} \frac{1}{n^2}  
+\] 
+Тогда по признаку Вейерштрасса ряд сходится равномерно. 
+При $x \in (1, +\infty)$ рассмотрим сумму из отрицания критерия Коши при $n(N) = N, p(N) = N, x = 2N$:
+\[
+    \sum_{k=N}^{2N} \frac{\sqrt{2N}}{k} \sin \frac{2N}{k} \geq N \sqrt{2N} \sin 1 \frac{1}{2N} = \sqrt{2N} \frac{\sin 1}{2} \geq \frac{\sin 1}{\sqrt{2} }    
+\]
+\\ в)
+\[
+    \sum_{n=1}^{\infty} \frac{nx}{n^2 + x^2} \arctg \frac{x}{n}
+\]
+При $x \in (0, 1)$: 
+\[
+    \sum_{n=1}^{\infty} \left\vert \frac{nx}{n^2 + x^2} \arctg \frac{x}{n} \right\vert  \leq \sum_{n=1}^{\infty} \frac{x^2}{n^2 + x^2} \leq \sum_{n=1}^{\infty} \frac{1}{2n^2} 
+\] 
+Тогда по признаку Вейерштрасса ряд сходится равномерно. 
+Рассмотрим последовательность $x = n$, тогда с $n > 1$ выполняется:
+\[
+    u_n(x_n) = \frac{n^2}{n^2 + n^2} \arctg \frac{n}{n} = \frac{1}{2} \arctg 1 = \varepsilon
+\]  
+То есть невыполняется необходимое условие сходимости ряда, а значит ряд не сходится равномерно, при $x \in (1, +\infty)$. 
+\\ г) 
+\[
+    \sum_{n=1}^{\infty} \frac{n^2 x^2}{n^4 + x^4} \sin \frac{n}{x}
+\]
+При $x > 1$ рассмотрим последовательность $x_n = n$, тогда:
+\[
+    u_n(x_n) = \frac{n^3}{2 n^4} \sin 1 = \frac{1}{2} \sin 1 = \varepsilon 
+\] 
+Не выполняется необходиомое условие равномерной сходимости. 
+При $0 < x < 1$: 
+\[
+    \sum_{n=1}^{\infty} \left\vert \frac{n^2 x^2}{n^4 + x^4} \sin \frac{n}{x} \right\vert \leq \sum_{n=1}^{\infty} \frac{n^2 x^2}{n^4 + x^4} \leq \sum_{n=1}^{\infty} \frac{1}{2n^2}
+\]
+По признаку Вейерштрасса сходится равномерно. 
+\\ е) 
+\[
+    \sum_{n=1}^{\infty} \frac{x\ln nx}{n^2}
+\]
+При $x > 1$ выбрем $x_n = 2n^2$: 
+\[
+    u_n(x_n) = 2 \ln 2n^3 = 2\ln 2 + 6 \ln n > 2\ln 2 = \varepsilon 
+\]  
+Не выполняется необходимое условие сходимости. Для определения равномерной сходимости исследуем 
+функцию $u_n(x) = \left\vert \frac{x\ln nx}{n^2} \right\vert $ на максимум на интервале $(0, 1)$: 
+\[
+    u_n^{\prime}(x) = \frac{1}{n^2}(\ln nx + 1)
+\] 
+Тогда в точке $x = \frac{1}{ne}$ находится экстремум, а значит 
+максимальное значение функции: 
+\[
+    \sup u_n = \max \left\{ u_n(\frac{1}{ne}), u_n(1) \right\} = 
+    \max \left\{ \frac{1}{n^3 e}, \frac{\ln n}{n^2} \right\} 
+\]  
+Так как оба ряда $\sum_{n=1}^{\infty} \frac{1}{n^3 e}$ и $\sum_{n=1}^{\infty} \frac{\ln n}{n^2}$ сходятся, то 
+исходный ряд сходится по признаку Вейерштрасса.
+
 \section{T3}
+Так как функции $u_n$ - монотонны на $[a, b]$, то: 
+\[
+    \left\vert u_n \right\vert \leq \sup \left\vert u_n \right\vert = \max \left\{ \left\vert u_n(a) \right\vert , \left\vert u_n(b) \right\vert  \right\} \leq
+    \left\vert u_n(a) \right\vert + \left\vert u_n(b) \right\vert
+\]
+Но так как ряды $\sum_{n=1}^{\infty} \left\vert u_n(a) \right\vert$ и $\sum_{n=1}^{\infty} \left\vert u_n(b) \right\vert$ сходятся абсолютно, то 
+и ряд $\sum_{n=1}^{\infty} \left\vert u_n(a) \right\vert + \left\vert u_n(b) \right\vert$ сходится абсолютно, а значит по признаку 
+Вейерштрасса ряд $\sum_{n=1}^{\infty} u_n$ равномерно сходится на $[a, b]$.   
+
 \section{T4}
 Докажем по признаку Абеля, для этого нужно доказать, что $b_n = \frac{1}{n^x}$ монотонна и ограничена. 
 Ограниченность очевидна $b_n \leq 1$, покажем монотонность: 
@@ -98,6 +169,29 @@
 Из того, что функции монотонны по $n$ следует вложеннность $Q_n$ $Q_1 \subset Q_2 \subset \dots \subset Q_n$.
 Тогда так как $[a, b]$ - компакт следует, что из $\bigcup_{n=1}^{\infty} Q_n$ можно выбрать конечное подпокрытие 
 $Q_k \cup \dots \cup Q_N = Q_N$. Получили, что найдётся $N$, такое что $\forall n > N$ $\forall x \in [a, b]$ $x \in Q_N \subset Q_n$.              
-
+\section{T8}
+б)
+\[
+    \sum_{n=1}^{\infty} \frac{(n!)^2}{(2n)!} z^n 
+\]
+Воспользуемся формулой Даламбера:
+\[
+    \frac{1}{R} = \lim_{n \to \infty} \frac{\left( (n+1)! \right)^2 }{(n!)^2} \frac{(2n)!}{(2n + 2)!} = 
+    \lim_{n \to \infty} \frac{(n + 1)^2}{2(2n + 1)(n+1)} = \frac{1}{2} \lim_{n \to \infty} \frac{n+1}{2n+1} = \frac{1}{4} 
+\]
+А значит радиус сходиомсти $R = 4$. 
+\\ в)
+\[
+    \sum_{n=1}^{\infty} \frac{z^{2n}}{(1 - i)^n}
+\]
+Воспользуемся формулой Коши - Адамара (часть коэффициентов равна 0, однако верхний частичный предел от этого не изменится):
+\[
+    \frac{1}{R} = \lim_{n \to \infty} \left\vert \frac{1}{(1 - i)^n} \right\vert^{\frac{1}{n}} 
+\]
+Так как $\left\vert \frac{1}{(1 - i)^n} \right\vert = \left\vert \frac{1}{1 - i} \right\vert^n$: 
+\[
+    \frac{1}{R} = \lim_{n \to \infty} \left\vert \frac{1}{1 - i} \right\vert = \frac{1}{\sqrt{2}}
+\]
+Тогда $R = \sqrt{2}$
 
 \end{document}

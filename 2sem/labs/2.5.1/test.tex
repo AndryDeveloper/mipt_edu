@@ -1,6 +1,16 @@
-\documentclass[12pt]{article}
+\documentclass[a4paper,12pt]{report}
+%general packages
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{circuitikz}
+\usepackage{wrapfig}
+\usepackage{makecell}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage{cancel} %cancel symbol
+\usepackage{hyperref}
 \usepackage{multirow}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -12,8 +22,36 @@
 \usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
 \usepackage{xcolor}
 \usepackage{array}
-\usepackage{hyperref}
-\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+
+%fancy header + geometry
+\usepackage{fancyhdr}
+\usepackage[a4paper,includehead,nomarginpar,left=15mm,right=15mm,top=15mm,headheight=10mm,bottom=20mm]{geometry}
+
+%multi column text
+\usepackage{blindtext}
+\usepackage{multicol}
+
+%parskip settings
+\parindent=0ex
+\setlength{\parskip}{\baselineskip}%
+\setlength{\parindent}{0pt}%
+
+%fancy notation for sets
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\fancy}[1]{{\mathbb{#1}}}
+%sgn function
+\DeclareMathOperator{\sgn}{sgn}
+
+% intersection and union symbols
+\newcommand{\uni}{\cup}
+\newcommand{\inter}{\cap}
+
+\renewcommand{\footrulewidth}{0.4pt}
+
+%\newcommand{\celsius}{$\ ^\circ C$}
+
+%environments
 \graphicspath{ {./images/} }
  
 \title{Измерение зависимости коэффициента поверхностного натяжения от температуры}
@@ -48,14 +86,23 @@
     \end{center}
 \end{titlepage}
 
+\pagestyle{fancy}
+
+    \fancyhead{}
+    \fancyfoot{}
+    \fancyhead[L]{\rightmark}
+    \fancyhead[R]{\thepage}
+    \fancyfoot[R]{Работа 2.1.6 --- Эффект Джоуля---Томсона}
+
 % \maketitle
 
 \begin{abstract}
     Исследована зависимость коэффициента поверхностного натяжения воды в диапазоне температур $20 - 60$ \textcelsius. Определено, что 
     коэффициент поверхностного натяжения линейно убывает с увеличением температуры.    
 \end{abstract}
-
 \tableofcontents
+
+\begin{multicols}{2}
 
 \section{Введение}
 Цель настоящей работы заключалась в определении коэффициента поверхностного натяжения воды при различных температурах и 
@@ -81,9 +128,9 @@
 измеерние разности давлений при помощи монометра. Оба метода обладают сравнимой погрешностью, потому было принято решение 
 финальный результат определить как среднее арифметическое результатов каждого из методов. 
 Для каждой из температур проводится серия из измерений разности давлений в системе.
-\begin{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{img1.png}
+    \includegraphics[width=0.7\linewidth]{img1.png}
     \caption{Схема установки для измерения температурной зависимости коэффициента поверхностного натяжения. Буквами обозначены
         следующие части установки: A - аспиратор для создания разрежения в системе, 
         B - колба, в которую помещается исследуемая жидкость (дистиллированная вода),
@@ -106,7 +153,7 @@
 полученным данным построен график зависимости \ref{fig:2}.  
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{sT.eps}
+    \includegraphics[width=0.7\linewidth]{sT.eps}
     \caption{График зависимости коэффициента поверхностного натяжения воды $\sigma$ от температуры $T$.
         1 - прямая, линеаризующая график зависимости с учётом всех точекя, 
         2 - прямая, линеаризующая график зависимости без учёта точек, соответствующих выбросам.}
@@ -125,15 +172,15 @@
 $\frac{d\sigma }{dT} = &grad_sigma_norm&$ $\frac{\text{Н}}{\text{м}\cdot\text{К}}$. Также построены 
 графики зависимости теплоты образования единицы поверхности жидкости $q = -T \frac{d \sigma}{d T}$ и 
 поверхностной энергии $U$ единицы площади $F$ $\frac{U}{F} = \left( \sigma - T \frac{d \sigma }{d T} \right) $ (Рис. \ref{fig:3} и \ref{fig:4}).
-\begin{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{qT.eps}
+    \includegraphics[width=0.7\linewidth]{qT.eps}
     \caption{График зависимости теплоты образования единицы поверхности жидкости $q$ от температуры $T$.}
     \label{fig:3}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{qUF.eps}
+    \includegraphics[width=0.7\linewidth]{qUF.eps}
     \caption{График зависимости поверхностной энергии $U$ единицы площади $F$ $\frac{U}{F}$ от температуры $T$.}
     \label{fig:4}
 \end{figure}
@@ -148,6 +195,8 @@ $\frac{d\sigma }{dT} = &grad_sigma_norm&$ $\frac{\text{Н}}{\text{м}\cdot\text{
     \bibitem{LabBook}
     Лабораторный практикум по общей физике, Том 2, под редакцией А. Д. Гладуна
 \end{thebibliography}
+
+\end{multicols}
 
 \section{Приложения}
 \subsection{Параметры экспериментальной установки} \label{app_1}
