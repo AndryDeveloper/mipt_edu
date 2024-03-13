@@ -3,7 +3,30 @@
 #include <random>
 #include "sorts.h"
 #include "config.h"
+#include "iostream"
 using namespace std;
+
+template<typename T>
+void print_first_elements (T *array, size_t length_to_print) {
+    cout << "{";
+    for (size_t i = 0; i < length_to_print; i++) {
+        if (0 != i) {
+            cout << ", ";
+        }
+        cout << array[i];
+    }
+    cout << "...}\n";
+}
+
+bool check_if_sorts(unsigned *arr, unsigned begin_idx, unsigned end_idx){
+    for (unsigned i = begin_idx; i < end_idx; i++){
+        if (arr[i] > arr[i + 1]){
+            // cout << begin_idx << ' ' << i << ' ' << end_idx << ' ' << endl;
+            return false;
+        }
+    }
+    return true;
+}
 
 void check_shaker_time(unsigned *arr, 
 unsigned N, 
@@ -15,8 +38,11 @@ float& time_backward)
     shuffle(&arr[0], &arr[ARR_LENGTH], rng);
     auto begin = chrono::steady_clock::now();
     unsigned iter = 0;
-    for (unsigned i = 0; i < ARR_LENGTH - N; i += N){
+    for (unsigned i = 0; i < ARR_LENGTH / 10 - N; i += N){
         shaker_sort(arr, i, i + N - 1);
+        if (!check_if_sorts(arr, i, i + N - 1)){
+            cout << "oh no, shaker..." << endl;
+        }
         iter++;
     }
     auto end = chrono::steady_clock::now();
@@ -27,8 +53,11 @@ float& time_backward)
     shuffle(&arr[0], &arr[ARR_LENGTH], rng);
     begin = chrono::steady_clock::now();
     iter = 0;
-    for (unsigned i = 0; i < ARR_LENGTH - N; i += N){
+    for (unsigned i = 0; i < ARR_LENGTH / 10 - N; i += N){
         bubble_sort_forward(arr, i, i + N - 1);
+        if (!check_if_sorts(arr, i, i + N - 1)){
+            cout << "oh no, bubble1..." << endl;
+        }
         iter++;
     }
     end = chrono::steady_clock::now();
@@ -39,8 +68,11 @@ float& time_backward)
     shuffle(&arr[0], &arr[ARR_LENGTH], rng);
     begin = chrono::steady_clock::now();
     iter = 0;
-    for (unsigned i = 0; i < ARR_LENGTH - N; i += N){
+    for (unsigned i = 0; i < ARR_LENGTH / 10 - N; i += N){
         bubble_sort_backward(arr, i, i + N - 1);
+        if (!check_if_sorts(arr, i, i + N - 1)){
+            cout << "oh no, bubble2..." << endl;
+        }
         iter++;
     }
     end = chrono::steady_clock::now();
@@ -61,6 +93,9 @@ float& iterations)
     unsigned permutations = 0;
     for (unsigned i = 0; i < ARR_LENGTH - N; i += N){
         permutations += comb_sort(arr, i, i + N - 1);
+        if (!check_if_sorts(arr, i, i + N - 1)){
+            cout << "oh no, comb..." << endl;
+        }
         iter++;
     }
     auto end = chrono::steady_clock::now();
@@ -73,7 +108,6 @@ float& iterations)
 
 void next_step_a(unsigned& s, unsigned& q){
     s /= 2;
-    q = 0;
 }
 
 void next_step_b(unsigned& s, unsigned& q){

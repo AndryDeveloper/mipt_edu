@@ -1,30 +1,9 @@
-#include <iostream>
-using namespace std;
-
-template<typename T>
-void print_first_elements (T *array, size_t length_to_print) {
-    cout << "{";
-    for (size_t i = 0; i < length_to_print; i++) {
-        if (0 != i) {
-            cout << ", ";
-        }
-        cout << array[i];
-    }
-    cout << "...}\n";
-}
-
-bool check_if_sorts(unsigned *arr, unsigned begin_idx, unsigned end_idx){
-    for (unsigned i = begin_idx; i < end_idx; i++){
-        if (arr[i] > arr[i + 1]){
-            return false;
-        }
-    }
-    return true;
-}
-
-void forward_step(unsigned *arr, unsigned begin_idx, unsigned end_idx){
-    for (unsigned i = begin_idx; i < end_idx; i++){
-        if (arr[i] > arr[i + 1]) {
+void forward_step(unsigned *arr, unsigned begin_idx, unsigned end_idx)
+{
+    for (unsigned i = begin_idx; i < end_idx; i++)
+    {
+        if (arr[i] > arr[i + 1])
+        {
             unsigned tmp = arr[i];
             arr[i] = arr[i + 1];
             arr[i + 1] = tmp;
@@ -32,9 +11,12 @@ void forward_step(unsigned *arr, unsigned begin_idx, unsigned end_idx){
     }
 }
 
-void backward_step(unsigned *arr, unsigned begin_idx, unsigned end_idx){
-    for (unsigned i = begin_idx; i > end_idx; i--){
-        if (arr[i] < arr[i - 1]) {
+void backward_step(unsigned *arr, unsigned begin_idx, unsigned end_idx)
+{
+    for (unsigned i = begin_idx; i > end_idx; i--)
+    {
+        if (arr[i] < arr[i - 1])
+        {
             unsigned tmp = arr[i];
             arr[i] = arr[i - 1];
             arr[i - 1] = tmp;
@@ -42,93 +24,82 @@ void backward_step(unsigned *arr, unsigned begin_idx, unsigned end_idx){
     }
 }
 
-void shaker_sort(unsigned *arr, unsigned begin_idx, unsigned end_idx){
+void shaker_sort(unsigned *arr, unsigned begin_idx, unsigned end_idx)
+{
     unsigned const begin_idx_const = begin_idx;
     unsigned const end_idx_const = end_idx;
 
-    while (begin_idx < end_idx){
+    while (begin_idx < end_idx)
+    {
         forward_step(arr, begin_idx, end_idx);
         end_idx--;
         backward_step(arr, end_idx, begin_idx);
         begin_idx++;
     }
-    if (!check_if_sorts(arr, begin_idx_const, end_idx_const)){
-        cout << "oh no, shaker..." << endl;
-    }
 }
 
-void bubble_sort_forward(unsigned *arr, unsigned begin_idx, unsigned end_idx){
-    while (begin_idx < end_idx){
+void bubble_sort_forward(unsigned *arr, unsigned begin_idx, unsigned end_idx)
+{
+    while (begin_idx < end_idx)
+    {
         forward_step(arr, begin_idx, end_idx);
         end_idx--;
     }
-    if (!check_if_sorts(arr, begin_idx, end_idx)){
-        cout << "oh no, forward..." << endl;
-    }
 }
 
-void bubble_sort_backward(unsigned *arr, unsigned begin_idx, unsigned end_idx){
-    while (begin_idx < end_idx){
+void bubble_sort_backward(unsigned *arr, unsigned begin_idx, unsigned end_idx)
+{
+    while (begin_idx < end_idx)
+    {
         backward_step(arr, end_idx, begin_idx);
         begin_idx++;
     }
-    if (!check_if_sorts(arr, begin_idx, end_idx)){
-        cout << "oh no, backward... " << endl;
-    }
 }
 
-unsigned comb_sort(unsigned *arr, unsigned begin_idx, unsigned end_idx){
+unsigned comb_sort(unsigned *arr, unsigned begin_idx, unsigned end_idx)
+{
     unsigned N = end_idx - begin_idx + 1;
     unsigned step = end_idx - begin_idx;
-    double factor = 2;
+    double factor = 1.15;
     unsigned iters = 0;
-    
-	while (step >= 1){   
-		for (int i = begin_idx; i + step <= end_idx; i++){
-			if (arr[i] > arr[i + step])
-			{
+
+    while (step >= 1)
+    {
+        for (int i = begin_idx; i + step <= end_idx; i++)
+        {
+            if (arr[i] > arr[i + step])
+            {
                 unsigned tmp = arr[i];
                 arr[i] = arr[i + step];
                 arr[i + step] = tmp;
                 iters++;
-			}
-		}
-		step /= factor;
-	}
-    while (!check_if_sorts(arr, begin_idx, end_idx)){
-        forward_step(arr, begin_idx, end_idx);
-    }
-
-    if (!check_if_sorts(arr, begin_idx, end_idx)){
-        cout << "oh no, comb..." << endl;
+            }
+        }
+        step /= factor;
     }
     return iters;
 }
 
-unsigned shell_sort(unsigned *arr, unsigned begin_idx, unsigned end_idx, void (*next_step)(unsigned&, unsigned&)){
+unsigned shell_sort(unsigned *arr, unsigned begin_idx, unsigned end_idx, void (*next_step)(unsigned &, unsigned &))
+{
     unsigned size = end_idx - begin_idx + 1;
     unsigned iters = 0;
 
     unsigned s = size;
     unsigned q = 0;
-    while (s != 0) {
+    while (s != 0)
+    {
         next_step(s, q);
-        for (unsigned i = s + begin_idx; i < size + begin_idx; i++) {
-            for (int j = i - s; j >= 0 && arr[j] > arr[j + s]; j -= s) {
-                unsigned tmp = arr[j];
-                arr[j] = arr[j + s];
-                arr[j + s] = tmp;
-                iters++;
-            }
-        }
-    }
-    while (!check_if_sorts(arr, begin_idx, end_idx)){
-        forward_step(arr, begin_idx, end_idx);
-    }
+        for (int i = s + begin_idx; i < size + begin_idx; i++)
+        {
+            int temp = arr[i];
+            int j;
+            for (j = i; j >= s && arr[j - s] > temp; j -= s)
+                arr[j] = arr[j - s];
+            iters++;
 
-    if (!check_if_sorts(arr, begin_idx, end_idx)){
-        cout << "oh no, shell..." << endl;
+            arr[j] = temp;
+        }
     }
     return iters;
 }
-
