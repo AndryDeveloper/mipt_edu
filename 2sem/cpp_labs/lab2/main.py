@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import subprocess
 import os
+from time import sleep
 
 matplotlib.use('Agg')
 

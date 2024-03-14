@@ -21,7 +21,6 @@ void print_first_elements (T *array, size_t length_to_print) {
 bool check_if_sorts(unsigned *arr, unsigned begin_idx, unsigned end_idx){
     for (unsigned i = begin_idx; i < end_idx; i++){
         if (arr[i] > arr[i + 1]){
-            // cout << begin_idx << ' ' << i << ' ' << end_idx << ' ' << endl;
             return false;
         }
     }
@@ -108,20 +107,21 @@ float& iterations)
 
 void next_step_a(unsigned& s, unsigned& q){
     s /= 2;
+    q = 0;
 }
 
 void next_step_b(unsigned& s, unsigned& q){
     if (q == 0 && s != 0){
-        while ((1 << q) - 1 <= s) {
+        while ((1 << q) - 1u <= s) {
             q++;
         }
-        if ((1 << q) - 1 > s){
+        if ((1 << q) - 1u > s){
             q--;
         }
-        s = (1 << q) - 1;
+        s = (1 << q) - 1u;
     }
     else if (q != 0){
-        s = (1 << (q - 1)) - 1;
+        s = (1 << (q - 1)) - 1u;
         q -= 1;
     }
 }

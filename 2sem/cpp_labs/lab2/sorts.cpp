@@ -26,9 +26,6 @@ void backward_step(unsigned *arr, unsigned begin_idx, unsigned end_idx)
 
 void shaker_sort(unsigned *arr, unsigned begin_idx, unsigned end_idx)
 {
-    unsigned const begin_idx_const = begin_idx;
-    unsigned const end_idx_const = end_idx;
-
     while (begin_idx < end_idx)
     {
         forward_step(arr, begin_idx, end_idx);
@@ -58,9 +55,8 @@ void bubble_sort_backward(unsigned *arr, unsigned begin_idx, unsigned end_idx)
 
 unsigned comb_sort(unsigned *arr, unsigned begin_idx, unsigned end_idx)
 {
-    unsigned N = end_idx - begin_idx + 1;
     unsigned step = end_idx - begin_idx;
-    double factor = 1.15;
+    double factor = 1.10;
     unsigned iters = 0;
 
     while (step >= 1)
@@ -90,10 +86,10 @@ unsigned shell_sort(unsigned *arr, unsigned begin_idx, unsigned end_idx, void (*
     while (s != 0)
     {
         next_step(s, q);
-        for (int i = s + begin_idx; i < size + begin_idx; i++)
+        for (unsigned i = s + begin_idx; i < size + begin_idx; i++)
         {
-            int temp = arr[i];
-            int j;
+            unsigned temp = arr[i];
+            unsigned j;
             for (j = i; j >= s && arr[j - s] > temp; j -= s)
                 arr[j] = arr[j - s];
             iters++;

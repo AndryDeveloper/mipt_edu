@@ -29,6 +29,6 @@ else()
         )
 endif()
 
-add_executable(main main.cpp sorts.cpp time_checkers.cpp sorts.h chekers.h config.h)
+add_executable(main main.cpp structs.cpp structs.h)
 target_compile_options(main PRIVATE ${compiler_flags})
 target_link_options(main PRIVATE ${linker_flags})
