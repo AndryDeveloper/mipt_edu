@@ -21,6 +21,9 @@
 \usepackage{pdfpages}
 \usepackage{transparent}
 
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+
 \newcommand{\incfig}[1]{
     \import{./figures/}{#1.pdf_tex}
 }
@@ -179,19 +182,88 @@ $Q_k \cup \dots \cup Q_N = Q_N$. Получили, что найдётся $N$, 
     \frac{1}{R} = \lim_{n \to \infty} \frac{\left( (n+1)! \right)^2 }{(n!)^2} \frac{(2n)!}{(2n + 2)!} = 
     \lim_{n \to \infty} \frac{(n + 1)^2}{2(2n + 1)(n+1)} = \frac{1}{2} \lim_{n \to \infty} \frac{n+1}{2n+1} = \frac{1}{4} 
 \]
-А значит радиус сходиомсти $R = 4$. 
-\\ в)
+А значит радиус сходиомсти $R = 4$.
+\\ доп)
 \[
-    \sum_{n=1}^{\infty} \frac{z^{2n}}{(1 - i)^n}
+    \sum_{n=1}^{\infty} \frac{x^{pn}}{(1 - i)^n}
 \]
-Воспользуемся формулой Коши - Адамара (часть коэффициентов равна 0, однако верхний частичный предел от этого не изменится):
+По формуле Коши-Адамара: 
 \[
-    \frac{1}{R} = \lim_{n \to \infty} \left\vert \frac{1}{(1 - i)^n} \right\vert^{\frac{1}{n}} 
+    \frac{1}{R} = \uplim_{n \to \infty} \vert c_n \vert^{\frac{1}{n}} = \lim_{k \to \infty} \left\vert \frac{1}{(1 - i)^k} \right\vert^{\frac{1}{pk}} = 
+    \frac{1}{\sqrt[p]{2}}
 \]
-Так как $\left\vert \frac{1}{(1 - i)^n} \right\vert = \left\vert \frac{1}{1 - i} \right\vert^n$: 
+\section{T9}
+а) 
 \[
-    \frac{1}{R} = \lim_{n \to \infty} \left\vert \frac{1}{1 - i} \right\vert = \frac{1}{\sqrt{2}}
+    \sum_{n=1}^{\infty} (\sqrt[n]{a} - 1) x^n
 \]
-Тогда $R = \sqrt{2}$
+По формуле Даламбера: 
+\[
+    \frac{1}{R} = \lim_{n \to \infty} \frac{a^{\frac{1}{n+1}} - 1}{a^{\frac{1}{n}} - 1} = 
+    \lim_{n \to \infty} \frac{\frac{1}{n+1} \ln a}{\frac{1}{n} \ln a} + o(1) = 1
+\]
+Радиус сходимости равен 1. 
+При $x = 1$:
+\[
+    \sum_{n=1}^{\infty} \sqrt[n]{a} - 1 = \sum_{n=1}^{\infty} e^{\frac{1}{n} \ln a} - 1 \geq \sum_{n=1}^{\infty} \frac{1}{n} \ln a - \text{расходится}
+\] 
+При $x = -1$:
+\[
+    \sum_{n=1}^{\infty} (-1)^n \left( \sqrt[n]{a} - 1 \right) 
+\] 
+По признаку Лейбница сходится условно.
+\section{T10}
+а)
+\[
+    \frac{1}{x^2 - 2x - 3} = \frac{1}{(x+1)(x-3)} = \frac{1}{4} \left( \frac{1}{x - 3} - \frac{1}{x + 1} \right) = 
+    \frac{1}{4} \cdot \frac{1}{1 + x} - \frac{1}{12} \cdot \frac{1}{1 - \frac{x}{3}}
+\]
+\[
+    \frac{1}{4} \cdot \frac{1}{1 + x} = \sum_{n=0}^{\infty} \frac{1}{4} (-1)^n x^n
+\]
+\[
+    \frac{1}{12} \cdot \frac{1}{1 - \frac{x}{3}} = \sum_{n=1}^{\infty} \frac{x^n}{12 \cdot 3^n}
+\]
+Тогда: 
+\[
+    \frac{1}{x^2 - 2x - 3} = \sum_{n=1}^{\infty} x^n \left( \frac{(-1)^n}{4} + \frac{1}{12 \cdot 3^n} \right) 
+\]
+Радиус сходимости равен минимуму из радиусов сходимости составных рядов, т.е $R = 1$. 
+\\ б) 
+\[
+    \frac{1}{(x^2 + 2)^2} = \frac{1}{\sqrt{2}} \cdot \frac{1}{\left( 1 + \left( \frac{x}{\sqrt{2}} \right)^2 \right)^2 } = \sum_{n=0}^{\infty} \frac{(-1)^n}{\sqrt{2}} (n + 1) \frac{x^{2n}}{2^n}
+\]
+Радиус сходимости равен $R = 1^2 \cdot \sqrt{2} = \sqrt{2}$ 
+\\ в) 
+\[
+    \ln \frac{2 + x^2}{\sqrt{1 - 2x^2}} = 
+    \ln 2 + \ln \left( 1 + \frac{x^2}{2} \right)  - \frac{1}{2} \ln \left( 1 - 2x^2 \right)  = 
+    \ln 2 + \sum_{n=1}^{\infty} \frac{x^{2n}}{n} \left( \frac{(-1)^{n+1}}{2^n} - 2^{n-1} \right) 
+\]
+Радиус сходимости $R = \frac{1}{\sqrt{2}}$
+\\ г)
+\[
+    \sin^3 x = 3\sin x - 4\sin 3x = \sum_{n=0}^{\infty} \frac{3 (-1)^n x^{2n + 1}}{(2n + 1)!} - \sum_{n=0}^{\infty} \frac{4 (-1)^n x^{6n + 3}}{(2n + 1)!}
+\]
+Ну тут дальше можно кусочно задать явную формулу для коэффициентов ряда. Радиус сходимости $R = \infty$. 
+\\ д) 
+\[
+    \arctg \frac{2 - x}{1 + 2x} = \arctg 2 - \arctg x = \arctg 2 + \sum_{n=1}^{\infty} (-1)^n \frac{x^{2n-1}}{2n-1} 
+\]
+Радиус сходимости $R = 1$. 
+\\ б) 
+\[
+    \sum_{n=0}^{\infty} n^2 x^n 
+\]
+Рассмотрим сумму из пункта а:
+\[
+    \frac{x}{(1 - x)^2} = \sum_{n=1}^{\infty} n x^n
+\] 
+Почленно продифференцировав получим: 
+\[
+    \sum_{n=1}^{\infty} n^2 x^{n - 1} = \frac{1 + x}{(1 - x)^3} \implies \sum_{n=0}^{\infty} n^2 x^n = \frac{x(1 + x)}{(1 - x)^{3} } 
+\]
+
+
 
 \end{document}
