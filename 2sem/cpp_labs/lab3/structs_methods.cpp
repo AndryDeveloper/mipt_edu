@@ -40,7 +40,7 @@ LinkedList* reverse_rec(LinkedList * const head){
     return current;
 }
 
-RingBuffer* insert_after(RingBuffer* const current=nullptr, int init_val=0){
+RingBuffer* insert_after_b(RingBuffer* const current=nullptr, int init_val=0){
     if (current == nullptr){
         RingBuffer* result = new RingBuffer;
         result->data = init_val;
@@ -52,7 +52,7 @@ RingBuffer* insert_after(RingBuffer* const current=nullptr, int init_val=0){
     return current->next;
 }
 
-RingBuffer* remove_after(RingBuffer* const current){
+RingBuffer* remove_after_b(RingBuffer* const current){
     if (current->next == current) {
         delete current;
         return nullptr;
@@ -66,7 +66,7 @@ RingBuffer* remove_after(RingBuffer* const current){
 void erase(RingBuffer * const head){
     RingBuffer* follower = head->next;
     do{
-        follower = remove_after(head);
+        follower = remove_after_b(head);
     } while (follower != nullptr);
 }
 
