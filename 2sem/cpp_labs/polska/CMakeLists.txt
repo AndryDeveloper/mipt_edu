@@ -29,6 +29,6 @@ else()
         )
 endif()
 
-add_executable(main main.cpp structs_methods.cpp structs.h structs_methods.h config.h solvers.cpp solvers.h)
+add_executable(main main.cpp structures.h)
 target_compile_options(main PRIVATE ${compiler_flags})
 target_link_options(main PRIVATE ${linker_flags})

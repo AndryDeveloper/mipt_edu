@@ -251,7 +251,8 @@ $Q_k \cup \dots \cup Q_N = Q_N$. Получили, что найдётся $N$, 
     \arctg \frac{2 - x}{1 + 2x} = \arctg 2 - \arctg x = \arctg 2 + \sum_{n=1}^{\infty} (-1)^n \frac{x^{2n-1}}{2n-1} 
 \]
 Радиус сходимости $R = 1$. 
-\\ б) 
+\section{T11}
+б) 
 \[
     \sum_{n=0}^{\infty} n^2 x^n 
 \]
@@ -263,6 +264,24 @@ $Q_k \cup \dots \cup Q_N = Q_N$. Получили, что найдётся $N$, 
 \[
     \sum_{n=1}^{\infty} n^2 x^{n - 1} = \frac{1 + x}{(1 - x)^3} \implies \sum_{n=0}^{\infty} n^2 x^n = \frac{x(1 + x)}{(1 - x)^{3} } 
 \]
+\section{T13}
+\[
+    \int_{0}^{\pi } \sin x \,\mathrm{d}x 
+\]
+Разобъём отрезок равномерно, тогда выбрав представителя в виде $f(k) = \sin \pi \frac{k}{n}$:
+\[
+    S = \lim_{n \to \infty} \sum_{k=1}^{n} \frac{\pi }{n} \sin \pi \frac{k}{n} = \lim_{n \to \infty} \frac{\pi}{n} \frac{\sin \left( \frac{n+1}{2} \frac{\pi}{n} \right) \sin \frac{\pi}{2}}{\sin \left( \frac{\pi}{2n} \right) } = 2
+\] 
+\section{T14}
+...
+\section{T17}
+а) 
+\[
+    1 + x^n \leq e^{-x^n} \implies \int_{0}^{1} 1 + x^n \,\mathrm{d}x  < \int_{0}^{1} e^{-x^n} \,\mathrm{d}x  \implies 1 - \frac{1}{n} < \int_{0}^{1} e^{-x^n} \,\mathrm{d}x
+\]
+\section{Интегрируемость функции Римана}
+...
+
 
 
 
