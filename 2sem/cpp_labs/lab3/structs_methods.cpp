@@ -1,4 +1,5 @@
 #include "structs.h"
+#include "config.h"
 
 LinkedList* insert_after(LinkedList* const current=nullptr, int init_val=0){
     if (current == nullptr){
@@ -70,65 +71,72 @@ void erase(RingBuffer * const head){
     } while (follower != nullptr);
 }
 
+DynamicArray new_array(unsigned size, int init_val = 0){
+    DynamicArray result;
+    result.size = size;
+    result.capacity = size;
+    result.elements = new int[result.capacity];
+    for (unsigned i = 0; i < result.size; i++){
+        result.elements[i] = init_val;
+    }
+    return result;
+}
 
+void erase(DynamicArray &da){
+    delete [] da.elements;
+    da.elements = nullptr;
+}
 
+DynamicArray& reserve(DynamicArray &da, unsigned capacity){
+    if (capacity <= da.capacity){
+        return da;
+    }
+    int* elements = new int[capacity];
+    for (unsigned i = 0; i < da.size; i++){
+        elements[i] = da.elements[i];
+    }
 
-// struct DynamicArray
-// {
-//     int *elements = nullptr;
-//     unsigned capacity = 0;
-//     unsigned size = 0;
-// };
+    erase(da);
+    da.elements = elements;
+    da.capacity = capacity;
 
-// DynamicArray new_array(unsigned size, int init_val = 0){
-//     DynamicArray result;
-//     result.size = size;
-//     result.capacity = size;
-//     result.elements = new int[result.capacity]{init_val};
-//     return result;
-// }
+    return da;
+}
 
-// void erase(DynamicArray &da){
-//     delete [] da.elements;
-// }
+DynamicArray clone(DynamicArray &da){
+    DynamicArray result;
+    result.size = da.size;
+    result.capacity = da.size;
+    result.elements = new int[result.capacity];
 
-// DynamicArray& reserve(DynamicArray &da, unsigned capacity){
-//     if (capacity <= da.capacity){
-//         return da;
-//     }
-//     int* elements = new int[capacity];
-//     for (unsigned i = 0; i < da.size; i++){
-//         elements[i] = da.elements[i];
-//     }
-//     erase(da);
-//     da.elements = elements;
-//     return da;
-// }
+    for (unsigned i = 0; i < result.size; i++){
+        result.elements[i] = da.elements[i];
+    }
+    return result;
+}
 
-// DynamicArray clone(DynamicArray &da){
-//     DynamicArray result;
-//     result.size = da.size;
-//     result.capacity = da.size;
-//     result.elements = new int[result.capacity];
+DynamicArray& assign(DynamicArray const &src, DynamicArray &dst){
+    dst = reserve(dst, src.size);
+    for (unsigned i = 0; i < src.size; i++){
+        dst.elements[i] = src.elements[i];
+    }
+    return dst;
+}
 
-//     for (unsigned i = 0; i < result.size; i++){
-//         result.elements[i] = da.elements[i];
-//     }
-//     return result;
-// }
-
-// DynamicArray& assign(DynamicArray const &src, DynamicArray &dst){
-//     dst = reserve(dst, src.size);
-//     for (unsigned i = 0; i < src.size; i++){
-//         dst.elements[i] = src.elements[i];
-//     }
-//     return dst;
-// }
-
-// DynamicArray& push_back(DynamicArray &da, int val){
-//     if (da.size + 1 > da.capacity){
-//         da = reserve(da, da.size + 5);
-//     }
-//     da.elements[da.size + 1] = val;
-//     return da;
-// }
+DynamicArray& push_back(DynamicArray &da, int val, int strategy){
+    if (da.size + 1 > da.capacity){
+        if (strategy == 0){
+            da = reserve(da, da.size + 1);
+        } 
+        else if (strategy == 1){
+            da = reserve(da, da.size + ADD_K);
+        }
+        else {
+            da = reserve(da, da.size * MUL_K);
+        }
+        
+    }
+    da.elements[da.size] = val;
+    da.size += 1;
+    return da;
+}

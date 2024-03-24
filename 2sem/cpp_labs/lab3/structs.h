@@ -13,12 +13,11 @@ struct RingBuffer
     RingBuffer *next;
 };
 
-// struct DynamicArray;
-// DynamicArray new_array(unsigned size, int init_val = 0);
-// void erase(DynamicArray &da);
-// DynamicArray& reserve(DynamicArray &da, unsigned capacity);
-// DynamicArray clone(DynamicArray &da);
-// DynamicArray& assign(DynamicArray const &src, DynamicArray &dst);
-// DynamicArray& push_back(DynamicArray &da, int val);
+struct DynamicArray
+{
+    int *elements = nullptr;
+    unsigned capacity = 0;
+    unsigned size = 0;
+};
 
 #endif

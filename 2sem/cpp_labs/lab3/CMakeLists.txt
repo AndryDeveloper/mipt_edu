@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(lab2)
+project(lab3)
 
 #if (WIN32)
 if (MSVC)
@@ -29,6 +29,7 @@ else()
         )
 endif()
 
-add_executable(main main.cpp structs_methods.cpp structs.h structs_methods.h config.h solvers.cpp solvers.h)
+add_executable(main main.cpp structs_methods.cpp structs.h structs_methods.h config.h solvers.cpp solvers.h checkers.cpp checkers.h)
 target_compile_options(main PRIVATE ${compiler_flags})
 target_link_options(main PRIVATE ${linker_flags})
+
