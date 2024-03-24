@@ -1,0 +1,133 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Практика 8.}
+\author{Шахматов Андрей, Б02-304}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{1.1}
+Для равномерного разбиения сумма Римана имеет вид:
+\[
+    \int_{1}^{2} x \,\mathrm{d}x = \lim_{n \to \infty} \sum_{k=1}^{n} \left( 1 + \frac{k}{n} \right) \frac{1}{n} = 
+    \lim_{n \to \infty} \frac{1}{2n} \left( 3n + 1 \right) = \frac{3}{2} 
+\]
+Геометрическая прогрессия потом. 
+\section{1.2}
+Рассмотрим $f(x) = 2D(x) - 1$, где $D(x)$ - функция Дирихле. Такая функция очевидно не интегрируема.  
+\\а) Однако $\vert f(x) \vert \equiv 1$ - интегрируема. 
+\\б) $\vert f^2(x) \vert \equiv 1$ - интегрируема. 
+\\в) $g(x) = 1$ - интегрируема, и $0 \leq D(x) \leq 1$. 
+\section{1.3}
+Докажем через определение по Коши учитывая ограниченность функции $f$: 
+\[
+    \left\vert \int_{a}^{x_0} f(t) \,\mathrm{d}t - \int_{a}^{x} f(t) \,\mathrm{d}t \right\vert \leq 
+    \left\vert \int_{x_0}^{x} f(t) \,\mathrm{d}t \right\vert \leq \left\vert  w_f([x_0, x])(x - x_0) \right\vert \leq 
+    M \vert x - x_0 \vert 
+\]    
+Получили, что функция Липшицева, а значит непрерывна. 
+\section{2.1}
+\[
+    \lim_{n \to \infty} n \sum_{k=1}^{n} \frac{1}{n^2 + k^2} = 
+    \lim_{n \to \infty} \sum_{k=1}^{n} \frac{1}{1 + \frac{k^2}{n^2}} \frac{1}{n} = 
+    \int_{0}^{1} \frac{1}{1 + x^2} \,\mathrm{d}x = \arctg 1 = \frac{\pi}{4} 
+\]
+\section{2.2}
+В одну сторону:
+\[
+    \int_{0}^{\frac{3}{4}} \frac{2^x}{\sqrt{1 + x^2} } \,\mathrm{d}x > \int_{0}^{\frac{3}{4}} \frac{1 + x \ln 2}{\sqrt{1 + x^2}} \,\mathrm{d}x = \frac{5}{4} \ln 2 > \ln 2 
+\]
+В другую сторону: 
+\[
+    \int_{0}^{\frac{3}{4}} \frac{2^x}{\sqrt{1 + x^2} } \,\mathrm{d}x < \int_{0}^{\frac{3}{4}} 2^x \,\mathrm{d}x = \frac{1}{\ln 2} \left( \sqrt[4]{8} - 1 \right) < \frac{1}{\ln 2} 
+\]
+
+\section{2.3}
+Из критерия интегрирования через взвешенные колебания рассмотрим произвольное 
+$\varepsilon > 0$, выделим промежуток $\delta = \frac{\varepsilon}{4}$, тогда $w_f([0, \delta)) = 2 \cdot \frac{\varepsilon}{4} = \frac{\varepsilon}{2}$, 
+Рассмотрим функцию на отрезке $[\delta, 1]$, на нём функция непрерывна, а значит и интегрируема, тогда 
+существует такое разбиение $\tau$, что $\Omega(f_{[\delta, 1]}, \tau) < \frac{\varepsilon}{2}$, тогда полная 
+взвешенная сумма колебаний, полченная объединением $\tau^{\prime} = \tau \cup [0, \delta)$: 
+\[
+    \Omega(f, \tau^{\prime}) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+\]      
+Что означает интегрируемость исходной функции функции. 
+\section{2.4}
+а) Так как функция $g$ - непрерывно дифференцируема, то $g^{\prime}$ ограничена, а значит $\vert g^{\prime} \vert < M$. 
+Тогда для любого колебания по теореме Лагранжа: 
+\[
+    w_{g \circ f}(\Delta) = \vert g^{\prime}(\xi) \vert w_f(\Delta) \leq M w_f(\Delta)
+\]    
+Из чего следует: 
+\[
+    \Omega(g \circ f, \tau) \leq M \Omega(f, \tau) \leq M \varepsilon
+\]
+\\б) 
+По теореме 4.123 из "An explanations" если $f$ - интегрируема, то $\vert f \vert $ - тоже интегрируема. 
+Остаётся доказать, если $h(x) = \vert f(x) \vert $ - интегрируема и $g(x) = x^p$, то $g \circ h$ - интегрируема. 
+Так как $g(x)$ - непрерывно дифференцируема, то согласно пункту а) композиция интегрируема.        
+\section{3.1}
+Докажем для функции Римана на отрезке $[0, 1]$, а так как функция Римана периодична, то и для произвольного 
+отрезка она будет интегрируема. 
+Для любого $\varepsilon > 0$ тогда функция Римана принимает значение большее $\frac{\varepsilon}{2}$ конечное число раз, 
+покроем все точки $x$ для которых $R(x) > \frac{\varepsilon}{2}$ семейством окрестностей $U_{\frac{\varepsilon}{4}}, U_{\frac{\varepsilon}{8}}, \dots$, 
+тогда взвешенная сумма колебаний по таким окрестностям не превосходит: 
+\[
+    \Omega(f_U, \tau_U) \leq 1\cdot\frac{\varepsilon}{4} + 1\cdot\frac{\varepsilon}{8} + \dots < \frac{\varepsilon}{2}
+\]   
+В остальных точках значение функции Римана не превосходит $\frac{\varepsilon}{2}$, а значит взвешенная сумма колебаний 
+не превосходит $1\cdot\frac{\varepsilon}{2}$, тогда взвешенная сумма колебаний по всему разбиению не превосходит $\varepsilon$.    
+\section{3.2}
+Мы уже доказывали, что такая функция интегрируема. Тогда остаётся доказать, что произовдная 
+первообразной равна 0 в точке 0, т.е: 
+\[
+    \int_{0}^{x} f(x) \,\mathrm{d}x = o(x)
+\]
+А что дальше не понятно.
+\section{3.3}
+Предположим $\int_{a}^{b} f(x) \,\mathrm{d}x = 0$, тогда верхние суммы Дарбу должны стремиться к 0 с уменьшением 
+мелкости разбиения. Выберем такое разбиение для которого 
+$S(f, \tau_1) < 1$, должен существовать отрезок $I_1$ на котором супермум меньше 1, тогда выполнено, что $f(x \in I_1) < 1$. 
+Далее найдём разбиение $\tau_2$  такое, что $S(f, \tau_2) < \frac{\left\vert I_1 \right\vert}{2}$, должен существовать 
+отрезок $I_2 \subset I_1$, такой что $f(x \in I_2) < \frac{1}{2}$, иначе бы верхняя сумма Дарбу была бы больше $\frac{\left\vert I_1 \right\vert }{2}$. 
+Производя нахождение отрезков так далее получим, что $f(x \in I_n) < \frac{1}{n}$, и $I_n \subset I_{n-1} \subset \dots \subset I_1$. 
+Получили последовательность вложенных отрезков, известно, что они имеют ненулевое пересечение, тогда $\forall x \in \bigcap_{n=1}^{\infty} I_n$ $f(x) = 0$ , то есть
+функция не строго положительна.          
+
+\section{3.4}
+Выберем промежуток $I \in [a, b]$ и добавим к нему точку $t$, разбивающую его на 2 промежутка $I_1$ и $I_2$. 
+Тогда рассмотрим одно из слагаемых суммы Дарбу: 
+\[
+    \vert I \vert \sup_I f(x) = \vert I_1 \vert \sup_I f(x) + \vert I_2 \vert \sup_I f(x) \geq \vert I_1 \vert \sup_{I_1} f(x) + \vert I_1 \vert \sup_{I_2} f(x)
+\]  
+То есть при разбиении на более мелкие части сумма Дарбу может только уменьшиться.
+Дальше не знаю пока.
+
+\end{document}

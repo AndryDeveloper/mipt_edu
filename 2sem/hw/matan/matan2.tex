@@ -280,7 +280,34 @@ $Q_k \cup \dots \cup Q_N = Q_N$. Получили, что найдётся $N$, 
     1 + x^n \leq e^{-x^n} \implies \int_{0}^{1} 1 + x^n \,\mathrm{d}x  < \int_{0}^{1} e^{-x^n} \,\mathrm{d}x  \implies 1 - \frac{1}{n} < \int_{0}^{1} e^{-x^n} \,\mathrm{d}x
 \]
 \section{Интегрируемость функции Римана}
-
+Для любого $\varepsilon > 0$ тогда функция Римана принимает значение большее $\frac{\varepsilon}{2}$ конечное число раз, 
+покроем все точки $x$ для которых $R(x) > \frac{\varepsilon}{2}$ семейством окрестностей $U_{\frac{\varepsilon}{4}}, U_{\frac{\varepsilon}{8}}, \dots$, 
+тогда взвешенная сумма колебаний по таким окрестностям не превосходит: 
+\[
+    \Omega(f_U, \tau_U) \leq 1\cdot\frac{\varepsilon}{4} + 1\cdot\frac{\varepsilon}{8} + \dots < \frac{\varepsilon}{2}
+\]   
+В остальных точках значение функции Римана не превосходит $\frac{\varepsilon}{2}$, а значит взвешенная сумма колебаний 
+не превосходит $1\cdot\frac{\varepsilon}{2}$, тогда взвешенная сумма колебаний по всему разбиению не превосходит $\varepsilon$. 
+\section{20.13}
+Для нахождения радиуса сходимости воспользуемся формулой Даламбера: 
+\[
+    \frac{1}{R} = \lim_{n \to \infty} \frac{(\alpha + n)(\beta + n)}{n (\gamma + n)} = 1
+\]
+Для исследования ряда на границе сходиомсти подробнее изучим коэффициенты ряда $F_n$:
+\[
+    \begin{split}
+        F_n = \prod_{k = 1}^{n} \frac{(\alpha + k)(\beta + k)}{(\gamma + k)(1 + k)} = 
+    \prod_{k = 1}^{n} \frac{(1 + \frac{\alpha}{k})(1 + \frac{\beta}{k})}{(1 + \frac{\gamma}{k})(1 + \frac{1}{k})} = \\
+    \exp \left\{ \sum_{k=1}^{n} \left[ \ln \left( 1 + \frac{n}{k} \right) + \ln \left( 1 + \frac{\beta }{k} \right) - \ln \left( 1 + \frac{\gamma}{k} \right) - \ln \left( 1 + \frac{1}{k} \right) \right]  \right\}  = \\
+    \exp \left\{ \sum_{k=1}^{n} \left[ \frac{\alpha + \beta - \gamma - 1}{k} + O\left( \frac{1}{k^2} \right) \right]  \right\} = 
+    \exp \left\{ (\alpha + \beta - \gamma - 1)\ln k + A \right\} = e^A k^{\alpha + \beta - \gamma - 1},
+    \end{split}
+\]
+в преобразованиях использована ассимтотическая формула разложения гармонического ряда $\sum_{k=1}^{n} \frac{1}{k} = \ln k + C + o(k)$.
+Мы получили ассимптотическую формулу, где $A$ - некоторая положительная константа, зависящая от $\alpha, \beta, \gamma$. 
+Далее нетрудно провести анализ сходимости ряда, при $x = 1$ ряд ведёт себя как эталонный и сходится при $\alpha + \beta - \gamma - 1 < -1 \implies \alpha + \beta < \gamma$. 
+При $\alpha + \beta \geq \gamma$ ряд расходится. При $x = -1$ ряд сходится абсолютно при $\alpha + \beta < \gamma$ и сходится условно при $\alpha + \beta - \gamma - 1 < 0$ по признаку Даламбера. 
+При $\alpha + \beta - \gamma - 1 \geq 0$ ряд расходится.  
 
 
 
