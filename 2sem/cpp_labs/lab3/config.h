@@ -9,6 +9,11 @@
 #define MUL_K 2
 #define ADD_K 100
 
+#define N_REPEATS_IO 100
+#define MAX_N_IO 10'000
+#define MIN_N_IO 1'000
+#define STEP_IO 1'000
+
 #define PBSTR "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 #define PBWIDTH 60
 

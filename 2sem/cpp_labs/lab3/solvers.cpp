@@ -9,7 +9,9 @@ int linked_list_solver(RingBuffer* const head, int k){
             current = current->next;
         }
     }
-    return current->data;
+    int data = current->data;
+    delete current;
+    return data;
 }
 
 int remove_after_arr(int* arr, int k, int n){
@@ -26,6 +28,7 @@ int remove_after_arr(int* arr, int k, int n){
 
 int arr_solver(int* arr, int n, int k){
     int current = 0;
+    k %= n;
     while (n != 1){
         n = remove_after_arr(arr, current, n);
         current += k;

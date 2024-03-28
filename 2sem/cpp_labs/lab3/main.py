@@ -35,4 +35,15 @@ ax.set_title(r'Сложность добавления количества N э
 ax.legend()
 fig.savefig(r'figures/dynamic.png')
 
+df = pd.read_csv('data/io_flav.csv')
+fig, ax = plt.subplots(figsize=(14, 10))
+ax.plot(np.log10(df.N), np.log10(df.time_A), label='Массив со сдвигом')
+ax.plot(np.log10(df.N), np.log10(df.time_B), label='Кольцевой буфер')
+
+ax.set_xlabel(r"log N")
+ax.set_ylabel(r"log T")
+ax.set_title(r'Решение задачи Иосифа Флавия')
+ax.legend()
+fig.savefig(r'figures/io_flav.png')
+
 print('completed')
