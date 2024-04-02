@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Практика 9.}
+\author{Шахматов Андрей, Б02-304}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{1.1}
+Если $x \in A \triangle C$, то он принадлежит либо в $A \setminus C$, либо в $C \setminus A$. Тогда без ограничения общности 
+$x \in A$ и $x \not \in C$. Тогда если $x \in B$, то он принадлежит $B \triangle C \implies x \in (A \triangle B) \cup (B \triangle C)$, иначе 
+$x \in (A \triangle B)$.    
+\section{1.2}
+Так как мера множества равна нулю, то существует покрытие элементарными $X \in A = \bigcup_{k=1}^{\infty} A_k$ , такое, что: 
+\[
+    \sum_{k=1}^{\infty} m(A_k) < \varepsilon
+\]  
+Возьмём множество $A_1$: 
+\[
+    \mu^{\ast}(X \triangle A_1) \leq \mu(A_1 \triangle A) + \mu(A \triangle X) < 2\varepsilon 
+\]
+\section{1.3}
+Если мера Лебега равна $0$, то его внешняя мера Лебега тоже равна $0$, 
+тогда по субаддитивности верхней меры лебега: 
+\[
+    \mu^{\ast}(X_1 \subset X) \leq \mu^{\ast}(X) = 0
+\]   
+Тогда по предыдущей задаче $X_1$ - измеримо. 
+\section{1.4}
+\[
+    \left\vert \mu(A) - \mu(B) \right\vert \leq \mu (A \triangle B) = 0
+\]
+Тогда $\mu(A) = \mu(B)$. А дальше как... 
+\section{2.1}
+а) Данное множество соответствует графику функции $y(x) = 1 - x$ на множестве $[0, 1]$. 
+Тогда так как такая функция равномерно непрерывна, то для всякого $\varepsilon > 0$ найдётся $\delta > 0$, 
+такая, что $\vert f(x_1) - f(x_2) \vert < \varepsilon, \, \vert x_1 - x_2 \vert  < \delta$. Разобъём 
+множество $[0, 1]$ на дельта промежутки $[x_k, x_{k+1}], x_{k+1} - x_k < \delta$, 
+тогда весь график покрывается $[x_k, x_{k+1}] \times [f(x_k), f(x_{k+1})]$, причём верхняя мера Жордана 
+такого покрытия:
+\[
+    \mu^{\ast} X \leq \sum_{k=1}^{n} [x_k, x_{k+1}] \cdot \varepsilon = \varepsilon  
+\]     
+Тогда так как верхняя мера сколь угодно мала, то мера множества равна $0$. Значит множество 
+измеримо по Жорадну и по Лебегу. 
+б) Граница такого множества - весь квадрат, его мера не равна 0, значит множество не измеримо по Жордану. 
+Представленное множество можно представить как счётное объединение множеств: 
+\[
+    X = \bigcup_{q \in \mathbb{Q}} \left\{ y = q - x \mid (x, y) \in [0, 1]^2 \right\}  
+\]
+Каждое из таких множеств представляет двумерную прямую, то есть имеет Лебегову меру $0$. А значит 
+по суббаддитивности верхней меры Лебега множество $X$ имеет меру $0$, а значит множество измеримо по Лебегу 
+с мерой $0$.
+
+\section{2.2}
+Построим такое множество, разделим отрезок на 10 частей и выбросим из него 3 часть, тогда в полученном 
+множестве $F_1$ не будет чисел с 4 в первом разряде. Далее из каждой из 9 оставшихся частей проведём аналогичную операцию - 
+в полученном множестве $F_2$ не будет чисел с 4 в первом и втором разряде. Тогда множество:
+\[
+    F = \bigcap_{n=1}^{\infty} F_n
+\]  
+не будет иметь 4 в своей десятичной записи. Такое множество измеримо по Лебегу, так как является 
+пересечением измеримых множеств. При этом мера $\mu F_n = \frac{9}{10} \mu F_{n-1}$, тогда 
+$\mu F_n = \left( \frac{9}{10} \right)^n \to 0, n \to \infty$, тогда из непрерывности меры Лебега 
+$\mu F = 0$. Так как множество нигде не плотно, то его внутренность пустая, тогда мера Лебега его 
+границы равна $0$. Так как такая граница компактна, то она также имеет нулевую меру Жордана. А значит измеримо по 
+Жордану. 
+\sectionn{2.3}
+
+\section{2.4}
+
+\section{2.5}
+
+\section{3.1}   
+
+
+
+
+\end{document}

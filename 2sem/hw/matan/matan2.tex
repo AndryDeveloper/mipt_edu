@@ -39,18 +39,18 @@
 \section{T1}
 б)
 \[
-    f_n(x) = \frac{x}{n} \ln \frac{x}{n} \to 0, n \to 0
+    f_n(x) = \frac{x}{n} \ln \frac{x}{n} \to 0, n \to \infty
 \]
-При $x > 1$ выберем последовательность $x_n = 2n$: 
+При $x > 1$ выберем последовательность $x_n = 2n$:
 \[
     f_n(x_n) = 2 \ln 2 = \varepsilon
 \]
-При $0 < x < 1$ исследуем функцию на монотонность: 
+При $0 < x < 1$ исследуем функцию на монотонность:
 \[
-    f_n^{\prime}(x) = \frac{1}{n} \left( \ln \frac{x}{n} + 1 \right) 
-\] 
-Тогда функция $\vert f_n(x) \vert $ возрастает при $x < \frac{n}{e}$, то есть при $n > 3$ функция 
-монотонна на $(0, 1)$. Тогда она принимает максимальное значение в точке $x = 1$: 
+    f_n^{\prime}(x) = \frac{1}{n} \left( \ln \frac{x}{n} + 1 \right)
+\]
+Тогда функция $\vert f_n(x) \vert $ возрастает при $x < \frac{n}{e}$, то есть при $n > 3$ функция
+монотонна на $(0, 1)$. Тогда она принимает максимальное значение в точке $x = 1$:
 \[
     \vert f_n(x) \vert \leq \frac{1}{n} \ln \frac{1}{n} \to 0, n \to \infty
 \]
@@ -58,164 +58,164 @@
 \[
     f_n(x) = n \arctg \frac{x}{n} \to x
 \]
-При $x > 1$ выберем $x_n = 2n$: 
+При $x > 1$ выберем $x_n = 2n$:
 \[
-    n \arctg 2 \geq \arctg 2 = \varepsilon 
-\]  
-При $0 < x < 1$: 
-\[
-    \left\vert f_n(x) - x \right\vert  = \left\vert n \left[ \frac{x}{n} + \frac{1}{2(1 + \varepsilon^2)} \left( \frac{x}{n} \right)^2 \right]   - x \right\vert  \leq \frac{1}{2n} \to 0, n \to \infty.   
+    n \arctg 2 \geq \arctg 2 = \varepsilon
 \]
-\\д) 
+При $0 < x < 1$:
 \[
-    f_n = x^n - x^{n+1} = x^n(1 - x) \to 0 
+    \left\vert f_n(x) - x \right\vert  = \left\vert n \left[ \frac{x}{n} + \frac{1}{2(1 + \varepsilon^2)} \left( \frac{x}{n} \right)^2 \right]   - x \right\vert  \leq \frac{1}{2n} \to 0, n \to \infty.
 \]
-Рассмотрим $f_{n+1}(x) - f_n(x)$: 
+\\д)
 \[
-    f_{n+1}(x) - f_n(x) = x^{n+1}(1 - x) - x^n(1 - x) = x^n(1 - x)(x - 1) \leq 0  
-\] 
-То есть $f_n$ - монотонна по $n$, тогда по признаку Дини сходимость равномерная. 
+    f_n = x^n - x^{n+1} = x^n(1 - x) \to 0
+\]
+Рассмотрим $f_{n+1}(x) - f_n(x)$:
+\[
+    f_{n+1}(x) - f_n(x) = x^{n+1}(1 - x) - x^n(1 - x) = x^n(1 - x)(x - 1) \leq 0
+\]
+То есть $f_n$ - монотонна по $n$, тогда по признаку Дини сходимость равномерная.
 \\е)
 \[
-    f_n = x^n - x^{2n} = x^n(1 - x^n) \to 0 
+    f_n = x^n - x^{2n} = x^n(1 - x^n) \to 0
 \]
-Функция достигает максимума в точке $x^n = \frac{1}{2} \implies f_{max} = \frac{1}{4} \implies \sup f_n(x) = \frac{1}{4} \not \to 0$ 
+Функция достигает максимума в точке $x^n = \frac{1}{2} \implies f_{max} = \frac{1}{4} \implies \sup f_n(x) = \frac{1}{4} \not \to 0$
 \section{T2}
-б) 
+б)
 \[
-    \sum_{n=1}^{\infty} \frac{\sqrt{x} }{n}\sin \frac{x}{n} 
+    \sum_{n=1}^{\infty} \frac{\sqrt{x} }{n}\sin \frac{x}{n}
 \]
-При $x \in (0, 1)$: 
+При $x \in (0, 1)$:
 \[
-    \sum_{n=1}^{\infty} \left\vert \frac{\sqrt{x} }{n}\sin \frac{x}{n} \right\vert  \leq \sum_{n=1}^{\infty} \frac{x \sqrt{x}}{n^2} \leq \sum_{n=1}^{\infty} \frac{1}{n^2}  
-\] 
-Тогда по признаку Вейерштрасса ряд сходится равномерно. 
+    \sum_{n=1}^{\infty} \left\vert \frac{\sqrt{x} }{n}\sin \frac{x}{n} \right\vert  \leq \sum_{n=1}^{\infty} \frac{x \sqrt{x}}{n^2} \leq \sum_{n=1}^{\infty} \frac{1}{n^2}
+\]
+Тогда по признаку Вейерштрасса ряд сходится равномерно.
 При $x \in (1, +\infty)$ рассмотрим сумму из отрицания критерия Коши при $n(N) = N, p(N) = N, x = 2N$:
 \[
-    \sum_{k=N}^{2N} \frac{\sqrt{2N}}{k} \sin \frac{2N}{k} \geq N \sqrt{2N} \sin 1 \frac{1}{2N} = \sqrt{2N} \frac{\sin 1}{2} \geq \frac{\sin 1}{\sqrt{2} }    
+    \sum_{k=N}^{2N} \frac{\sqrt{2N}}{k} \sin \frac{2N}{k} \geq N \sqrt{2N} \sin 1 \frac{1}{2N} = \sqrt{2N} \frac{\sin 1}{2} \geq \frac{\sin 1}{\sqrt{2} }
 \]
 \\ в)
 \[
     \sum_{n=1}^{\infty} \frac{nx}{n^2 + x^2} \arctg \frac{x}{n}
 \]
-При $x \in (0, 1)$: 
+При $x \in (0, 1)$:
 \[
-    \sum_{n=1}^{\infty} \left\vert \frac{nx}{n^2 + x^2} \arctg \frac{x}{n} \right\vert  \leq \sum_{n=1}^{\infty} \frac{x^2}{n^2 + x^2} \leq \sum_{n=1}^{\infty} \frac{1}{2n^2} 
-\] 
-Тогда по признаку Вейерштрасса ряд сходится равномерно. 
+    \sum_{n=1}^{\infty} \left\vert \frac{nx}{n^2 + x^2} \arctg \frac{x}{n} \right\vert  \leq \sum_{n=1}^{\infty} \frac{x^2}{n^2 + x^2} \leq \sum_{n=1}^{\infty} \frac{1}{2n^2}
+\]
+Тогда по признаку Вейерштрасса ряд сходится равномерно.
 Рассмотрим последовательность $x = n$, тогда с $n > 1$ выполняется:
 \[
     u_n(x_n) = \frac{n^2}{n^2 + n^2} \arctg \frac{n}{n} = \frac{1}{2} \arctg 1 = \varepsilon
-\]  
-То есть невыполняется необходимое условие сходимости ряда, а значит ряд не сходится равномерно, при $x \in (1, +\infty)$. 
-\\ г) 
+\]
+То есть невыполняется необходимое условие сходимости ряда, а значит ряд не сходится равномерно, при $x \in (1, +\infty)$.
+\\ г)
 \[
     \sum_{n=1}^{\infty} \frac{n^2 x^2}{n^4 + x^4} \sin \frac{n}{x}
 \]
 При $x > 1$ рассмотрим последовательность $x_n = n$, тогда:
 \[
-    u_n(x_n) = \frac{n^3}{2 n^4} \sin 1 = \frac{1}{2} \sin 1 = \varepsilon 
-\] 
-Не выполняется необходиомое условие равномерной сходимости. 
-При $0 < x < 1$: 
+    u_n(x_n) = \frac{n^3}{2 n^4} \sin 1 = \frac{1}{2} \sin 1 = \varepsilon
+\]
+Не выполняется необходиомое условие равномерной сходимости.
+При $0 < x < 1$:
 \[
     \sum_{n=1}^{\infty} \left\vert \frac{n^2 x^2}{n^4 + x^4} \sin \frac{n}{x} \right\vert \leq \sum_{n=1}^{\infty} \frac{n^2 x^2}{n^4 + x^4} \leq \sum_{n=1}^{\infty} \frac{1}{2n^2}
 \]
-По признаку Вейерштрасса сходится равномерно. 
-\\ е) 
+По признаку Вейерштрасса сходится равномерно.
+\\ е)
 \[
     \sum_{n=1}^{\infty} \frac{x\ln nx}{n^2}
 \]
-При $x > 1$ выбрем $x_n = 2n^2$: 
+При $x > 1$ выбрем $x_n = 2n^2$:
 \[
-    u_n(x_n) = 2 \ln 2n^3 = 2\ln 2 + 6 \ln n > 2\ln 2 = \varepsilon 
-\]  
-Не выполняется необходимое условие сходимости. Для определения равномерной сходимости исследуем 
-функцию $u_n(x) = \left\vert \frac{x\ln nx}{n^2} \right\vert $ на максимум на интервале $(0, 1)$: 
+    u_n(x_n) = 2 \ln 2n^3 = 2\ln 2 + 6 \ln n > 2\ln 2 = \varepsilon
+\]
+Не выполняется необходимое условие сходимости. Для определения равномерной сходимости исследуем
+функцию $u_n(x) = \left\vert \frac{x\ln nx}{n^2} \right\vert $ на максимум на интервале $(0, 1)$:
 \[
     u_n^{\prime}(x) = \frac{1}{n^2}(\ln nx + 1)
-\] 
-Тогда в точке $x = \frac{1}{ne}$ находится экстремум, а значит 
-максимальное значение функции: 
+\]
+Тогда в точке $x = \frac{1}{ne}$ находится экстремум, а значит
+максимальное значение функции:
 \[
-    \sup u_n = \max \left\{ u_n(\frac{1}{ne}), u_n(1) \right\} = 
-    \max \left\{ \frac{1}{n^3 e}, \frac{\ln n}{n^2} \right\} 
-\]  
-Так как оба ряда $\sum_{n=1}^{\infty} \frac{1}{n^3 e}$ и $\sum_{n=1}^{\infty} \frac{\ln n}{n^2}$ сходятся, то 
+    \sup u_n = \max \left\{ u_n(\frac{1}{ne}), u_n(1) \right\} =
+    \max \left\{ \frac{1}{n^3 e}, \frac{\ln n}{n^2} \right\}
+\]
+Так как оба ряда $\sum_{n=1}^{\infty} \frac{1}{n^3 e}$ и $\sum_{n=1}^{\infty} \frac{\ln n}{n^2}$ сходятся, то
 исходный ряд сходится по признаку Вейерштрасса.
 
 \section{T3}
-Так как функции $u_n$ - монотонны на $[a, b]$, то: 
+Так как функции $u_n$ - монотонны на $[a, b]$, то:
 \[
     \left\vert u_n \right\vert \leq \sup \left\vert u_n \right\vert = \max \left\{ \left\vert u_n(a) \right\vert , \left\vert u_n(b) \right\vert  \right\} \leq
     \left\vert u_n(a) \right\vert + \left\vert u_n(b) \right\vert
 \]
-Но так как ряды $\sum_{n=1}^{\infty} \left\vert u_n(a) \right\vert$ и $\sum_{n=1}^{\infty} \left\vert u_n(b) \right\vert$ сходятся абсолютно, то 
-и ряд $\sum_{n=1}^{\infty} \left\vert u_n(a) \right\vert + \left\vert u_n(b) \right\vert$ сходится абсолютно, а значит по признаку 
-Вейерштрасса ряд $\sum_{n=1}^{\infty} u_n$ равномерно сходится на $[a, b]$.   
+Но так как ряды $\sum_{n=1}^{\infty} \left\vert u_n(a) \right\vert$ и $\sum_{n=1}^{\infty} \left\vert u_n(b) \right\vert$ сходятся абсолютно, то
+и ряд $\sum_{n=1}^{\infty} \left\vert u_n(a) \right\vert + \left\vert u_n(b) \right\vert$ сходится абсолютно, а значит по признаку
+Вейерштрасса ряд $\sum_{n=1}^{\infty} u_n$ равномерно сходится на $[a, b]$.
 
 \section{T4}
-Докажем по признаку Абеля, для этого нужно доказать, что $b_n = \frac{1}{n^x}$ монотонна и ограничена. 
-Ограниченность очевидна $b_n \leq 1$, покажем монотонность: 
+Докажем по признаку Абеля, для этого нужно доказать, что $b_n = \frac{1}{n^x}$ монотонна и ограничена.
+Ограниченность очевидна $b_n \leq 1$, покажем монотонность:
 \[
-    \frac{\frac{1}{(n+1)^x}}{\frac{1}{n^x}} = \frac{1}{\left( 1 + \frac{1}{n} \right)^x } \leq 1 
-\] 
-последовательность убывает при любом фиксированном $x$. 
+    \frac{\frac{1}{(n+1)^x}}{\frac{1}{n^x}} = \frac{1}{\left( 1 + \frac{1}{n} \right)^x } \leq 1
+\]
+последовательность убывает при любом фиксированном $x$.
 
 \section{T6}
-Запишем $w_f(t_n) = \sup \{\vert f(x) - f(x + \delta ) \vert \mid \delta \leq  t_n\} \geq \vert f(x) - f(x - t_n) \vert $. 
-Тогда по теореме Кантора функция равномерно-непрерывна, тогда $w_f(t_n) \to 0, t_n \to 0$.   
+Запишем $w_f(t_n) = \sup \{\vert f(x) - f(x + \delta ) \vert \mid \delta \leq  t_n\} \geq \vert f(x) - f(x - t_n) \vert $.
+Тогда по теореме Кантора функция равномерно-непрерывна, тогда $w_f(t_n) \to 0, t_n \to 0$.
 \section{T7. Признак Дини}
-Рассмотри множество $Q_n = \{x \mid \vert f_n(x) - f(x) \vert \leq \varepsilon\}$, 
-каждое из таких множеств является открытым, так как $\vert f_n(x) - f(x) \vert$ - непрерывна, и 
-множество задаётся строгим неравенством. Так как $f_n \to f$ следует, что $[a, b] \subset \bigcup_{n=1}^{\infty} Q_n$. 
+Рассмотри множество $Q_n = \{x \mid \vert f_n(x) - f(x) \vert \leq \varepsilon\}$,
+каждое из таких множеств является открытым, так как $\vert f_n(x) - f(x) \vert$ - непрерывна, и
+множество задаётся строгим неравенством. Так как $f_n \to f$ следует, что $[a, b] \subset \bigcup_{n=1}^{\infty} Q_n$.
 Из того, что функции монотонны по $n$ следует вложеннность $Q_n$ $Q_1 \subset Q_2 \subset \dots \subset Q_n$.
-Тогда так как $[a, b]$ - компакт следует, что из $\bigcup_{n=1}^{\infty} Q_n$ можно выбрать конечное подпокрытие 
-$Q_k \cup \dots \cup Q_N = Q_N$. Получили, что найдётся $N$, такое что $\forall n > N$ $\forall x \in [a, b]$ $x \in Q_N \subset Q_n$.              
+Тогда так как $[a, b]$ - компакт следует, что из $\bigcup_{n=1}^{\infty} Q_n$ можно выбрать конечное подпокрытие
+$Q_k \cup \dots \cup Q_N = Q_N$. Получили, что найдётся $N$, такое что $\forall n > N$ $\forall x \in [a, b]$ $x \in Q_N \subset Q_n$.
 \section{T8}
 б)
 \[
-    \sum_{n=1}^{\infty} \frac{(n!)^2}{(2n)!} z^n 
+    \sum_{n=1}^{\infty} \frac{(n!)^2}{(2n)!} z^n
 \]
 Воспользуемся формулой Даламбера:
 \[
-    \frac{1}{R} = \lim_{n \to \infty} \frac{\left( (n+1)! \right)^2 }{(n!)^2} \frac{(2n)!}{(2n + 2)!} = 
-    \lim_{n \to \infty} \frac{(n + 1)^2}{2(2n + 1)(n+1)} = \frac{1}{2} \lim_{n \to \infty} \frac{n+1}{2n+1} = \frac{1}{4} 
+    \frac{1}{R} = \lim_{n \to \infty} \frac{\left( (n+1)! \right)^2 }{(n!)^2} \frac{(2n)!}{(2n + 2)!} =
+    \lim_{n \to \infty} \frac{(n + 1)^2}{2(2n + 1)(n+1)} = \frac{1}{2} \lim_{n \to \infty} \frac{n+1}{2n+1} = \frac{1}{4}
 \]
 А значит радиус сходиомсти $R = 4$.
 \\ доп)
 \[
     \sum_{n=1}^{\infty} \frac{x^{pn}}{(1 - i)^n}
 \]
-По формуле Коши-Адамара: 
+По формуле Коши-Адамара:
 \[
-    \frac{1}{R} = \uplim_{n \to \infty} \vert c_n \vert^{\frac{1}{n}} = \lim_{k \to \infty} \left\vert \frac{1}{(1 - i)^k} \right\vert^{\frac{1}{pk}} = 
+    \frac{1}{R} = \uplim_{n \to \infty} \vert c_n \vert^{\frac{1}{n}} = \lim_{k \to \infty} \left\vert \frac{1}{(1 - i)^k} \right\vert^{\frac{1}{pk}} =
     \frac{1}{\sqrt[p]{2}}
 \]
 \section{T9}
-а) 
+а)
 \[
     \sum_{n=1}^{\infty} (\sqrt[n]{a} - 1) x^n
 \]
-По формуле Даламбера: 
+По формуле Даламбера:
 \[
-    \frac{1}{R} = \lim_{n \to \infty} \frac{a^{\frac{1}{n+1}} - 1}{a^{\frac{1}{n}} - 1} = 
+    \frac{1}{R} = \lim_{n \to \infty} \frac{a^{\frac{1}{n+1}} - 1}{a^{\frac{1}{n}} - 1} =
     \lim_{n \to \infty} \frac{\frac{1}{n+1} \ln a}{\frac{1}{n} \ln a} + o(1) = 1
 \]
-Радиус сходимости равен 1. 
+Радиус сходимости равен 1.
 При $x = 1$:
 \[
     \sum_{n=1}^{\infty} \sqrt[n]{a} - 1 = \sum_{n=1}^{\infty} e^{\frac{1}{n} \ln a} - 1 \geq \sum_{n=1}^{\infty} \frac{1}{n} \ln a - \text{расходится}
-\] 
+\]
 При $x = -1$:
 \[
-    \sum_{n=1}^{\infty} (-1)^n \left( \sqrt[n]{a} - 1 \right) 
-\] 
+    \sum_{n=1}^{\infty} (-1)^n \left( \sqrt[n]{a} - 1 \right)
+\]
 По признаку Лейбница сходится условно.
 \section{T10}
 а)
 \[
-    \frac{1}{x^2 - 2x - 3} = \frac{1}{(x+1)(x-3)} = \frac{1}{4} \left( \frac{1}{x - 3} - \frac{1}{x + 1} \right) = 
+    \frac{1}{x^2 - 2x - 3} = \frac{1}{(x+1)(x-3)} = \frac{1}{4} \left( \frac{1}{x - 3} - \frac{1}{x + 1} \right) =
     \frac{1}{4} \cdot \frac{1}{1 + x} - \frac{1}{12} \cdot \frac{1}{1 - \frac{x}{3}}
 \]
 \[
@@ -224,106 +224,235 @@ $Q_k \cup \dots \cup Q_N = Q_N$. Получили, что найдётся $N$, 
 \[
     \frac{1}{12} \cdot \frac{1}{1 - \frac{x}{3}} = \sum_{n=1}^{\infty} \frac{x^n}{12 \cdot 3^n}
 \]
-Тогда: 
+Тогда:
 \[
-    \frac{1}{x^2 - 2x - 3} = \sum_{n=1}^{\infty} x^n \left( \frac{(-1)^n}{4} + \frac{1}{12 \cdot 3^n} \right) 
+    \frac{1}{x^2 - 2x - 3} = \sum_{n=1}^{\infty} x^n \left( \frac{(-1)^n}{4} + \frac{1}{12 \cdot 3^n} \right)
 \]
-Радиус сходимости равен минимуму из радиусов сходимости составных рядов, т.е $R = 1$. 
-\\ б) 
+Радиус сходимости равен минимуму из радиусов сходимости составных рядов, т.е $R = 1$.
+\\ б)
 \[
     \frac{1}{(x^2 + 2)^2} = \frac{1}{\sqrt{2}} \cdot \frac{1}{\left( 1 + \left( \frac{x}{\sqrt{2}} \right)^2 \right)^2 } = \sum_{n=0}^{\infty} \frac{(-1)^n}{\sqrt{2}} (n + 1) \frac{x^{2n}}{2^n}
 \]
-Радиус сходимости равен $R = 1^2 \cdot \sqrt{2} = \sqrt{2}$ 
-\\ в) 
+Радиус сходимости равен $R = 1^2 \cdot \sqrt{2} = \sqrt{2}$
+\\ в)
 \[
-    \ln \frac{2 + x^2}{\sqrt{1 - 2x^2}} = 
-    \ln 2 + \ln \left( 1 + \frac{x^2}{2} \right)  - \frac{1}{2} \ln \left( 1 - 2x^2 \right)  = 
-    \ln 2 + \sum_{n=1}^{\infty} \frac{x^{2n}}{n} \left( \frac{(-1)^{n+1}}{2^n} - 2^{n-1} \right) 
+    \ln \frac{2 + x^2}{\sqrt{1 - 2x^2}} =
+    \ln 2 + \ln \left( 1 + \frac{x^2}{2} \right)  - \frac{1}{2} \ln \left( 1 - 2x^2 \right)  =
+    \ln 2 + \sum_{n=1}^{\infty} \frac{x^{2n}}{n} \left( \frac{(-1)^{n+1}}{2^n} - 2^{n-1} \right)
 \]
 Радиус сходимости $R = \frac{1}{\sqrt{2}}$
 \\ г)
 \[
     \sin^3 x = 3\sin x - 4\sin 3x = \sum_{n=0}^{\infty} \frac{3 (-1)^n x^{2n + 1}}{(2n + 1)!} - \sum_{n=0}^{\infty} \frac{4 (-1)^n x^{6n + 3}}{(2n + 1)!}
 \]
-Ну тут дальше можно кусочно задать явную формулу для коэффициентов ряда. Радиус сходимости $R = \infty$. 
-\\ д) 
+Ну тут дальше можно кусочно задать явную формулу для коэффициентов ряда. Радиус сходимости $R = \infty$.
+\\ д)
 \[
-    \arctg \frac{2 - x}{1 + 2x} = \arctg 2 - \arctg x = \arctg 2 + \sum_{n=1}^{\infty} (-1)^n \frac{x^{2n-1}}{2n-1} 
+    \arctg \frac{2 - x}{1 + 2x} = \arctg 2 - \arctg x = \arctg 2 + \sum_{n=1}^{\infty} (-1)^n \frac{x^{2n-1}}{2n-1}
 \]
-Радиус сходимости $R = 1$. 
+Радиус сходимости $R = 1$.
 \section{T11}
-б) 
+б)
 \[
-    \sum_{n=0}^{\infty} n^2 x^n 
+    \sum_{n=0}^{\infty} n^2 x^n
 \]
 Рассмотрим сумму из пункта а:
 \[
     \frac{x}{(1 - x)^2} = \sum_{n=1}^{\infty} n x^n
-\] 
-Почленно продифференцировав получим: 
+\]
+Почленно продифференцировав получим:
 \[
-    \sum_{n=1}^{\infty} n^2 x^{n - 1} = \frac{1 + x}{(1 - x)^3} \implies \sum_{n=0}^{\infty} n^2 x^n = \frac{x(1 + x)}{(1 - x)^{3} } 
+    \sum_{n=1}^{\infty} n^2 x^{n - 1} = \frac{1 + x}{(1 - x)^3} \implies \sum_{n=0}^{\infty} n^2 x^n = \frac{x(1 + x)}{(1 - x)^{3} }
 \]
 \section{T13}
 \[
-    \int_{0}^{\pi } \sin x \,\mathrm{d}x 
+    \int_{0}^{\pi } \sin x \,\mathrm{d}x
 \]
 Разобъём отрезок равномерно, тогда выбрав представителя в виде $f(k) = \sin \pi \frac{k}{n}$:
 \[
     S = \lim_{n \to \infty} \sum_{k=1}^{n} \frac{\pi }{n} \sin \pi \frac{k}{n} = \lim_{n \to \infty} \frac{\pi}{n} \frac{\sin \left( \frac{n+1}{2} \frac{\pi}{n} \right) \sin \frac{\pi}{2}}{\sin \left( \frac{\pi}{2n} \right) } = 2
-\] 
-\section{T14}
-Так как $\frac{1}{x}$ непрерывна, то она интегрируема на любом отрезке из области определения. 
-Найдём интеграл $\int_{1}^{2} \frac{1}{x} \,\mathrm{d}x$, выберем разбиение, где точки 
-составляют геометрическую прогрессию: $1, q^1, q^2 \dots q^n$, где $q = \sqrt[n]{2}$, 
-в качестве представителя выберем самые правые точки, т.е $f(t_k) = \frac{1}{q^k}$. 
-Тогда сумма Римана будет иметь вид: 
-\[
-    S = \frac{1}{q}(q - 1) + \frac{1}{q^2}(q^2 - q) + \dots \frac{1}{q^n}(q^n - q^{n-1}) = 
-    \frac{n}{q}(q - 1) = \frac{n(\sqrt[n]{2} - 1)}{\sqrt[n]{2}} = \frac{n( 2^{\frac{1}{n}} - 1) }{2^{\frac{1}{n}}} \to \ln 2
-\]   
-Предел является одним из замечательных пределов для логарифма. Далее замечаем, что искомая сумма: 
-\[
-    S^{\prime}  = \sum_{k=1}^{n} \frac{1}{1 + \frac{k}{n}} \frac{1}{n}  
 \]
-тоже является суммой Римана, но только для равномерного разбиения, тогда так как эти суммы сходятся к одному и тому же 
-интегралу получим, что сумма $S^{\prime} = \ln 2$. 
+\section{T14}
+Так как $\frac{1}{x}$ непрерывна, то она интегрируема на любом отрезке из области определения.
+Найдём интеграл $\int_{1}^{2} \frac{1}{x} \,\mathrm{d}x$, выберем разбиение, где точки
+составляют геометрическую прогрессию: $1, q^1, q^2 \dots q^n$, где $q = \sqrt[n]{2}$,
+в качестве представителя выберем самые правые точки, т.е $f(t_k) = \frac{1}{q^k}$.
+Тогда сумма Римана будет иметь вид:
+\[
+    S = \frac{1}{q}(q - 1) + \frac{1}{q^2}(q^2 - q) + \dots \frac{1}{q^n}(q^n - q^{n-1}) =
+    \frac{n}{q}(q - 1) = \frac{n(\sqrt[n]{2} - 1)}{\sqrt[n]{2}} = \frac{n( 2^{\frac{1}{n}} - 1) }{2^{\frac{1}{n}}} \to \ln 2
+\]
+Предел является одним из замечательных пределов для логарифма. Далее замечаем, что искомая сумма:
+\[
+    S^{\prime}  = \sum_{k=1}^{n} \frac{1}{1 + \frac{k}{n}} \frac{1}{n}
+\]
+тоже является суммой Римана, но только для равномерного разбиения, тогда так как эти суммы сходятся к одному и тому же
+интегралу получим, что сумма $S^{\prime} = \ln 2$.
 \section{T17}
-а) 
+а)
 \[
     1 + x^n \leq e^{-x^n} \implies \int_{0}^{1} 1 + x^n \,\mathrm{d}x  < \int_{0}^{1} e^{-x^n} \,\mathrm{d}x  \implies 1 - \frac{1}{n} < \int_{0}^{1} e^{-x^n} \,\mathrm{d}x
 \]
 \section{Интегрируемость функции Римана}
-Для любого $\varepsilon > 0$ тогда функция Римана принимает значение большее $\frac{\varepsilon}{2}$ конечное число раз, 
-покроем все точки $x$ для которых $R(x) > \frac{\varepsilon}{2}$ семейством окрестностей $U_{\frac{\varepsilon}{4}}, U_{\frac{\varepsilon}{8}}, \dots$, 
-тогда взвешенная сумма колебаний по таким окрестностям не превосходит: 
+Для любого $\varepsilon > 0$ тогда функция Римана принимает значение большее $\frac{\varepsilon}{2}$ конечное число раз,
+покроем все точки $x$ для которых $R(x) > \frac{\varepsilon}{2}$ семейством окрестностей $U_{\frac{\varepsilon}{4}}, U_{\frac{\varepsilon}{8}}, \dots$,
+тогда взвешенная сумма колебаний по таким окрестностям не превосходит:
 \[
     \Omega(f_U, \tau_U) \leq 1\cdot\frac{\varepsilon}{4} + 1\cdot\frac{\varepsilon}{8} + \dots < \frac{\varepsilon}{2}
-\]   
-В остальных точках значение функции Римана не превосходит $\frac{\varepsilon}{2}$, а значит взвешенная сумма колебаний 
-не превосходит $1\cdot\frac{\varepsilon}{2}$, тогда взвешенная сумма колебаний по всему разбиению не превосходит $\varepsilon$. 
+\]
+В остальных точках значение функции Римана не превосходит $\frac{\varepsilon}{2}$, а значит взвешенная сумма колебаний
+не превосходит $1\cdot\frac{\varepsilon}{2}$, тогда взвешенная сумма колебаний по всему разбиению не превосходит $\varepsilon$.
 \section{20.13}
-Для нахождения радиуса сходимости воспользуемся формулой Даламбера: 
+Для нахождения радиуса сходимости воспользуемся формулой Даламбера:
 \[
     \frac{1}{R} = \lim_{n \to \infty} \frac{(\alpha + n)(\beta + n)}{n (\gamma + n)} = 1
 \]
 Для исследования ряда на границе сходиомсти подробнее изучим коэффициенты ряда $F_n$:
 \[
     \begin{split}
-        F_n = \prod_{k = 1}^{n} \frac{(\alpha + k)(\beta + k)}{(\gamma + k)(1 + k)} = 
-    \prod_{k = 1}^{n} \frac{(1 + \frac{\alpha}{k})(1 + \frac{\beta}{k})}{(1 + \frac{\gamma}{k})(1 + \frac{1}{k})} = \\
-    \exp \left\{ \sum_{k=1}^{n} \left[ \ln \left( 1 + \frac{n}{k} \right) + \ln \left( 1 + \frac{\beta }{k} \right) - \ln \left( 1 + \frac{\gamma}{k} \right) - \ln \left( 1 + \frac{1}{k} \right) \right]  \right\}  = \\
-    \exp \left\{ \sum_{k=1}^{n} \left[ \frac{\alpha + \beta - \gamma - 1}{k} + O\left( \frac{1}{k^2} \right) \right]  \right\} = 
-    \exp \left\{ (\alpha + \beta - \gamma - 1)\ln k + A \right\} = e^A k^{\alpha + \beta - \gamma - 1},
+        F_n = \prod_{k = 1}^{n} \frac{(\alpha + k)(\beta + k)}{(\gamma + k)(1 + k)} =
+        \prod_{k = 1}^{n} \frac{(1 + \frac{\alpha}{k})(1 + \frac{\beta}{k})}{(1 + \frac{\gamma}{k})(1 + \frac{1}{k})} = \\
+        \exp \left\{ \sum_{k=1}^{n} \left[ \ln \left( 1 + \frac{n}{k} \right) + \ln \left( 1 + \frac{\beta }{k} \right) - \ln \left( 1 + \frac{\gamma}{k} \right) - \ln \left( 1 + \frac{1}{k} \right) \right]  \right\}  = \\
+        \exp \left\{ \sum_{k=1}^{n} \left[ \frac{\alpha + \beta - \gamma - 1}{k} + O\left( \frac{1}{k^2} \right) \right]  \right\} =
+        \exp \left\{ (\alpha + \beta - \gamma - 1)\ln k + A \right\} = e^A k^{\alpha + \beta - \gamma - 1},
     \end{split}
 \]
 в преобразованиях использована ассимтотическая формула разложения гармонического ряда $\sum_{k=1}^{n} \frac{1}{k} = \ln k + C + o(k)$.
-Мы получили ассимптотическую формулу, где $A$ - некоторая положительная константа, зависящая от $\alpha, \beta, \gamma$. 
-Далее нетрудно провести анализ сходимости ряда, при $x = 1$ ряд ведёт себя как эталонный и сходится при $\alpha + \beta - \gamma - 1 < -1 \implies \alpha + \beta < \gamma$. 
-При $\alpha + \beta \geq \gamma$ ряд расходится. При $x = -1$ ряд сходится абсолютно при $\alpha + \beta < \gamma$ и сходится условно при $\alpha + \beta - \gamma - 1 < 0$ по признаку Даламбера. 
-При $\alpha + \beta - \gamma - 1 \geq 0$ ряд расходится.  
-\section{T3 НИР}
-а) 
+Мы получили ассимптотическую формулу, где $A$ - некоторая положительная константа, зависящая от $\alpha, \beta, \gamma$.
+Далее нетрудно провести анализ сходимости ряда, при $x = 1$ ряд ведёт себя как эталонный и сходится при $\alpha + \beta - \gamma - 1 < -1 \implies \alpha + \beta < \gamma$.
+При $\alpha + \beta \geq \gamma$ ряд расходится. При $x = -1$ ряд сходится абсолютно при $\alpha + \beta < \gamma$ и сходится условно при $\alpha + \beta - \gamma - 1 < 0$ по признаку Даламбера.
+При $\alpha + \beta - \gamma - 1 \geq 0$ ряд расходится.
+\section{T.21}
+Пусть $X$ - множество значений последовательности $a_n = \frac{1}{n}$. Докажем, что его мера Жордана равна $0$.
+Для этого нужно доказать, что для $\forall \varepsilon > 0$, можно найти такое покрытие $X$ из
+полукольца, что его мера Жордана меньше $\varepsilon$. Найдём такое $N$, что $\forall n > N \, \frac{1}{n} < \frac{\varepsilon}{2}$,
+и покроем все такие точки множеством $[0, \frac{\varepsilon}{2}]$, его мера очевидно $\frac{\varepsilon}{2}$.
+Так как последовательность имеет предел, то точек за пределами этого множества конечное число, покроем
+их множествами длин $\frac{\varepsilon}{4}, \frac{\varepsilon}{8}, \dots, \frac{\varepsilon}{4n}$. Тогда их мера не превышает $\frac{\varepsilon}{2}$.
+Тогда мера покрывающег оэлементарного множества меньше $\varepsilon$.
+\section{T.22}
+Пусть существует счётное множество с мерой Жордана большей нуля. Тогда так как оно измеримо по Жордану, то
+мера его границы равна 0, а значит в силу аддитивности меры Жордана имеем, что мера внутренности множества больше 0.
+Так как внутренность это открытое множество, то его можно разбить на дизъюнктное объединение интервалов.
+Так как мера их объединения больше нуля, в объединении есть непустой интервал. Так как этот интервал
+принадлежит исходному множеству и содержит несчётен, то исходное множество тоже несчётно. Получили протеворечие.
+\section{5.8}
+$A$ - система всех полуинтервалов. Если $X_1 = [\alpha_1, \beta_1) \in A$ и  $X_2 = [\alpha_2 , \beta_2) \in A$,
+то $X_1 \cap X_2 = [\max \{\alpha_1, \alpha_2\}, \min \{\beta_1, \beta_2\}]$, в случае если интервалы пересекаются и
+пустому интервалу если не пересекаются. Проверим третье условие. $X_1 = [\alpha_1, \beta_1) \subset [\alpha, \beta) \in A$,
+тогда $X = [\alpha, \beta) = [\alpha, \alpha_1) \cup X_1 \cup [\beta_1, \beta)$.
+\section{5.9}
+Аналогично $5.8$. Так как из отрезка можно сделать полуинтервал дизъюнктным объединением $[a, c) = [a, b] \cup (b, c)$.
+\section{5.10}
+Множества будут пересекаться по координатам декартового произведения и соответственно давать
+в каждой из координат промежуток. Докажем, что если $[(\alpha^1, \beta^1)] \subset [(\alpha, \beta)]$, то
+такое множество раскладывается в дизъюнктное объединение содержащее $[(\alpha^1, \beta^1)]$.
+Сделаем индукцией по количеству измерений, база очевидна из задач $5.8, 5.9$, тогда шаг индукции:
+\[
+    [(\alpha_1, \beta_1)] \times \dots \times [(\alpha_n, \beta_n)] =
+    [(\alpha_1, \alpha^1_1)] \times \dots \times [(\alpha_n, \beta_n)] \cup
+    [(\alpha^1_1, \beta^1_1)] \times \dots \times [(\alpha_n, \beta_n)] \cup
+    [(\beta^1, \beta)] \times \dots \times [(\alpha_n, \beta_n)]
+\]
+Так как согласно гипотезе индукции $[(\alpha_1, \alpha^1_1)] \times \dots \times [(\alpha_n, \beta_n)]$ раскладывается
+на дизъюнктное объединение содержащее $[(\alpha^1, \beta^1)]$, доказали шаг индукции.
+\section{5.17}
+Так как $A \triangle B = (A \cup B) \setminus (A \cap B)$, так как $(A \cup B) \in S$ и $(A \cap B) \in S$,
+а их разность $(A \cup B) \setminus (A \cap B) = A_1 \cup A_2 \cup \dots \cup A_n \in S$  по третьей аксиоме полукольца и правилу объединения, тогда $A \triangle B \in S$. ЧТД.
+\section{5.18}
+По индукции по количеству множеств, для одного утверждение следует из 3 аксиомы полукольца. Шаг индукции, имеем:
+\[
+    A = \bigsqcup_{i=1}^{n-1} A_i \sqcup \bigsqcup_{k=n}^{m} B_k
+\]
+Тогда рассмотрим множество $D_j = A_n \cap B_k$, для каждого $D_j$ множно найти дополнение:
+\[
+    A = \bigsqcup_{i=1}^{n-1} A_i \sqcup \bigsqcup_{j=1}^{s} D_j \sqcup \bigsqcup_{j=1}^{s} \bigsqcup_{l=1}^{p} C_{j, l}
+\]
+Тогда так как $A_n \cap A_j = \emptyset$ и $A_n \cap \bigsqcup_{j=1}^{s} \bigsqcup_{l=1}^{p} C_{j, l} = \emptyset$, то $A_n = \bigsqcup_{j=1}^{s} D_j$.
+\section{5.19}
+\section{5.21}
+\section{5.22}
+Нужно доделать))
+\section{6.8}
+\section{6.9}
+Из задачи $5.18$ имеем:
+\[
+    A = \bigsqcup_{i=1}^{n} A_i \cup \bigsqcup_{j=1}^{m} B_j
+\]
+Тогда по аддитивности меры имеем:
+\[
+    m(A) = \sum_{i=1}^{n} m(A_i) - \sum_{j=1}^{m} m(B_j) \geq \sum_{i=1}^{n} m(A_i)
+\]
+\section{6.10}
+Перейдя к пределу по $n$ в задаче $6.9$ получим искомое неравенство.
+\section{6.11}
+1) Пусть $A = \bigsqcup_{i=1}^{\infty} A_n$, тогда по задаче $6.10$ получаем,
+\[
+    m(A) \geq \sum_{i=1}^{\infty} m(A_i)
+\]
+С учётом $m(A) \leq \sum_{i=1}^{\infty} m(A_i)$ получаем:
+\[
+    m(A) = \sum_{i=1}^{\infty} m(A_i)
+\]
+2) Пусть для некоторого множества не выполнено неравенство, тогда из $5.19$:
+\[
+    A = \bigcup_{i=1}^{\infty} (A \cap A_i) = \bigsqcup_{i=1}^{\infty} \bigsqcup_{k=1}^{k_i} (B_{i, k} \cap A)
+\]
+\[
+    m(A) \leq \sum_{i=1}^{\infty} \sum_{k=1}^{k_i} m(B_{i, k}) \leq \sum_{i=1}^{\infty} m(A_i)
+\]
+\section{6.12}
+\dots
+\section{7.19}
+$\forall \varepsilon > 0 \, \mu^{\ast} (A \triangle A_{\varepsilon}) < \varepsilon$, тогда так как $X$ - единица кольца, то
+$(x \setminus A_{\varepsilon}) \in R(S)$. Тогда по свойствам симметрической разности:
+\[
+    \mu^{\ast}  ((X \setminus A) \triangle (X \setminus A_{\varepsilon} )) = \mu^{\ast}  (A \triangle A_{\varepsilon} )< \varepsilon.
+\]
+\section{7.20}
+Так как мера $\mu^{\ast} < \mu_{J}^{\ast}$, то если для $\mu^{\ast}_J (A \triangle A_{\varepsilon}) < \varepsilon$, то 
+$\mu^{\ast} < \mu^{\ast}_J (A \triangle A_{\varepsilon}) < \varepsilon$, что значит, что множестов измеримо и по Лебегу. То есть 
+все измеримые по Жордану измеримы и по Лебегу.
+\section{7.21}
+Измеримость следует так как множество из кольца можно приблизить им самим же: 
+\[
+    \mu^{\ast}_J (A \triangle A) = 0 < \varepsilon
+\]
+Выбрав в определении верхней меры покрытие, состоящее из элемента $A$ получим равенство мер Жордана и Лебега. 
+\section{7.22}
+Так как $\vert \mu^{\ast}(A) - \mu^{\ast}(B) \vert < \mu^{\ast} (A \triangle B)$. Считая $A$ - измеримым по Жорадну, 
+а $B$ - приближающим множеством кольца имеем $\mu^{\ast}_J (A \triangle B) < \varepsilon$. Тогда:
+\[
+    \mu_J(A) \leq \mu^{\ast}_J(A) \leq \mu^{\ast}_J (A \triangle B) + \mu^{\ast}_J(B) < \mu^{\ast}_J(B) + \varepsilon
+\]
+Так как множество $B \in R(S)$ имеем $\mu^{\ast}_J(B) = \mu^{\ast}(B)$:
+\[
+    \mu_J(A) < \mu^{\ast}_J(B) + \varepsilon = \mu^{\ast}(B) + \varepsilon < \mu^{\ast}(A) + \mu^{\ast} (A \triangle B) + \varepsilon < 
+    \mu^{\ast}(A) + 2\varepsilon = \mu(A) + 2\varepsilon
+\] 
+Переходя к пределу имеем $\mu_J(A) \leq \mu(A)$, неравенство в обратную сторону очевидно. 
+\section{7.70}
+Найдём псоледовательность $(a_n)$, такую, что: 
+\[
+    \sum_{i=1}^{\infty} a_i = 1 - \alpha
+\] 
+Разделим отрезок на 3 части, длина одного из которых $a_1$, уберём этот отрезок, далее каждый из 2 полученных отрезков тоже разделим на 
+3 части и выкинем части с длиной $\frac{a_2}{2}$. Продолжая операцию дальше получим последовательность множеств м мерами: 
+\[
+    \mu(A_n) = 1 - \sum_{i=1}^{n} a_i 
+\]  
+Из непрерывности меры следует, что $\mu (\bigcap_{i=n}^{\infty} A_n) = 1 - ( 1 - \alpha) = \alpha$. Такое множество нигде не плотно, так 
+как для любого интервала $(a, b) \subset [0, 1]$ найдётся такое $a_n$, что $a_n < \mu (a, b)$, что означает, что 
+есть полость меры $a_n$ не пренадлежащая множеству.      
+\section{7.71}
+Рассмотрим множество, полученное в задаче $7.70$. Пусть оно измеримо по Жордану, тогда мера совпадает с его мерой Лебега. 
+Так как множество нигде не плотно, то его внутренность пуста, тогда мера Лебега (а значит и Жордана) его границы больше $\alpha > 0$, что означает невозможность 
+его измерить по Жордану, получили противоречие. 
+\section{T.23}
+Пример неизмеримого компактного множества - множество из задачи $7.71$. Докажем его компактность, для этого 
+нужно доказать его замкнутость. На каждом шаге итерации мы получали замкнутые множества, а пересечение любого количества 
+замкнутых является замкнутым.
+\section{T.1 НИР}
 
 
 \end{document}
