@@ -9,11 +9,26 @@ struct BinaryTree
     int value;
 };
 
-struct DynamicArray
+struct AVLTree
 {
-    int *elements = nullptr;
-    unsigned capacity = 0;
-    unsigned size = 0;
+	int key;
+	unsigned char height;
+	AVLTree* left;
+	AVLTree* right;
+	AVLTree(int k) { key = k; left = right = nullptr; height = 1; }
 };
+
+struct ListPair {
+    ListPair *tail;
+    int p;
+};
+
+struct Table
+{
+    ListPair **table;
+    float load_factor;
+    unsigned size;
+};
+
 
 #endif

@@ -1,8 +1,6 @@
 #include "structs.h"
 #include "config.h"
 
-#include <iostream>
-
 LinkedList *insert_after(LinkedList *const current = nullptr, int init_val = 0)
 {
     if (current == nullptr)

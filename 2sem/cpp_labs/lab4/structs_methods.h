@@ -1,15 +1,18 @@
 #ifndef __STRUCTS_METODS_H__
 #define __STRUCTS_METODS_H__
 
-DynamicArray new_array(unsigned size, int init_val = 0);
-void erase(DynamicArray &da);
-DynamicArray& reserve(DynamicArray &da, unsigned capacity);
-DynamicArray clone(DynamicArray &da);
-DynamicArray& assign(DynamicArray const &src, DynamicArray &dst);
-DynamicArray& push_back(DynamicArray &da, int val);
+Table new_table(unsigned size);
+void erase_table(Table *t);
+void add(Table* t, int p);
+bool contains(Table* t, int p);
+void remove(Table* t, int p);
 
 BinaryTree* find(BinaryTree* head, int key);
 BinaryTree* insert(BinaryTree* head, int key, int value=0);
 BinaryTree* remove(BinaryTree* head, int key);
+
+AVLTree *insert(AVLTree *p, int k);
+AVLTree *remove(AVLTree *p, int k);
+AVLTree* find(AVLTree *p, int k);
 
 #endif

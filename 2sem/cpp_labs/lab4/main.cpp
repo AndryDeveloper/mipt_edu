@@ -1,10 +1,9 @@
-#include "config.h"
 #include "checkers.h"
-
-using namespace std;
 
 int main()
 { 
+  hashset_time();
   tree_time();
+  avl_time();
   return 0;
 }
