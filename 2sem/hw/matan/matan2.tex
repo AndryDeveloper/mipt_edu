@@ -452,7 +452,29 @@ $\mu^{\ast} < \mu^{\ast}_J (A \triangle A_{\varepsilon}) < \varepsilon$, что 
 Пример неизмеримого компактного множества - множество из задачи $7.71$. Докажем его компактность, для этого 
 нужно доказать его замкнутость. На каждом шаге итерации мы получали замкнутые множества, а пересечение любого количества 
 замкнутых является замкнутым.
-\section{T.1 НИР}
+\section{Эквивалентность сумм Дарбу и ступенчатых функций}
+В одну сторону. Найдём две ступенчатые функции $g, h: g \leq f \leq h$, такие, что 
+\[
+    \int_{a}^{b} (h(x) - g(x)) \,\mathrm{d}x < \varepsilon 
+\]  
+Рассмотрим взвешенную сумму колебаний(разность сумм Дарбу) на разбиении, на котором обе функции ступенчатые: 
+\[
+    \Omega(f, \tau) = \sum_{\Delta \in \tau} w(f, \Delta)\vert \Delta \vert \leq 
+    \sum_{\Delta \in \tau} (h(\Delta) - g(\Delta))\vert \Delta \vert = \int_{a}^{b} (h(x) - g(x)) \,\mathrm{d}x < \varepsilon 
+\]
+В другую сторону. $\Omega(f, \tau) < \varepsilon$ для некоторого разбиения, положим 
+$g(\Delta) = \inf f(\Delta), \, h(\Delta) = \sup f(\Delta)$, тогда 
+$g \leq f \leq h$, причём:
+\[
+    \int_{a}^{b} (h(x) - g(x)) \,\mathrm{d}x = 
+    \sum_{\Delta \in \tau} (h(\Delta) - g(\Delta))\vert \Delta \vert = 
+    \sum_{\Delta \in \tau} (\sup f(\Delta) - \inf f(\Delta))\vert \Delta \vert = \Omega(f, \Delta) < \varepsilon
+\] 
+\section{4. Зорич}
+Ну не знаю для любых сумм Римана выполняеются неравенства, а значит после перехода к пределу 
+они сохранятся...
+
+
 
 
 \end{document}
