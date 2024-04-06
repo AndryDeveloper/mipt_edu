@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+
+\newcommand{\incfig}[1]{
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Матан третья домашка.}
+\author{Шахматов Андрей, Б02-304}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{T.25}
+Такое множество является объединением двух множеств $X = X_1 \cup X_2$ : 
+\[
+    X_1 = \left\{ (x, y) \mid x \in \mathbb{Q} \right\} 
+\]
+\[
+    X_2 = \left\{ (x, y) \mid x \in \mathbb{Q} \right\}
+\]
+В свою очередь $X_1$:
+\[
+    X_1 = \bigcup_{x \in \mathbb{Q}}^{\infty} \left\{ (x, y) \mid y \in \mathbb{R} \right\}   
+\]  
+Так как $\left\{ (x, y) \mid y \in \mathbb{R} \right\}$ по существу является прямой, то оно измеримо 
+с мерой $0$. Тогда $X_1$ в силу счётной аддитивности тоже измеримо с мерой $0$. Аналогично измеримо 
+и $X_2$. Тогда $X$ измеримо так как является объединением измеримых.   
+\section{T.29}
+Я не уверен, но
+\[
+    \mu(X \setminus (X + t)) = \mu(X) - \mu 
+\]
+
+\section{8.3}
+\[
+    f^{-1}(\left\{ +\infty \right\} ) = \bigcap_{i=1}^{\infty} f^{-1}((i, +\infty] ) 
+\] 
+\[
+    f^{-1}(\left\{ -\infty \right\} ) = A \setminus \bigcup_{i=1}^{\infty} f^{-1}((-i, +\infty ] ) 
+\] 
+\[
+    f^{-1}(\mathbb{R}) = A \setminus \left( f^{-1}(\left\{ -\infty \right\} ) \cup f^{-1}(\left\{ +\infty \right\} ) \right) 
+\]
+\section{8.4}
+\[
+    f^{-1}((a, b)) = f^{-1}((a, +\infty]) \setminus \left( \bigcap_{i=1}^{\infty} f^{-1}((b - \frac{1}{i}, +\infty])  \right)   
+\]
+\section{8.13}
+
+
+
+
+\end{document}

@@ -103,6 +103,19 @@ $\mu F = 0$. Так как множество нигде не плотно, то
     \mu(X \cap X_n) + \mu(X \cup X_n) = \mu(X) + \mu(X_n) > n - 1 \implies 1 \geq \mu(X \cup X_n) > n - 1  
 \]     
 Получили противоречие для $n > 1$. 
+\section{2.4}
+Представленное множество монжно записать как:
+\[
+    X = \bigcap_{n=1}^{\infty} \left( \bigcup_{k=n}^{\infty} X_k \right) 
+\] 
+Тогда помтроим последовательность вложенных множеств: 
+\[
+    \bigcup_{k=1}^{\infty} X_k \supset \bigcup_{k=2}^{\infty} X_k \supset \dots \supset \bigcup_{k=n}^{\infty} X_k
+\]
+Тогда по непрерывности меры: 
+\[
+    \mu(X) = \lim_{n \to \infty} \mu \left( \bigcup_{k=n}^{\infty} X_k \right) \leq \lim_{n \to \infty} \sum_{k=n}^{\infty} \mu(X_k) = 0
+\]
 
 
 \section{2.5}
