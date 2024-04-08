@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Практика 10.}
+\author{Шахматов Андрей, Б02-304}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{1.1}
+\[
+    f^{-1} (\{1\}) = A, f^{-1}(\{0\}) = \mathbb{R}^n \setminus A, f^{-1}(\{0, 1\}) = \mathbb{R}^n 
+\]
+Так как $A$ измеримо тогда и только тогда когда $\mathbb{R}^n \setminus A$ измеримо, то 
+необходимым и достаточным условием измеримости является измеримость $A$. 
+\section{1.2}
+Так как функция монотонна, то она имеет счётное число точек разрыва, тогда можно разбить 
+её область определения на счётоное объединение непрерывных множеств: 
+\[
+    \mathbb{R} = \bigsqcup_{k = 1}^{\infty} X_k
+\]   
+На каждом из $X_k$ функция непрерывна, а значит и измерима: 
+\[
+    \{x \in \mathbb{R} \mid f(x) < c\} = \bigcup_{k=1}^{\infty} \{{x \in X_k \mid f(x) < c}\}
+\] 
+Тогда такое множество является счётным объединением измеримых, а значит измеримо.
+\section{1.3}
+Упс...
+\section{1.4}
+\[
+    \{x \in X \mid f(x) \geq c \} = \mathbb{R}^n \setminus \left\{ x \in X \mid f(x) < c \right\}  
+\] 
+\section{2.3}
+Так как множество нигде не плотно, то множество его предельных точек совпадает со всем $\mathbb{R}$. 
+Тогда для любого $y_0 \in \mathbb{R} \setminus E$ найдётся последовательность $y_k \to y_0$, выберем из 
+$y_k$ такую подпоследовательность где $y_{k_j} > y_0$ (если таковой нет, выберем $y_{k_j} < y_0$). 
+Тогда
+\[
+    \left\{ x \in X \mid f(x) < y_0 \right\} = \bigcap_{j = 1}^{\infty} \left\{ x \in X \mid f(x) < y_{k_j} \right\}
+\]
+\section{2.5}
+а) 
+Чтобы доказать требуемый факт, нужно доказать, что $q(x) = \{x\}$ - борелевская функция. 
+Прообраз $q^{-1}((\alpha, \beta) \subset [0, 1)) = \bigcup_{z \in \mathbb{Z}} (\alpha + z, \beta + z)$. 
+Так как прообраз интервала является счётным пересечением интервалов, то функция дробной части действительно 
+борелевская. Композиция борелевской и измеримой - измерима.
+\\ б) 
+В данном пункте следует доказать, что $q(x)$ - "Лебег-измерима", то есть прообраз измеримого измерим. 
+Аналогично пункту а) 
+\[
+    q^{-1} (A \in [0, 1)) = \bigcup_{z \in \mathbb{Z}} \left\{ a + z \mid a \in A \right\},   
+\]
+получили счётное объединение измеримых - измеримо.
+\section{3.1}
+а) Нужно доказать, что любой прообраз $p(x) = [x]$ является борелевским. 
+Пусть $X \subset Z$.
+\[
+    p^{-1}(\left\{ X \right\}) = \bigcup_{x \in X} [x, x + 1), 
+\]
+счётное пересечение борелевских. 
+б) Аналогичное нужно доказать для функции Римана. Прообраз любой точки из образа функции Римана, то есть 
+точки вида $x = \frac{1}{n}, n \in \mathbb{N}$ есть конечное число точек со знаменателем $n$. 
+Тогда $\forall X \in R((0, 1))$, причём $X$ - счётно: 
+\[
+    R^{-1}(X) = \bigcup_{k=1}^{\infty} \bigcup_{i=1}^{n} \left\{ \frac{i}{n} \right\} - 
+\]   
+Каждую точку монжно представить как счётное пересечение отрезков, в итоге получим: 
+\[
+    R^{-1}(X) = \bigcup_{k=1}^{\infty} \bigcup_{i=1}^{n} \bigcap_{p=1}^{\infty} \left[ \frac{i}{n}, \frac{i}{n} + \frac{1}{p} \right]   - 
+\] 
+очевидно борелевское множество.
+
+\section{3.2}
+Если $f$ - измерима, то 
+\[
+    \{x \in X \mid f(x) = c\} = \{x \in X \mid f(x) \leq c\} \cup \left( \mathbb{R}^n \setminus \{x \in X \mid f(x) < c\} \right) 
+\]  
+Все такие множества измеримы, потому $\{x \in X \mid f(x) = c\}$ измеримо. 
+В обратную сторону неверно, например, рассмотрим множество Витали на отрезке $[0, 1]$. Так как 
+множество Витали неизмеримо, то его мощность не может быть счётной, а занчит она континум. 
+Тогда существует биекция $f:V \to \mathbb{R}$. Тогда для любого $c \in \mathbb{R}$, 
+$\left\{ x \in \mathbb{R} \mid f(x) = c\right\} = \left\{ a \in [0, 1] \right\}$ - очевидно измеримо, 
+однако полный прообраз очевидно неизмерим. 
+\section{3.3}
+Рассмотрим функцию $f(x) = \frac{1}{2} (x + c(x))$ на $(0, 1)$, где $c(x)$ - канторова лестница, такая функция 
+непрерывна и монотонна, а значит измерима. Обозначим 
+множество Кантора как $K$. Тогда $\mu (f(K)) = \frac{1}{2}$, так как $\mu(f((0, 1) \setminus f(K))) = \frac{1}{2}$, ведь 
+$\mu(\frac{1}{2}c((0, 1) \setminus f(K))) = 0$, так как является счётным, а $\mu(\frac{1}{2}id((0, 1) \setminus f(K))) = \frac{1}{2}$. 
+Тогда можно найти неизмеримое множество $X \subset f(K)$. 
+Прообраз $f^{-1}(X) = A$ - измерим, так как является подмножеством множества Кантора с нулевой мерой. 
+Тогда взяв в качестве измеримой функции $g = f^{-1}(x)$ и измеримово множества $A$ получим, что 
+$g^{-1}(A) = X$ - неизмеримо.  
+
+
+\end{document}
