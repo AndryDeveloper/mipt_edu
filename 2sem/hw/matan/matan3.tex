@@ -71,7 +71,20 @@
 \[
     f^{-1}((a, b)) = f^{-1}((a, +\infty]) \setminus \left( \bigcap_{i=1}^{\infty} f^{-1}((b - \frac{1}{i}, +\infty])  \right)   
 \]
-\section{8.13}
+\section{T.36}
+Нужно доказать измеримость множества: 
+\[
+    X = \left\{ x \in X \mid f^{\prime}(x) < c \right\} = 
+    \left\{ x \in X \mid \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} < c\right\} = 
+    \left\{ x \in  X \mid \exists n \, f \left( x + \frac{1}{n} \right)   - f(x) < \frac{c}{n} \right\}
+\]
+Представим ввиде объёдинения: 
+\[
+    = \bigcup_{n=1}^{\infty} \left\{ x \in X \mid f \left( x + \frac{1}{n} \right)  - f(x) < \frac{c}{n} \right\}  
+\]
+Теперь, так как $f(x)$ - измерима, то и $f(x + \frac{1}{n})$ - измерима. Также 
+так как сумма измеримых измерима, то $f(x + \frac{1}{n}) - f(x)$ - измерима. Тогда получим, что 
+множество $X$ - измеримо как счётное объединение измеримых.    
 
 
 

@@ -503,9 +503,24 @@ $g \leq f \leq h$, причём:
     \sum_{\Delta \in \tau} (\sup f(\Delta) - \inf f(\Delta))\vert \Delta \vert = \Omega(f, \Delta) < \varepsilon
 \] 
 \section{4. Зорич}
-Ну не знаю для любых сумм Римана выполняеются неравенства, а значит после перехода к пределу 
-они сохранятся...
-
+а) Нужно доказать: 
+\[
+    \int_{a}^{b} \vert fg \vert \,\mathrm{d}x \leq \left( \int_{a}^{b} \vert f \vert^p  \,\mathrm{d}x \right) ^\frac{1}{p} \left( \int_{a}^{b} \vert g \vert^q  \,\mathrm{d}x \right) ^\frac{1}{q}
+\]
+Так как неравенство не изменятеся при домножении на константы, можно домножить функции так, чтобы 
+$\int_{a}^{b} \vert f \vert^p  \,\mathrm{d}x = 1$ и $\int_{a}^{b} \vert g \vert^q \,\mathrm{d}x = 1$, тогда достаточно доказать неравенство
+\[
+    \int_{a}^{b} \vert fg \vert \,\mathrm{d}x \leq 1
+\] 
+Для доказательства выпишем неравенство Юнга: 
+\[
+    \vert fg \vert \leq \frac{\vert f \vert^p}{p} + \frac{\vert g \vert^q}{q} 
+\]
+Проинтегрировав неравенство получим: 
+\[
+    \int_{a}^{b} \vert fg \vert \,\mathrm{d}x \leq \frac{1}{p} \int_{a}^{b} \vert f \vert^p \,\mathrm{d}x + \frac{1}{q} \int_{a}^{b} \vert g \vert^q \,\mathrm{d}x = \frac{1}{p} + \frac{1}{q} = 1
+\]
+Что и требовалось доказать.
 
 
 
