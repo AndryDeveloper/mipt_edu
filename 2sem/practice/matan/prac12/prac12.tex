@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Практика 12.}
+\author{Шахматов Андрей, Б02-304}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{1.1}
+Да так как $D(x)$ - конечно ступенчатая функция на множестве $\mathbb{Q}_{[0,1]}$ с интегралом 
+$\int_{[0, 1]} D(x) \,\mathrm{d}x = \mu(\mathbb{Q}_{[0, 1]}) = 0$. 
+\section{1.2}
+Выбросим все множетсва меры нуль и получим: 
+\[
+    \int_{[0, 1]} x \,\mathrm{d}x = \frac{1}{2} 
+\] 
+\section{2.2}
+Пусть функция: 
+\[
+    f(x) = \begin{dcases}
+        \frac{1}{x}, x \in (0, 1);\\
+        2 - x, x \in [1, 2];\\
+        - \frac{1}{x - 3}, x \in (2, 3).
+    \end{dcases}
+\]
+Очевидно, что положительная и отрицательная части интеграла равны $+\infty$ и $-\infty$.  
+\section{2.3}
+Разобъём область определения на два измеримых множества: $X_1 = \left\{ x \in X \mid f(x) > g(x) \right\}$ и 
+$X_2 = \mathbb{R} \setminus X_1$. Тогда на $X_1$: $\max \left\{ f(x), g(x) \right\} = f(x)$, 
+из чего следует интегрируемость $\max \left\{ f(x), g(x) \right\}$ на $X_1$. Аналогично для $X_2$. 
+Тогда остаётся рассмотреть не произойдёт ли так, что на $X_1$ максимум интегрируется в $+\infty$, 
+а на $X_2$ в $-\infty$. Предположим противное, то есть $\int_{X_1} f(x) \,\mathrm{d}x = +\infty$ 
+и $\int_{X_2} g(x) \,\mathrm{d}x = -\infty$. Но тогда из монотонности интеграла и определения
+множества $X_1$ следует $\int_{X_1} f(x) \,\mathrm{d}x = -\infty$. Но тогда на одном множестве 
+функция $f$ интегрируема в $+\infty$, а на другом в $-\infty$, что означает не интегриуремость 
+$f$ на всём $\mathbb{R}$.             
+
+
+\section{2.6}
+Будем делать всё по лемме 5.85 
+\\а) $\vert f \vert \leq g \implies -g \leq f \leq g$, так как $g$ - интегрируема с конечным интегралом, то 
+она может быть оценена снизу ступенчатой с конечным интегралом: 
+\[
+    -h \leq f \leq h
+\], 
+что по лемме $5.85$ означает интегрируемость с конечным интегралом.
+\\б) Функция может быть оценена константой $\vert f \vert \leq M$, так как $\int_{X} M \,\mathrm{d}x = M \mu X$ - 
+конечный, то по пункту а) имеем интегрируемость $f$. 
+\\в) Так как функция непрерывна на компакте, то она ограничена, а так как компакт в $\mathbb{R}$, 
+то он ограничен и замкнут, а значит измерим с конечной мерой. 
+\section{3.1}
+Так как $f$ - интегрируема, то она измерима, тогда $f^2$ - измерима. 
+Тогда на измеримом множестве $X_1 = \left\{ x \in X \mid \vert f(x) < 1 \vert  \right\}$ 
+выполнено $\vert f \vert \leq f^2 \leq f^4$, тогда по признаку $2.6$ имеем, что $f$ интегрируема на 
+$X_1$, аналогично со сменой знакак в неравенствах получим интегрируемость на множестве 
+$X_2 = \left\{ x \in X \mid \vert f(x) \geq 1 \vert \right\}$. Тогда так как $f^2$ 
+интегрируема с конечным интегралом на $X_1$ и $X_2$, то она интегрируема на 
+$\mathbb{R} = X_1 \sqcup X_2$. 
+\section{3.2}
+Стоит отметить, что наличие конечного интеграла у модуля функции равносильно наличию конечного интеграла у 
+самой функции. Тогда достаточно доказать для неотрицательной функции. 
+Введём ступенчатую функцию: 
+\[
+    \phi(x) = \sum_{n=1}^{\infty} n \chi_{\left\{ x \in [a, b] \mid n \leq f(x) \leq n + 1 \right\}} (x)
+\]
+Тогда верно 
+\[
+    \phi \leq f \leq \phi + 1
+\]      
+По определению интеграла ступенчатой функции: 
+\[
+    \int_{[a, b]} \phi(x) \,\mathrm{d}x = \sum_{n=1}^{\infty} n \mu(x \in [a, b] \mid n \leq f(x) \leq n + 1 )
+\]
+Тогда проинтегрировав неравенство получим: 
+\[
+    \int_{[a, b]} \phi(x) \,\mathrm{d}x \leq \int_{[a, b]} f(x) \,\mathrm{d}x \leq \int_{[a, b]} \phi(x) \,\mathrm{d}x + \mu([a, b]) 
+\]
+Если $\mu A < +\infty$, то из неравенств немедленно следует требуемый факт. 
+
+
+
+\end{document}

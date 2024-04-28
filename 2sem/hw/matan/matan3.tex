@@ -52,10 +52,18 @@
 с мерой $0$. Тогда $X_1$ в силу счётной аддитивности тоже измеримо с мерой $0$. Аналогично измеримо 
 и $X_2$. Тогда $X$ измеримо так как является объединением измеримых.   
 \section{T.29}
-Я не уверен, но
+Рассмотрим множество конечной меры, тогда его можно приблизить элементарным $K = \sum_{k=1}^{n} P_k$, 
+где $P_k$ - промежутки, так, что $\mu(X \triangle K) < \varepsilon$. 
+Тогда имеем: 
 \[
-    \mu(X \setminus (X + t)) = \mu(X) - \mu 
+    \mu(X \setminus X + t) \leq \mu (X \triangle K) + \mu (X + t \triangle K + t) + \mu (K \triangle K + t)
+\]   
+Из этого следует, что достаточно доказать для элементарного $K$. Возьмём $t$ меньше, чем 
+$\min dist(P_i, P_j)$. Тогда верно: 
+\[
+    \mu (K \triangle K + t) = \sum_{k=1}^{n} \mu (P_k \triangle P_k + t) \leq \sum_{k=1}^{n} 2t = 2nt
 \]
+Тогда взяв $t < \frac{\varepsilon}{2n}$ получу нужное неравенство.   
 
 \section{8.3}
 \[
@@ -108,7 +116,253 @@
 сужение такой функции на множество множество Кантора очевидно монотонно, тогда так как 
 $c(0) = 0$ и $c(1) = 1$ то построенная функция обязана быть монотонной на всём $[0, 1]$ по построению.   
 
+\section{8.13}
+Так как функция $h(t)$ - непрерывна, то её прообраз открытого есть открытое. Пусть $f^{-1}(X) = A$, 
+тогда так как $A$ - открытое, то оно представляется в виде счётного объединения открытых декартовых произведений 
+по рациональным точкам: 
+\[
+    A = \bigcup_{q \in \mathbb{Q}^n \mid q \in A} \prod_{i = 1}^{n} \left( q_i - \alpha_q, q_i + \alpha_q \right), 
+\]
+где $\alpha_q$ - некоторые коэффициенты. 
+Докажем это утверждение, рассмотрим $q \in \mathbb{Q}^n \mid q \in A$. Тогда вместе с $q$ в $A$ 
+содердится некоторая окрестность, очевидно, что такой окрестностью может быть 
+\[
+    U_q(r_0) = U_q(dist(q, \mathbb{R}^n \setminus A))
+\]
+Так как известно, что в любой открытый шар можно поместить открытое декартово произведение интервалов, с расстоянием 
+$\frac{r_0}{\sqrt{n}}$: 
+\[
+    \prod_{i=1}^{n} \left( q_i - \frac{r_0}{\sqrt{n}}, q_i + \frac{r_0}{\sqrt{n}} \right).
+\]
+То есть $\alpha_q = \frac{r_0}{\sqrt{n}}$. Очевидно, что такое объединение содержится в множестве $A$. 
+Теперь покажем обратное, пусть $a \in A$. Пусть $D = dist(a, \mathbb{R}^n \setminus A)$, веберем окрестность 
+с радиусом $d = \frac{D}{1 + \sqrt{n}}$ и выберем произвольное рациональное число $q$ из неё:
+\[
+    dist(q, \mathbb{R}^n \setminus A) \geq D - d = d \sqrt{n} \implies d \leq \frac{dist(q, \mathbb{R}^n \setminus A)}{\sqrt{n}}.  
+\]   
+Тогда очевидно $a \in \prod_{i=1}^{n} \left( q_i - \frac{r_0}{\sqrt{n}}, q_i + \frac{r_0}{\sqrt{n}} \right)$.
+Вернёмся к задаче, обозначим $f(x) = (f_1(x_1), f_2(x_2), \dots, f_n(x_n))$, тогда
+\[
+    f^{-1}(A) = \bigcup_{q \in A} \bigcap_{i=1}^{n} {f_i}^{-1}\left( q_i - \frac{r_0}{\sqrt{n}}, q_i + \frac{r_0}{\sqrt{n}} \right),
+\]
+что измеримо как счётное объединение измеримых.
 
+\section{7.24}
+Так как оба множества измеримы, найдём такие множества, для которых выполняется $\mu_J^{\ast}(A \triangle A_{\varepsilon}) < \frac{\varepsilon}{2}$ и 
+$\mu_J^{\ast}(B \triangle B_{\varepsilon}) < \frac{\varepsilon}{2}$. Тогда 
+\[
+    (A \cap B) \triangle (A_{\varepsilon}  \cap B_{\varepsilon}) \subset (B \triangle B_\varepsilon) \cup (A \triangle A_{\varepsilon} )
+\]
+Из чего следует 
+\[
+    \mu_J^{\ast}((A \cap B) \triangle (A_{\varepsilon}  \cap B_{\varepsilon})) \leq \mu_J^{\ast}((B \triangle B_\varepsilon) \cup (A \triangle A_{\varepsilon})) \leq \varepsilon.
+\]
+аналогичные неравенства получаются с симметрической разностью. 
+\section{7.26}
+В одну сторону неравенство очевидно по субаддитивности. Докажем неравенство во вторую сторону. 
+Найдём такие приближающие множества $B_{\varepsilon}$ и $C_{\varepsilon}$, что их расстояние до 
+множеств $B$, $C$ меньше $\varepsilon$. Тогда
+\[
+    A \triangle (B_{\varepsilon}  \cup C_{\varepsilon}) = 
+    (B \cup C) \triangle (B_{\varepsilon}  \cup C_{\varepsilon}) \subset 
+    (B \triangle B_{\varepsilon } ) \cup (C  \triangle C_{\varepsilon}),
+\]
+Учитывая, что $C \cap B = \emptyset$ следует, что 
+\[
+    \mu(B_{\varepsilon} \cap C_{\varepsilon}) \leq 2\varepsilon. 
+\] 
+Запишем формулу включений-исключений: 
+\[
+    \mu(C_{\varepsilon} \cup B_{\varepsilon} ) = \mu(B_{\varepsilon}) + \mu(C_{\varepsilon}) - \mu(B_{\varepsilon} \cap C_{\varepsilon}) \geq \mu(B) + \mu(C) - 4\varepsilon.
+\]
+Тогда получим 
+\[
+    \mu(A) \geq \mu(B_{\varepsilon} \cup C_{\varepsilon}) - \mu(A \triangle (B_{\varepsilon}  \cup C_{\varepsilon})) \geq \mu(B) + \mu(C) - 6\varepsilon.
+\]
+Неравенство выполняется для любого $\varepsilon$, а значит оно выболняется и при $\varepsilon = 0$. Что и требовалось доказать.  
 
+\section{8.33}
+Подходит функция Кантора из задачи 4.19, она монотонна неубывает, непостоянна, дифференцируема на $[0,1] \setminus K$, 
+где $K$ - множесвто Кантора, то есть всюду кроме множества меры 0. Причем производная равна нулю, так 
+как $c(x \in [0, 1] \setminus K) = const$.   
+\section{8.34}
+Тоже функция кантора $c(x)$, так как $\mu (c(K)) = 1 - \mu (c([0, 1] \setminus K)) = 1 - 0 = 0$. 
+\section{8.35}
+Функция $f(x) = x + c(x)$. На множестве кантора $\mu (f(K)) = 1$.
+
+\section{9.29}
+ляяя ну надо бы сделать
+\section{10.3}
+Пусть есть два набора множеств $A_k$ и $B_k$ представляющие ступенчатую функцию. Тогда рассмотрим 
+$C_k = A_k \cap B_k$, очевидно исходная функция также будет иметь ступенчатый вид на $C_k$. Тогда: 
+\[
+    \sum_{k=1}^{n} p_k \mu A_k = \sum_{k=1}^{n} \sum_{t=1}^{m} p_{k, t} \mu (A_k \cap B_t) = 
+    \sum_{t=1}^{m} \sum_{k=1}^{n} p_{k, t} \mu (A_k \cap B_t) = \sum_{t=1}^{n} p_t \mu B_t
+\]     
+Показали, что определения эквивалентны для любого набора множеств.
+\section{10.4}
+Рассмотрим такое $C_k$ на котором обе функции ступенчатые. Тогда 
+\[
+    \begin{split}
+    \int_X (af(x) + bg(x)) \,\mathrm{d}\mu = \sum_{k=1}^{n} af(x_k \in C_k) + bg(x_k \in C_k) \mu C_k = \\
+    a\sum_{k=1}^{n} f(x_k \in C_k) \mu C_k + b\sum_{k=1}^{n} f(x_k \in C_k) \mu C_k = 
+    a\int_X f(x) \,\mathrm{d}x + b\int_{X} g(x) \,\mathrm{d}x  
+    \end{split}
+\] 
+\section{10.9}
+\[
+    \begin{split}
+        \int_A f(x) \,\mathrm{d}x = \sum_{k=1}^{n} f(x_k \in A_k) \mu A_k = 
+    \sum_{k=1}^{n} f(x_k \in B \cap A_k) \mu (A_k \cap B) + f(x_k \in C \cap A_k) \mu (A_k \cap C) = \\
+    \sum_{k=1}^{n} f(x_k \in B_k) \mu (B_k) + \sum_{k=1}^{n} f(x_k \in C_k) \mu (C_k) = 
+    \int_{B} f(x) \,\mathrm{d}x + \int_{C} f(x) \,\mathrm{d}x  
+    \end{split}
+\]
+\section{10.10}
+\[
+    \lim_{n \to \infty} \int_X f_n(x) \,\mathrm{d}x = 
+    \lim_{n \to \infty} \sum_{k=1}^{p} f_n(x_k) \mu X_k = 
+    \sum_{k=1}^{p} \lim_{n \to \infty} f_n(x_k) \mu X_k \geq 
+    \sum_{k=1}^{p} f(x_k) \mu X_k = \int_{X} f(x) \,\mathrm{d}x 
+\]
+Ладно, эту нужно переделать...
+\section{10.12}
+Рассмотрим последовательность: 
+\[
+    f_n = \sum_{k=1}^{n} k \chi_{[\frac{1}{k+1}, \frac{1}{k}]}(x) 
+\]
+Тогда для любого $n$ $f_n < f$ и 
+\[
+    \int_{(0, 1)} f(x) \,\mathrm{d}x \geq \sup_{n} \int_{(0, 1)} f_n(x) \,\mathrm{d}x = 
+    \sup_n \sum_{k=1}^{\infty} \frac{1}{k} = +\infty  
+\]  
+\section{10.15}
+потом,,,.. 
+\section{10.16}
+\section{10.17}
+\section{10.24}
+\section{10.30}
+
+\section{12.12}
+Докажем, что множество $E = \left\{ (x, y) \in \mathbb{R}^2 \mid x \in A \land 0 \leq y \leq f(x) \right\}$. 
+Это становится очевидно, если рассмотреть $f(x, y) = f(x)$, тогда из измеримости $f(x)$ следует измеримость 
+$f(x, y)$, а значит и измеримость $E$. Тогда по теореме Фубини: 
+\[
+    \mu E = \int_{\mathbb{R}^2} \chi_E \,\mathrm{d}x \mathrm{d}y = 
+    \int_X \left( \int_{0}^{+\infty} \chi_E \,\mathrm{d}y \right) \,\mathrm{d}x 
+\]     
+Так как интеграл $\int_{0}^{+\infty} \chi_E \,\mathrm{d}y$ при фиксированном $x$ это просто 
+интеграл характеристической функции отрезка $\mu [0, f(x)] = f(x)$, то 
+\[
+    \mu E = \int_X f(x) \,\mathrm{d}x 
+\]   
+\section{T.6}
+а) 
+\[
+    f(x) = \frac{\sqrt{x} }{1 + x^3}, x = 1, y = 0
+\]
+Тогда площадь фигуры равна: 
+\[
+    \int_{0}^{1} \frac{\sqrt{x}}{1 + x^3} \,\mathrm{d}x = 
+    \frac{2}{3} \int_{0}^{1} \frac{\mathrm{d}t}{1 + t^2} = 
+    \frac{\pi}{6}  
+\]
+\section{T.7}
+а) Длина выражается как 
+\[
+    \int_{\frac{\pi}{3}}^{\frac{2\pi}{3}} \sqrt{1 + (f^{\prime}(x))^2} \,\mathrm{d}x = 
+    \int_{\frac{\pi}{3}}^{\frac{2\pi}{3}} \frac{\mathrm{d}x}{\sin x} = \ln 3
+\]
+\section{T.8}
+б) 
+Плохое условие
+\section{T.9}
+Вспомним, что положительно определённая квадратичная форма представляется в виде $Q = C^T C$: 
+\[
+    Q(x) = x^T C^T C x = (Cx)^T (Cx) = \left\vert Cx \right\vert^2  
+\] 
+Тогда так как $\det C^T = \det C$ получим, что $\det C = \sqrt{\det Q}$. 
+По теореме о линейной замене переменной: 
+\[
+    \int_{\mathbb{R}^n} e^{-\left\vert Cx \right\vert^2 } \,\mathrm{d}x = 
+    \frac{1}{\det C} \int_{\mathbb{R}^n} e^{-x^2} \,\mathrm{d}x = 
+    \left( \det Q \right)^{-\frac{1}{2}} \pi^{\frac{n}{2}}  
+\]
+\section{T.11}
+Представим двойной факториал через обычный и воспользуемся формулой Стирлинга: 
+\[
+    (2n - 1)!! = \frac{(2n)!}{2^n n!} = 
+    \frac{\sqrt{4\pi n} \cdot (2n)^{2n} e^{-2n} }{2^n \sqrt{2\pi n} \cdot n^n e^{-n}} = 
+    \sqrt{2} \cdot 2^n n^n e^{-n} 
+\]
+\section{T.12}
+Разложим $x^{-x} = \sum_{n=0}^{\infty} \frac{(-x\ln x)^n}{n!}$. Заменим сумму и интеграл местами: 
+\[
+    \int_{0}^{1} x^{-x} \,\mathrm{d}x = \sum_{n=1}^{\infty} \frac{1}{n!} \int_{0}^{1} x^n (-\ln x)^n \,\mathrm{d}x   
+\] 
+Сделаем подстановку $-\ln x = \frac{t}{n + 1}$: 
+\[
+    \int_{0}^{1} x^n (-\ln x)^n \,\mathrm{d}x = (n + 1)^{-n - 1} \int_{0}^{+\infty} t^n e^{-t}  \,\mathrm{d}x = (n + 1)^{-n - 1} n!  
+\]
+Тогда 
+\[
+    \int_{0}^{1} x^{-x} \,\mathrm{d}x = \sum_{n=0}^{\infty} (n + 1)^{-n - 1} = \sum_{k=1}^{\infty} k^{-k} 
+\]
+\section{T.16}
+Так как фукнция дифференцируема с ограниченной производной, то она Липшицева, 
+тогда по теореме $5.159$ формула Ньютона-Лейбница работает. 
+\section{T.17}
+Приблизим функцию $\int_{-\infty}^{\infty} \vert f(x) - h(x) \vert \,\mathrm{d}x < \frac{\varepsilon}{3}$: 
+\[
+    h(x) = \sum_{k=1}^{n} a_k \chi_{A_k} (x)
+\]
+Тогда разность интегралов: 
+\[
+    \int_{-\infty}^{\infty} \vert f(x + t) - f(x) \vert  \,\mathrm{d}x \leq 
+    \int_{-\infty}^{\infty} \vert f(x + t) - h(x + t) \vert  \,\mathrm{d}x + 
+    \int_{-\infty}^{\infty} \vert f(x) - h(x) \vert  \,\mathrm{d}x + 
+    \int_{-\infty}^{\infty} \vert h(x + t) - h(x) \vert  \,\mathrm{d}x  
+\]
+Рассмотрим отдельно: 
+\[
+    \int_{-\infty}^{\infty} \vert h(x + t) - h(x) \vert \,\mathrm{d}x = 
+    \int_{-\infty}^{\infty} \left\vert \sum_{k=1}^{n} a_k (\chi_{A_k} (x+t) - \chi_{A_k} (x)) \right\vert \,\mathrm{d}x \leq 
+    \int_{-\infty}^{\infty} \sum_{k=1}^{n} \vert a_k \vert \vert \chi_{A_k} (x+t) - \chi_{A_k} (x) \vert \,\mathrm{d}x 
+\]
+Заменим знаки интеграла и суммы: 
+\[
+    \sum_{k=1}^{n} \vert a_k \vert \int_{-\infty}^{\infty} \vert \chi_{A_k} (x+t) - \chi_{A_k} (x) \vert  \,\mathrm{d}x = 
+    \sum_{k=1}^{n} \vert a_k \vert \mu \left( (A_k + t) \triangle A_k \right) 
+\]
+$\mu \left( (A + t) \triangle A \right) \to 0, t \to 0$ аналогично одной из предыдущих задач. 
+Тогда всю сумму можно сделать меньше $\frac{\varepsilon}{3}$ взяв достаточно маленькое $t$. 
+Тогда возвращаясь к изначальному равенству: 
+\[
+    \int_{-\infty}^{\infty} \vert f(x + t) - f(x) \vert  \,\mathrm{d}x \leq \frac{2\varepsilon}{3} + \int_{-\infty}^{\infty} \vert h(x + t) - h(x) \vert  \,\mathrm{d}x \leq \varepsilon
+\]  
+\section{T.19}
+Приблизим в среднем фукнцию ступенчатой $h(x)$: 
+\[
+    \int_{-\infty}^{\infty} f(x) - h(x) \,\mathrm{d}x < \varepsilon,
+\]
+где 
+\[
+    h(x) = \sum_{k=1}^{n} a_k \chi_{A_k}(x)
+\] 
+Тогда для любого $\mu X < \delta$: 
+\[
+    \begin{split}
+    \int_X f(x) \,\mathrm{d}x \leq \int_X f(x) - h(x) \,\mathrm{d}x + \int_X h(x) \,\mathrm{d}x \leq 
+    \varepsilon + \int_{-\infty}^{\infty} \sum_{k=1}^{n} a_k \chi_{A_k \cap X}(x) \,\mathrm{d}x \leq \\ 
+    \varepsilon + \max a_k \sum_{k=1}^{n} \mu A_k \cap X \leq  \varepsilon + \max a_k \delta 
+    \end{split}
+\] 
+Взяв $\delta = \frac{\varepsilon}{\max a_k}$ получим неравенство для $2\varepsilon$.  
+\section{T.22}
+Пусть $f = \lim_{n \to \infty} f_n$ и по условию $\int_{[a, b]} f_n(x) \,\mathrm{d}x \to 0$. Рассмотрим 
+\[
+    \int_{[a, b]} f(x) \,\mathrm{d}x = \lim_{n \to \infty} \int_{[a, b]} f_n(x) \,\mathrm{d}x = 0  
+\]
+Значит $f = 0$ почти всюду, то есть $\lim_{n \to \infty} f_n(x) = 0$. Что и требовалось доказать.  
 
 \end{document}
