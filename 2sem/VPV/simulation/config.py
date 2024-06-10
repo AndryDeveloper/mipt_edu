@@ -1,5 +1,0 @@
-SIZE = 100
-START_TEMPERATURE = 100
-
-g = 9.8
-
