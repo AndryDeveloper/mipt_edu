@@ -1,6 +1,7 @@
 import xlwings as xw
 import formulas
 import re
+import numpy as np
 
 pattern_values = re.compile(r'[A-Z]\d+')
 formulas_blacklist = []
