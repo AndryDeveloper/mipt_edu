@@ -1,0 +1,13 @@
+{
+    "molecule_mass": 1,
+    "eps": 0.01,
+    "sigma": 0.01,
+    "init_velocity": 0.1,
+    "env_size": 1,
+    "molecules_count": 100,
+    "seed": 42,
+    "max_step_count": 1000,
+    "save_period": 10,
+    "dt": 0.01,
+    "grid_init_mode": true
+}

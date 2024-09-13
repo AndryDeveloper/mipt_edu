@@ -12,10 +12,12 @@ public:
     virtual unsigned roll() = 0;
 };
 
-class Dice: public AbstractDice {
+class Dice: virtual public AbstractDice {
 public:
     Dice(unsigned max, unsigned seed):
         max(max), dstr(1, max), reng(seed) { }
+    Dice(const Dice& other):
+        max(other.max), dstr(other.dstr), reng(other.reng) { }
 
     unsigned roll() override{
         return dstr(reng);
@@ -28,7 +30,7 @@ private:
 };
 
 
-class PenaltyDice: public Dice{
+class PenaltyDice: virtual public Dice{
 public:
     PenaltyDice(unsigned max, unsigned seed): Dice(max, seed) {}
     PenaltyDice(Dice* d): Dice(*d) {}
@@ -38,7 +40,7 @@ public:
 };
 
 
-class BonusDice: public Dice{
+class BonusDice: virtual public Dice{
 public:
     BonusDice(unsigned max, unsigned seed): Dice(max, seed) {}
     BonusDice(Dice* d): Dice(*d) {}
@@ -64,15 +66,14 @@ std::unique_ptr<Dice> d1, d2, d3;
 
 class DoubleDice: public BonusDice, public PenaltyDice{
 public:
-    DoubleDice(Dice* d1): BonusDice(d1), PenaltyDice(d1) { }
+    DoubleDice(Dice* d1): Dice(*d1), BonusDice(d1), PenaltyDice(d1) { }
     
     unsigned roll() override{
             return BonusDice::roll() + PenaltyDice::roll();
         }
 }; 
 
-// Я не знаю как тут с множественным наследованием((
-double expected_value(DoubleDice &d, unsigned number_of_rolls = 1) {
+double expected_value(Dice &d, unsigned number_of_rolls = 1) {
     unsigned long long accum = 0;
     for (unsigned cnt = 0; cnt != number_of_rolls; ++cnt)
         accum += d.roll();
