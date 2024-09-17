@@ -7,7 +7,7 @@ pattern_values = re.compile(r'[A-Z]\d+')
 formulas_blacklist = []
 
 
-def numeric_diff(func, variable_idx, point, eps=1e-5):
+def numeric_diff(func, variable_idx, point, eps=1e-10):
     lambd = eps * point[variable_idx]
     point_up = [p + lambd if i == variable_idx else p for i, p in enumerate(point)]
     point_down = [p - lambd if i == variable_idx else p for i, p in enumerate(point)]
