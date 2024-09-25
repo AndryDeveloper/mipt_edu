@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 template <typename T, std::size_t N>
 class Grid {
 private:
@@ -138,6 +137,14 @@ int main() {
     arr3[1][2][0] = 42;
     std::cout << arr3[1][0][0] << std::endl; // Вывод 10
     std::cout << arr3[1][2][0] << std::endl; // Вывод: 42
+    std::cout << std::endl;
+
+    Grid<double, 3> arr4(3, 4, 5); // 3D массив
+
+    // Пример использования
+    arr4[1][2][0] = 42;
+    std::cout << arr4[1][0][0] << std::endl; // Вывод 0
+    std::cout << arr4[1][2][0] << std::endl; // Вывод: 42
 
     return 0;
 }
