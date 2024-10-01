@@ -34,7 +34,7 @@ public:
         }
     
 private:
-std::unique_ptr<Dice> d1, d2, d3;
+    std::unique_ptr<Dice> d1, d2, d3;
 };
 
 

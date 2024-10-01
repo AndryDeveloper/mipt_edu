@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Матан вторая домашка.}
+\author{Шахматов Андрей, Б02-304}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{T1}
+Множество $X$ задаётся следующим неравенством: 
+\[
+    (x^2 + y^2 + z^2)^2 \leq az(x^2 + y^2)
+\]
+Тогда 
+\[
+    \mu X = \int_{X} 1 \,dx dy dz
+\]
+Введём сферическую замену координат, его якобиан $\vert J \vert = r^2 \sin \theta$, и неравенство преобразуется как
+\[
+    r^4 \leq az r^2 \sin^2 \theta \implies r^2 \leq \sin^2 \theta 
+\]
+Тогда объём равен: 
+\[
+    \mu X = \int_{r^2 \leq \sin^2 \theta} r^2 \sin \theta \,dr d \theta d \phi = 2\pi \int_{0}^{\pi} \sin \theta d \theta \int_{0}^{\vert \sin \theta \vert} r^2 dr = 
+    \frac{2\pi}{3} \int_0^{\pi} \sin^4 \theta d \theta = \frac{2\pi}{3} \frac{3\pi}{8} = \frac{\pi^2}{4}
+\]
+\section{T2}
+б)
+\[
+    \int_{\vert \frac{y}{b} \vert \leq \frac{x}{a}} e^{-\frac{x^2 + y^2}{2c^2}} dx dy
+\]
+Потом сделаю((()))
+
+
+в)
+\[
+    \int_{a^2 \leq x^2 + y^2 + z^2 \leq b^2} x^2 + y^2 - z^2 dx dy dz
+\]
+Перейдём в сферическую систему координат: 
+\[
+    \int_{a^2 \leq r^2 \leq b^2} r^2(\sin^2 \theta - \cos^2 \theta) r^2 \sin \theta dr d \theta  d \phi = 
+    2\pi \int_a^b r^4 dr \int_0^{\pi} (\sin^3 \theta - \sin \theta \cos^2 \theta ) d \theta = 
+    2\pi \frac{2}{3} \left( \frac{b^5 - a^5}{5} \right)
+\]
+Тогда ответ: 
+\[
+    I = \frac{4\pi}{15} (b^5 - a^5)
+\]
+
+д)
+\[
+    \int_{x^2 + y^2 \leq az \leq b^2} z^2 dx dy dz
+\] 
+
+е) 
+\[
+    \int_{\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \leq 1} x^2 + y^2 + z^2 dx dy dz = 
+    \frac{1}{abc} \int_{x^2 + y^2 + z^2 \leq 1} (ax)^2 + (by)^2 + (cz)^2 dx dy dz
+\]
+Перейдём к сферическим координатам: 
+\[
+    I = \frac{1}{abc} \int_{r^2 \leq 1} r^2 dr \int_{0}^{2\pi} \int_{0}^{\pi} (a\sin \theta \cos \phi)^2 + (b\sin \theta \sin \phi)^2 + (c\cos \theta)^2 d \theta d \phi
+\]
+\[
+    I = \frac{2}{3abc} \left( a^2\frac{\pi^2}{2} + b^2\frac{\pi^2}{2} + c^2\frac{\pi^2}{2} \right) = 
+    \frac{\pi^2 (a^2 + b^2 + c^2)}{3abc}
+\]
+
+\section{T3}
+б)
+
+\section{T4}
+\[
+    \int_{\mathbb{R}^2} e^{-a(x^2 + y^2)} \sin (x^2 + y^2) dx dy
+\]
+Интеграл существует при любых значениях параметра a т.к. он мажорируется сходящимся. Введём полряные координаты. 
+\[
+    I = 2 \pi \int_{0}^{+\infty} e^{-ar^2} \sin (r^2) r dr = \pi \int_{0}^{+\infty} e^{-at} \sin t dt = \frac{\pi}{a^2 + 1}
+\]
+
+
+
+\end{document}

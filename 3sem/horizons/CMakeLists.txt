@@ -18,6 +18,7 @@ else()
     list(APPEND compiler_flags
         # It is impossible to include all GCC warnings
         # https://stackoverflow.com/a/11720263
+        "-Ofast"
         "-Werror" "-Wall" "-Wextra" "-pedantic" "-fsanitize=address"
         "-static-libasan"
 

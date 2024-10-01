@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 
 template <typename T, std::size_t N>
 class Grid {
@@ -71,6 +72,10 @@ public:
         delete[] data;
     }
 
+    size_t get_axis_size(size_t index){
+        return dimentions[index];
+    }
+
     template <std::size_t DimIndex>
     class Dim {
     private:
@@ -109,42 +114,43 @@ public:
         }
     };
 
-    Dim<0> operator[](size_t index) {
-        return Dim<0>(*this, index);
+    auto operator[](size_t index) {
+        if constexpr (N == 2) {
+            return LastDim(*this, index * mult_dimentions[0]);
+        } 
+        else {
+            return Dim<0>(*this, index);
+        }
     }
 };
 
 int main() {
-    Grid<int, 3> arr(3, 4, 5);
+    Grid<float, 2> g(0.0f, 3, 2);
+    assert(3 == g.get_axis_size(0));
+    assert(2 == g.get_axis_size(1));
 
-    // Пример использования
-    arr[1][2][0] = 42;
-    std::cout << arr[1][0][0] << std::endl; // Вывод 0
-    std::cout << arr[1][2][0] << std::endl; // Вывод: 42
-    std::cout << std::endl;
+    // Тесты для 2 части
 
-    Grid<int, 3> arr2(10, 3, 4, 5); // 3D массив
+    for (size_t y_idx = 0; y_idx != g.get_axis_size(0); ++y_idx)
+        for (size_t x_idx = 0; x_idx != g.get_axis_size(1); ++x_idx)
+            assert(0.0f == g[y_idx][x_idx]);
 
-    // Пример использования
-    arr2[1][2][0] = 42;
-    std::cout << arr2[1][0][0] << std::endl; // Вывод 10
-    std::cout << arr2[1][2][0] << std::endl; // Вывод: 42
-    std::cout << std::endl;
+    for (size_t y_idx = 0; y_idx != g.get_axis_size(0); ++y_idx)
+        for (size_t x_idx = 0; x_idx != g.get_axis_size(1); ++x_idx)
+            g[y_idx][x_idx] = 1.0f;
 
-    Grid<double, 3> arr3(10., 3, 4, 5); // 3D массив
+    for (size_t y_idx = 0; y_idx != g.get_axis_size(0); ++y_idx)
+        for (size_t x_idx = 0; x_idx != g.get_axis_size(1); ++x_idx)
+            assert(1.0f == g[y_idx][x_idx]);
 
-    // Пример использования
-    arr3[1][2][0] = 42;
-    std::cout << arr3[1][0][0] << std::endl; // Вывод 10
-    std::cout << arr3[1][2][0] << std::endl; // Вывод: 42
-    std::cout << std::endl;
+    // Тесты для 3 части
+    // Grid<float, 3> g3(1.0f, 2, 3, 4);
+    // assert(1.0f == g3[1][1][1]);
 
-    Grid<double, 3> arr4(3, 4, 5); // 3D массив
+    // Grid<float, 2> g2(2.0f, 2, 5);
+    // assert(2.0f == g2[1][1]);
 
-    // Пример использования
-    arr4[1][2][0] = 42;
-    std::cout << arr4[1][0][0] << std::endl; // Вывод 0
-    std::cout << arr4[1][2][0] << std::endl; // Вывод: 42
-
+    // g2 = g3[1];
+    // assert(1.0f == g2[1][1]);
     return 0;
 }

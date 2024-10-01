@@ -91,8 +91,8 @@ private:
 
 class Environment{
 public:
-    Environment(char* config_path, char* coords_path, char* distribution_path, char* energy_path): 
-        config_path(config_path), coords_path(coords_path), distribution_path(distribution_path), energy_path(energy_path)
+    Environment(char* config_path, char* coords_path, char* distribution_path, char* char_path): 
+        config_path(config_path), coords_path(coords_path), distribution_path(distribution_path), char_path(char_path)
     {
         std::ifstream ifs(config_path);
         json jf = json::parse(ifs);
@@ -101,7 +101,7 @@ public:
         out1.close();
         std::ofstream out3(distribution_path);
         out3.close();
-        std::ofstream out2(energy_path);
+        std::ofstream out2(char_path);
         out3.close();
 
         molecule_mass = jf["molecule_mass"];
@@ -167,7 +167,7 @@ private:
     char* config_path;
     char* coords_path;
     char* distribution_path;
-    char* energy_path;
+    char* char_path;
 
     double molecule_mass;
     double eps;
@@ -186,13 +186,13 @@ private:
     unsigned n_treads;
 
     Vector3d calc_force(const Molecule &v1, const Molecule &v2) {
-        Vector3d r = v2.position - v1.position;
+        Vector3d r = v2.position - v1.position % env_size;
         double p = sigma / r.norm();
         return 4 * eps / sigma / sigma * (6 * std::pow(p, 8) - 12 * std::pow(p, 14)) * r;
     }
 
     double calc_energy(const Molecule &v1, const Molecule &v2) {
-        Vector3d r = v2.position - v1.position;
+        Vector3d r = v2.position - v1.position % env_size;
         double p = std::pow(sigma / r.norm(), 6);
         return 4 * eps * (p * p - p);
     }
@@ -213,9 +213,29 @@ private:
         distribution_file << std::endl;
         distribution_file.close();
 
-        std::ofstream energy_file(energy_path, std::ios::app);
-        energy_file << calc_energy() << std::endl;
+        std::ofstream char_file(char_path, std::ios::app);
+        char_file << calc_energy() << ' ' << calc_std_distanse() << ' ' << calc_temperature() << std::endl;
         distribution_file.close();
+    }
+
+    double calc_temperature(){
+        double temp = 0;
+        for (unsigned i = 0; i < molecules_count; ++i){
+            double velocity = molecules[i].velocity.norm();
+            temp += velocity * velocity;
+        }
+
+        return temp / molecules_count / 3;
+    }
+
+    double calc_std_distanse(){
+        double std = 0;
+        for (unsigned i = 0; i < molecules_count; ++i){
+            double position = molecules[i].position.norm();
+            std += position * position;
+        }
+
+        return std::sqrt(std / molecules_count);
     }
 
     double calc_subenergy(unsigned start, unsigned stop){
@@ -228,7 +248,7 @@ private:
                         for (int k3 = -1; k3 < 2; ++k3){
                             if (i == j && k1 == 0 && k2 == 0 && k3 == 0) continue;
                              Molecule virtual_m(
-                                molecules[j].position + env_size * Vector3d(k1, k2, k3), 
+                                molecules[j].position % env_size + env_size * Vector3d(k1, k2, k3), 
                                 molecules[j].velocity,
                                 molecules[j].mass
                             );
@@ -250,7 +270,7 @@ private:
                     for (int k2 = -1; k2 < 2; ++k2){
                         for (int k3 = -1; k3 < 2; ++k3){
                              Molecule virtual_m(
-                                molecules[j].position + env_size * Vector3d(k1, k2, k3), 
+                                molecules[j].position % env_size + env_size * Vector3d(k1, k2, k3), 
                                 molecules[j].velocity,
                                 molecules[j].mass
                             );
@@ -304,7 +324,7 @@ private:
 
     void step() {
         for (unsigned i = 0; i < molecules_count; i++){
-            molecules[i].position = (molecules[i].position + molecules[i].velocity*dt + 0.5 * molecules[i].get_accelerate() * dt * dt) % env_size;
+            molecules[i].position = molecules[i].position + molecules[i].velocity*dt + 0.5 * molecules[i].get_accelerate() * dt * dt;
         }
         update_forces();
         for (unsigned i = 0; i < molecules_count; i++){
