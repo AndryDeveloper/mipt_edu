@@ -9,6 +9,7 @@
 class AbstractDice {
 public:
     virtual unsigned roll() = 0;
+    virtual ~AbstractDice() = default;
 };
 
 class Dice: virtual public AbstractDice {
@@ -71,6 +72,20 @@ public:
             return BonusDice::roll() + PenaltyDice::roll();
         }
 }; 
+
+
+class DoubleDice_: public AbstractDice {
+public:
+    DoubleDice_(Dice* d1): 
+        d1(d1), d2(d1){}
+    
+    unsigned roll() override{
+            return d1->roll() + d2->roll();
+        }
+    
+private:
+    std::unique_ptr<Dice> d1, d2;
+};
 
 
 double expected_value(Dice &d, unsigned number_of_rolls = 1) {

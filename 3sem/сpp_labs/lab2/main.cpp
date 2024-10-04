@@ -1,135 +1,97 @@
 #include <iostream>
 #include <cassert>
 
-template <typename T, std::size_t N>
-class Grid {
+template <typename T, size_t... Dims>
+class Grid;
+
+
+template <typename T, size_t N>
+class Grid<T, N> {
 private:
-    size_t dimentions[N];
-    size_t mult_dimentions[N];
-    size_t total_size;
-    T* data;
+    T elements[N];
 
 public:
-    template<typename First, typename... Args>
-    Grid(T&& t, First f, Args... args) {
-        if constexpr (std::is_same_v<T, First> && sizeof...(args) + 2 == N){
-            dimentions[0] = t;
-            dimentions[1] = f;
-            size_t index = 2;
-            (..., (dimentions[index++] = args));
-        }
-        else {
-            dimentions[0] = f;
-            size_t index = 1;
-            (..., (dimentions[index++] = args));
-        }
-
-        total_size = 1;
-        for (size_t i = 0; i < N; ++i){
-            total_size *= dimentions[i];
-        }
-
-        mult_dimentions[N - 1] = 1;
-        for (size_t i = 0; i < N - 1; ++i){
-            mult_dimentions[N - i - 2] = mult_dimentions[N - i - 1] * dimentions[N - i - 1];
-        }
-
-        data = new T[total_size];
-
-        for (size_t i = 0; i < total_size; ++i){
-            if constexpr (std::is_same_v<T, First> && sizeof...(args) + 2 == N){
-                data[i] = T();
-            }
-            else {
-                data[i] = t;
-            }
-        }
+    Grid(const T& t){
+        std::fill(elements, elements + N, t);
     }
 
-    template<typename... Args>
-    Grid(Args... args) {
-        size_t index = 0;
-        (..., (dimentions[index++] = args));
-
-        total_size = 1;
-        for (size_t i = 0; i < N; ++i){
-            total_size *= dimentions[i];
-        }
-
-        data = new T[total_size];
-
-        for (size_t i = 0; i < total_size; ++i){
-            data[i] = T();
-        }
-
-        mult_dimentions[N - 1] = 1;
-        for (size_t i = 0; i < N - 1; ++i){
-            mult_dimentions[N - i - 2] = mult_dimentions[N - i - 1] * dimentions[N - i - 1];
-        }
+    Grid(){
+        std::fill(elements, elements + N, T());
     }
 
-    ~Grid() {
-        delete[] data;
+    T operator[](size_t idx) const {
+        return elements[idx];
     }
 
-    size_t get_axis_size(size_t index){
-        return dimentions[index];
+    T& operator[](size_t idx) {
+        return elements[idx];
     }
 
-    template <std::size_t DimIndex>
-    class Dim {
-    private:
-        Grid<T, N>& array;
-        size_t currentIndex;
+    T operator()(size_t idx) const {
+    return elements[idx];
+    }
 
-    public:
-        Dim(Grid<T, N>& arr, size_t index) 
-            : array(arr), currentIndex(index) {}
+    T& operator()(size_t idx) {
+        return elements[idx];
+    }
 
-        auto operator[](size_t index) {
-            if constexpr (DimIndex + 3 < N) {
-                return Dim<DimIndex + 1>(array, currentIndex + index * array.mult_dimentions[DimIndex]);
-            } 
-            else {
-                return LastDim(array, currentIndex + index * array.mult_dimentions[DimIndex]);
-            }
-        }
-    };
+    size_t get_axis_size(){
+        return N;
+    }
+};
 
 
-    class LastDim {
-    private:
-        Grid<T, N>& array;
-        size_t currentIndex;
-    
-    public:
-        LastDim(Grid<T, N>& arr, size_t index) : array(arr), currentIndex(index){ }
+template <typename T, size_t N, size_t... Dims>
+class Grid<T, N, Dims...> {
+private:
+    Grid<T, Dims...> subgrids[N];
+    size_t dimentions[sizeof...(Dims) + 1];
 
-        T operator[](size_t index) const {
-            return array.data[currentIndex + index * array.mult_dimentions[N - 1]];
-        }
+public:
+    Grid(const T& t) {
+        std::fill(subgrids, subgrids + N, Grid<T, Dims...>(t));
 
-        T& operator[](size_t index) {
-            return array.data[currentIndex + index * array.mult_dimentions[N - 1]];
-        }
-    };
+        dimentions[0] = N;
+        size_t index = 1;
+        (..., (dimentions[index++] = Dims));
+    }
 
-    auto operator[](size_t index) {
-        if constexpr (N == 2) {
-            return LastDim(*this, index * mult_dimentions[0]);
-        } 
-        else {
-            return Dim<0>(*this, index);
-        }
+    Grid() {
+        std::fill(subgrids, subgrids + N, Grid<T, Dims...>());
+
+        dimentions[0] = N;
+        size_t index = 1;
+        (..., (dimentions[index++] = Dims));
+    }
+
+    Grid<T, Dims...> operator[](size_t idx) const {
+        return subgrids[idx];
+    }
+
+    Grid<T, Dims...>& operator[](size_t idx) {
+        return subgrids[idx];
+    }
+
+    template<typename... Idxs>
+    auto operator()(size_t idx, Idxs... idxs) const {
+        return subgrids[idx](idxs...);
+    }
+
+    template<typename... Idxs>
+    auto& operator()(size_t idx, Idxs... idxs) {
+        return subgrids[idx](idxs...);
+    }
+
+    size_t get_axis_size(size_t idx){
+        return dimentions[idx];
     }
 };
 
 int main() {
-    Grid<float, 2> g(0.0f, 3, 2);
+    // 2 часть
+    Grid<float, 3, 2> g(0.0f);
     assert(3 == g.get_axis_size(0));
     assert(2 == g.get_axis_size(1));
-
-    // Тесты для 2 части
 
     for (size_t y_idx = 0; y_idx != g.get_axis_size(0); ++y_idx)
         for (size_t x_idx = 0; x_idx != g.get_axis_size(1); ++x_idx)
@@ -141,16 +103,17 @@ int main() {
 
     for (size_t y_idx = 0; y_idx != g.get_axis_size(0); ++y_idx)
         for (size_t x_idx = 0; x_idx != g.get_axis_size(1); ++x_idx)
-            assert(1.0f == g[y_idx][x_idx]);
+            assert(1.0f == g(y_idx, x_idx));
+    
 
-    // Тесты для 3 части
-    // Grid<float, 3> g3(1.0f, 2, 3, 4);
-    // assert(1.0f == g3[1][1][1]);
+    // 3 часть
+    Grid<float, 2, 3, 4> g3(1.0f);
+    assert(1.0f == g3(1, 1, 1));
 
-    // Grid<float, 2> g2(2.0f, 2, 5);
-    // assert(2.0f == g2[1][1]);
+    Grid<float, 3, 4> g2(2.0f);
+    assert(2.0f == g2(1, 1));
 
-    // g2 = g3[1];
-    // assert(1.0f == g2[1][1]);
+    g2 = g3[1];
+    assert(1.0f == g2(1, 1));
     return 0;
 }

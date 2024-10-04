@@ -10,6 +10,7 @@
 class AbstractDice {
 public:
     virtual unsigned roll() = 0;
+    virtual ~AbstractDice() = default;
 };
 
 class Dice: public AbstractDice {
