@@ -1,0 +1,193 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Теорвер 6.}
+\author{Шахматов Андрей, Б02-304}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Т1}
+а) Дискретое равномерное распределение на $\left\{ 1, 2, \dots N \right\} $. 
+\[
+    E \xi = \sum_{k=1}^{N} k \cdot \frac{1}{N} = \frac{N+1}{2} 
+\] 
+\[
+    E \xi^2 = \sum_{k=1}^{N} k^2 \cdot \frac{1}{N} = \frac{(N + 1)(2N + 1)}{6}
+\]
+Тогда 
+\[
+    D \xi = \frac{1}{N} = \frac{(N + 1)(2N + 1)}{6} - \frac{N+1}{2} = \frac{N^2 - 1}{3}
+\]
+б) Биномиальное распределение $(n, p)$, Биномиальное распределение
+можно представить как сумму $n$ распределений Бернулли. 
+Распределение Бернулли имеет матожидание $p$ и дисперсию $p(1-p)$. 
+Тогда из-за линейности матожидания: 
+\[
+    E \xi = np
+\]     
+И дисперсия соответственно в силу того, что броски независимы
+\[
+    d \xi = np(1-p)
+\] 
+в) Нормальное распределение $(a, \sigma^2)$. Найдём параметры 
+стандартного нормального распределения, а затем домножим и сдвинем. 
+У стандартного нормального распределения матожидание равно $0$, а дисперсия $\sigma^2$. 
+В таком случае 
+\[
+    E \xi = a
+\]   
+\[
+    D \xi = \sigma^2
+\]
+г) Рассмотрим отрезок $(-1, 1)$ а затем домножим и сдвинем его до 
+произвольного. На отрезке $(-1, 1)$ матожидание очевидно равно $0$, 
+тогда как дисперсия равна $\int_{-1}^{1} \frac{x^2}{2} dx = \frac{1}{3}$. 
+Тогда у произвольного отрезка $(a, b)$ матожидание равно $\frac{b - a}{2}$, 
+а дисперсия $D \xi = \frac{(b-a)^2}{4} \cdot \frac{1}{3} = \frac{(b-a)^2}{12}$
+д) В случае распределения Коши интеграл матожидания не сходится в смысле интеграла 
+Лебега, а значит ни матожидания, ни дисперсии не существует. 
+е) 
+\[
+    E \xi = \sum_{k=1}^{\infty} k \frac{\lambda^k}{k!} e^{-\lambda} = 
+    \sum_{k=1}^{\infty} \lambda \frac{\lambda^(k-1)}{(k-1)!} e^{-\lambda} = \lambda 
+\]
+Почти аналогично вынося сначала $k$, а затем $k-1$ из-под факториала имеем 
+\[
+    E \xi^2 = \lambda (\lambda + 1)
+\]
+Тогда 
+\[
+    D \xi = \lambda (\lambda + 1) - \lambda^2 = \lambda 
+\]
+ж) Больно это считать((
+
+
+
+\section{Т6}
+$\xi \sim N(0, \sigma^2)$.
+Все стандартные интегралы взяты из таблицы с википедии.
+\[
+	E \xi^k = \int_{-\infty}^{\infty} x^k \frac{1}{2\pi \sigma^2} e^{-\frac{x^2}{2\sigma^2}}  \,\mathrm{d}x =
+	\begin{dcases}
+		0, k - \text{нечётное}                  \\
+		\sigma^{k} (k - 1)!!, k - \text{чётное} \\
+	\end{dcases}
+\]
+\[
+	E \vert \xi \vert^k = \int_{-\infty}^{\infty} \vert x \vert^k \frac{1}{2\pi \sigma^2} e^{-\frac{x^2}{2\sigma^2}}  \,\mathrm{d}x =
+	\begin{dcases}
+		\frac{1}{\sqrt{\pi}} (2\sigma^2)^{\frac{k}{2}} \left( \frac{k-1}{2} \right)!, k - \text{нечётное} \\
+		\sigma^{k} (k - 1)!!, k - \text{чётное}                                                           \\
+	\end{dcases}
+\]
+При $\sigma = 1$:
+\[
+	E \xi^k = \begin{dcases}
+		0, k - \text{нечётное}                  \\
+		(k - 1)!!, k - \text{чётное} \\
+	\end{dcases}
+\]
+\[
+    E \vert \xi \vert^k = 
+	\begin{dcases}
+		\frac{1}{\sqrt{\pi}} 2^{\frac{k}{2}} \left( \frac{k-1}{2} \right)!, k - \text{нечётное} \\
+		(k - 1)!!, k - \text{чётное}                                                           \\
+	\end{dcases}
+\]
+
+\section{Т7}
+Найдём меры Римана-Стильтьеса $F(x)$:
+\[
+    dF(x) = \begin{dcases}
+        0, &x < -2;\\
+        \frac{1}{5}, &x = -2;\\
+        \frac{1}{20}, &x = 1; \\
+        \frac{x}{2}, &1 < x \leq 2;\\
+        0, &x > 2.
+    \end{dcases}
+\] 
+В таком случае матожидание
+\[
+    E \xi = \int_{-\infty}^{\infty} x dF(x) = \frac{1}{5} \cdot (-2) + \frac{1}{20} \cdot 1 + \int_{1}^{2} \frac{x^2}{2} dx = \frac{49}{60} 
+\]
+Аналогично найдём матожидание от квадрата случайной величины
+\[
+    E \xi^2 = \frac{1}{5} \cdot 4 + \frac{1}{20} + \int_{1}^{2} \frac{x^3}{2} dx = \frac{121}{60}
+\]
+Тогда дисперсия равна
+\[
+    D \xi = E \xi^2 - E \xi = \frac{6}{5}.
+\]
+
+\section{Т9}
+Найдём функцию распределения вероятности 
+\[
+    F_{\max(\xi, \eta)}(t) = P(\max (\xi , \eta ) < t) = 
+    P(\eta < t, \xi < t) = P(\eta < t) \cdot P(\xi < t) = F_\xi(t) \cdot F_\eta(t).
+\]
+Тогда найдём матожидание
+\[
+    E_{\max (\xi, \eta)} = \int_{\Omega} \max(\xi, \eta)(\omega) P(d \omega) = 
+    \int_{0}^{\infty} P(\max(\xi, \eta) > t) dt = 
+    \int_{0}^{\infty} 1 - F_{\max(\xi, \eta)}(t) dt = 
+    \int_{0}^{\infty} 1 - F_\eta(t) F_\xi(t)  dt
+\]
+\[
+    E_{\max (\xi, \eta)} = 
+    \int_{0}^{\infty} 1 - (1 - e^{-t})(1 - e^{-2t}) dt = 
+    \frac{7}{6}
+\]
+
+\section{Т10}
+$Z = e^{\frac{XY}{2}}$. 
+\[
+    E_Z = \frac{1}{2\pi} \int_{\mathbb{R}^2} e^{-\frac{x^2}{2}} e^{-\frac{y^2}{2}} e^{\frac{xy}{2}} dx dy = 
+    \frac{1}{2\pi} \int_{\mathbb{R}^2} e^{-\frac{(x - \frac{y}{2})^2}{2}} e^{-\frac{3}{8}y^2} dx dy = 
+    \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{3}{8} y^2} dy = \frac{2}{\sqrt{3} }  
+\]
+
+\section{T12}
+\[
+    E_{\xi \eta} = \frac{4}{\pi} \int_{x^2 + y^2 < 1, x > 0, y > 0} xy dx dy = 
+    \frac{4}{\pi} \int_{r < 1, \, 0 < \varphi < \frac{\pi}{2}} r^3 \cos \varphi \sin \varphi d r d \varphi = 
+    \frac{4}{\pi} \cdot \frac{1}{4} \cdot \frac{1}{2} = \frac{1}{2\pi }
+\]
+\[
+    E_{\xi} = E_{\eta} = \frac{4}{\pi} \int_{x^2 + y^2 < 1, x > 0, y > 0} y dx dy = 
+    \frac{4}{\pi} \int_{r < 1, \, 0 < \varphi < \frac{\pi}{2}} r^2 \sin \varphi d r d \varphi = 
+    \frac{4}{\pi} \cdot \frac{1}{3} = \frac{4}{3\pi }
+\]
+Тогда ковариация 
+\[
+    cov(\xi, \eta) = \frac{1}{2\pi} - \frac{16}{9\pi^2}
+\]
+
+
+\end{document}

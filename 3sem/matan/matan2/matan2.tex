@@ -56,8 +56,12 @@
 \[
     \int_{\vert \frac{y}{b} \vert \leq \frac{x}{a}} e^{-\frac{x^2 + y^2}{2c^2}} dx dy
 \]
-Потом сделаю((()))
-
+Домножим существующие координаты на $x = ax, y = by$
+\[
+    ab \int_{-x \leq y \leq x} \exp {-\frac{1}{2}\left( \frac{ax}{c} \right)^2 - \frac{1}{2} \left( \frac{by}{c} \right)^2} dx dy = 
+    ab \int_0^{\infty} dx \exp {-\frac{1}{2} \left( \frac{ax}{c} \right)^2 } \int_{-x}^{x} dy \exp {-\frac{1}{2} \left( \frac{by}{c} \right)^2 }
+\] 
+((((потом сделаю))))
 
 в)
 \[
@@ -76,8 +80,14 @@
 
 д)
 \[
-    \int_{x^2 + y^2 \leq az \leq b^2} z^2 dx dy dz
+    I = \int_{x^2 + y^2 \leq az \leq b^2} z^2 dx dy dz
 \] 
+Перейдём в циллиндрическую систему координат: 
+\[
+    I = \int_{r^2 \leq az \leq b^2} z^2 r dr d \phi dz = 
+    2\pi \int_0^{b^2} z^2 dz \int_0^{\sqrt{az}} r dr = 
+    a\pi \int_0^{b^2} z^3 dz = \frac{\pi}{4} ab^8
+\]
 
 е) 
 \[
@@ -95,6 +105,17 @@
 
 \section{T3}
 б)
+Плотность тела примем равной $1$.
+Введём циллиндрическую систему координат, $x = ar\cos \phi$, $y = ar \sin \phi$, $h = z c$. 
+\[
+    M = a^2c \int_{r \leq h \leq 1} r dr d\phi dh = 
+    2\pi a^2c \int_0^1 dh \int_0^h dr = \pi a^2c 
+\]
+Тогда так как тело является телом вращения, то $x_0 = y_0 = 0$. Найдём $z_0$
+\[
+    z_0 = 2\pi a^2c \int_{r \leq h \leq 1} ch r dr d\phi dh = 
+    2\pi a^2c^2 \int_0^1 h dh \cdot h = a^2 c^2 \frac{2\pi}{3} = \frac{2M c}{3}
+\]     
 
 \section{T4}
 \[
@@ -104,7 +125,88 @@
 \[
     I = 2 \pi \int_{0}^{+\infty} e^{-ar^2} \sin (r^2) r dr = \pi \int_{0}^{+\infty} e^{-at} \sin t dt = \frac{\pi}{a^2 + 1}
 \]
+Последний интеграл мы находили в прошлом году беря его два раза по частям.
+\section{8.201}
+\[
+    f(x, y) = 
+    \begin{dcases}
+        \frac{x^2 - y^2}{(x^2 + y^2)^2}, \, x \geq 1, y \geq 1 \\
+        0, \text{иначе}.
+    \end{dcases}
+\]
+Введём сферическую замену координат, рассмотрим пока что область $x\geq 1, y\geq 1$ 
+\[
+    f(x, y) = \frac{1}{r^2} \sin^2 \theta \cos 2\phi,
+\]
+Интеграл по ограниченной области $A$ соответственно равен
+\[
+    F = \int_A \frac{1}{r^2} \sin^2 \theta \cos 2\phi r^2 \sin \theta  \, dr d \theta d \phi = 
+    \int_A \sin^3 \theta \cos 2 \phi \, dr d \theta d \phi 
+\]
+Тогда в дальнейшем при $r \geq \sqrt{2} $  в интеграле возникнет $\int_{0}^{2\pi} \cos 2 \phi d \phi = 0$. 
+Тогда интеграл при $r \geq \sqrt{2}$ равен 0, а при $r \leq \sqrt{2}$ очевидно сходится так как 
+ограничен на множестве конечной меры.    
 
+\section{Т6}
+в) 
+Я не уверен, но стереографической проекцией из точки шара $(0, 0, -1)$ получим, что полусфера 
+диффеоморфна диску на плоскости (а для него мы доказывали в предыдущем пункте). Замена координат следующая: 
+\[
+    \begin{dcases}
+        t_A^1 = \frac{x}{1 + z} \\
+        t_A^2 = \frac{y}{1 + z}
+    \end{dcases}
+\]
+
+\section{Т7}
+\[
+    Q(x, y) = Ax^2 + 2Bxy + Cy^2 + Dx + Ey + F
+\]
+Не знаю((()))
+
+\section{Т8}
+Введём 2 карты, соответствующие двум стереографическим проекциям сферы на две плоскости. 
+$\phi_A: V_A \to U_A$, $V_A = \mathbb{R}^2$, $U_A = \mathbb{S}^2 \setminus (0, 0, 1)$   
+\[
+    \begin{dcases}
+        t_A^1 = \frac{x}{1 - z} \\
+        t_A^2 = \frac{y}{1 - z}
+    \end{dcases}
+\]
+Обратное имеет вид 
+\[
+    \begin{dcases}
+        x = \frac{2t_A^1}{1 + (t_A^1)^2 + (t_A^2)^2} \\ 
+        y = \frac{2t_A^2}{1 + (t_A^1)^2 + (t_A^2)^2} \\ 
+        z = \frac{(t_A^1)^2 + (t_A^2)^2 - 1}{1 + (t_A^1)^2 + (t_A^2)^2}
+    \end{dcases}
+\]
+Найдём ранг карты: 
+\[
+    \begin{pmatrix}
+        \frac{1}{1 - z} & 0 & \frac{x}{(1-z)^2} \\ 
+        0 & \frac{1}{1 - z} & \frac{y}{(1-z)^2} \\ 
+    \end{pmatrix}
+\]
+На $V_A$ ранг карты очевидно равен двум.
+Аналогично строится вторая карта $\phi_B: V_B \to U_B$, разве, что $1 - z \leftrightarrow 1 + z$. То есть: 
+\[
+    \begin{dcases}
+        t_B^1 = \frac{x}{1 + z} \\
+        t_B^2 = \frac{y}{1 + z}
+    \end{dcases}
+\]
+Все остальные формальные утверждения делаются аналогично, из чего следует, что сфера 
+является вложенным многообразием. 
+Посмотрим на гладкость функции свзяки: 
+\[
+    \begin{dcases}
+        t_A^1 = \frac{1}{t_B^1} \\
+        t_A^2 = \frac{1}{t_B^2}
+    \end{dcases}
+\]
+Такие функции очевидно бесконечно гладкие, а значит такой набор карт будет являтся 
+атласом для сферы ранга 2.
 
 
 \end{document}
