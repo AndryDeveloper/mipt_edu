@@ -93,17 +93,24 @@ int main() {
     assert(3 == g.get_axis_size(0));
     assert(2 == g.get_axis_size(1));
 
-    for (size_t y_idx = 0; y_idx != g.get_axis_size(0); ++y_idx)
-        for (size_t x_idx = 0; x_idx != g.get_axis_size(1); ++x_idx)
+    for (size_t y_idx = 0; y_idx != g.get_axis_size(0); ++y_idx){
+        for (size_t x_idx = 0; x_idx != g.get_axis_size(1); ++x_idx){
             assert(0.0f == g[y_idx][x_idx]);
+        }
+    }
 
-    for (size_t y_idx = 0; y_idx != g.get_axis_size(0); ++y_idx)
-        for (size_t x_idx = 0; x_idx != g.get_axis_size(1); ++x_idx)
+    for (size_t y_idx = 0; y_idx != g.get_axis_size(0); ++y_idx){
+        for (size_t x_idx = 0; x_idx != g.get_axis_size(1); ++x_idx){
             g[y_idx][x_idx] = 1.0f;
+        }
+    }
 
-    for (size_t y_idx = 0; y_idx != g.get_axis_size(0); ++y_idx)
-        for (size_t x_idx = 0; x_idx != g.get_axis_size(1); ++x_idx)
+    for (size_t y_idx = 0; y_idx != g.get_axis_size(0); ++y_idx){
+        for (size_t x_idx = 0; x_idx != g.get_axis_size(1); ++x_idx){
             assert(1.0f == g(y_idx, x_idx));
+        }
+    }
+
     
 
     // 3 часть

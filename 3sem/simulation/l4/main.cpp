@@ -27,7 +27,7 @@ public:
     HarmonicSolver(char* config_path, char* output_path): 
         config_path(config_path), output_path(output_path), out(output_path)
     {   
-        out << "time,position,velocity,energy" << std::endl;;
+        out << "time,position,velocity,energy" << std::endl;
 
         std::ifstream ifs(config_path);
         json jf = json::parse(ifs);

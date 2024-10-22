@@ -1,0 +1,155 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Работа над ошибками.}
+\author{Шахматов Андрей, Б02-304}
+\date{\today}
+
+\begin{document}
+\maketitle
+% \tableofcontents
+
+\section*{16.8(6)}
+\[
+    I = \int_{0}^{1} \frac{\sqrt{x(1-x)} }{(1 + x)^3} \,\mathrm{d}x 
+\]
+Сделаем замену $t = \frac{1 - x}{1 + x}, \, \mathrm{d}t = \frac{-2\mathrm{d} x}{(1 + x)^2}$: 
+\[
+    I = \frac{1}{2} \int_{0}^{1} \frac{1 + t}{2} \cdot \sqrt{\frac{1 - t}{1 + t} \cdot \frac{2t}{1 + t}} \,\mathrm{d}t = 
+    \frac{\sqrt{2}}{4} \int_{0}^{1} t^{\frac{1}{2}} (1 - t)^{\frac{1}{2}} \,\mathrm{d}t = 
+    \frac{\sqrt{2}}{4} B\left( \frac{3}{2}, \frac{3}{2} \right) = \frac{\pi \sqrt{2} }{32} 
+\] 
+
+\section*{Т3}
+\[
+    \begin{dcases}
+        x = \sinh \theta \cos \varphi \\
+        y = \sinh \theta \sin \varphi \\
+        z = \cosh \theta
+    \end{dcases}
+\]
+Тогда 
+\[
+    \begin{dcases}
+        dx = \cosh \theta \cos \varphi d \theta - \sinh \theta \sin \varphi d \varphi \\
+        dy = \cosh \theta \sin \varphi d \theta + \sinh \theta \cos \varphi d \varphi \\
+        dz = \sinh \theta d \theta  
+    \end{dcases}
+\]
+
+Тогда прямой образ формы $\omega = x dy \wedge dz + y dz \wedge dx + zdx \wedge dy$:
+\begin{align*}
+    \phi^{\ast}\omega = \sinh \theta \cos \varphi \cdot (\cosh \theta \sin \varphi d \theta + \sinh \theta \cos \varphi d \varphi) \wedge (\sinh \theta d \theta ) + \\
+    \sinh \theta \sin \varphi \cdot (\sinh \theta d \theta) \wedge (\cosh \theta \cos \varphi d \theta - \sinh \theta \sin \varphi d \varphi ) + \\
+    \cosh \theta \cdot (\cosh \theta \cos \varphi d \theta - \sinh \theta \sin \varphi d \varphi) \wedge (\cosh \theta \sin \varphi d \theta + \sinh \theta \cos \varphi d \varphi ) = \\ 
+    \sinh^3 \theta \cos^2 \varphi d\varphi \wedge d \theta - \sinh^3 \theta \sin^2 \varphi d \theta \wedge d \varphi + \\
+    \cosh^2 \theta \sinh \theta \cos^2 \varphi d \theta \wedge d \varphi - \cosh^2 \theta \sinh \theta \sin^2 \varphi d \varphi \wedge d \theta = \\
+    \sinh^3 \theta d \varphi \wedge d \theta - \cosh^2 \theta \sinh \theta d \varphi \wedge d \theta = \\
+    -\sinh \theta d\varphi \wedge d \theta 
+\end{align*}
+\section*{4.52(5)}
+\[
+    2(x + y) z_{yy} + z_x = 0
+\]
+\[
+    u = x, \, v = \sqrt{x + y} 
+\]
+Найдём матрицу Якоби: 
+\[
+    \begin{pmatrix}
+        1 & 0 \\
+        \frac{1}{2v} & \frac{1}{2v}
+    \end{pmatrix}
+\]
+
+Тогда 
+\[
+    z_x = z_u u_x + z_v v_x = 
+    z_u + \frac{z_{v}}{2v}
+\] 
+\[
+    z_y = z_u u_y + z_v v_y = 
+    \frac{z_v}{2v}   
+\] 
+Для второй производной: 
+\[
+    z_{yy} = z_{yu} u_y + z_{yv} v_y = 
+    \frac{ \frac{z_{vv}}{2v} - \frac{z_v}{2v^2}}{2v} = 
+    \frac{z_{vv}}{4v^2} - \frac{z_v}{4v^3}
+\]
+Тогда перепишем исходное уравнение:
+\[
+    2v^{2} \left( \frac{z_{vv}}{4v^2} - \frac{z_v}{4v^3} \right) + z_u + \frac{z_{v}}{2v} = 
+    \frac{z_{vv}}{2} + z_u = 0
+\]
+\section*{3.92(2)}
+Выразим $w_v$ в исходных координатах: 
+\[
+    w_v = (xy)_v - z_v 
+\]
+
+Матрица перехода 
+\[
+    \begin{pmatrix}
+        -1 & z & y \\
+        z & -1 & x \\
+        y & x & -1
+    \end{pmatrix}
+\]
+Обратная к ней: 
+\[
+    C
+    \begin{pmatrix}
+        1 - x^2 & xy + z & xz + y \\
+        xy + z & 1 - y^2 & x + yz \\
+        xz + y & x + yz & 1 - z^2
+    \end{pmatrix}
+\]
+Тогда: 
+\[
+    z_v = z_x x_v + z_y y_v = C (z_x (xy + z) + z_y (1 - y^2)) 
+\]
+\[
+    (xy)_v = x y_v + y x_v = C(x(1 - y^2) + y(xy + z)) = 
+    C(x + yz)
+\]
+Тогда 
+\[
+    w_v = C(x + yz) - C(z_x (xy + z) + z_y (1 - y^2)) = 
+    C(x + yz - z_x (xy + z) + z_y (1 - y^2)) = 0
+\]
+Тогда интегрируя $w_v = 0$ получим: 
+\[
+    w = f(u)
+\] 
+Или в исходных координатах 
+\[
+    xy - z = f(yz - x)
+\]
+*Где $f$ - произвольная функция. 
+
+\end{document}

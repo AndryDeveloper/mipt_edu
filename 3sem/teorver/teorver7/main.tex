@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Теорвер 7.}
+\author{Шахматов Андрей, Б02-304}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Т3}
+Начнём с сходимости по распределению:
+\[
+    F_{\xi_n} = 
+    \begin{dcases}
+        0, t < 0 \\
+        (1 - p_n), 0 \leq t < 1 \\
+        1, t \geq 1
+    \end{dcases}
+\]
+Тогда в случае $1 - p_n \to 1$ $F_{\xi_n} \to F_{\xi = 0}$, из чего следует необходимым и достаточным условием 
+слабой сходиомсти является $p_n \to 0$. Тогда так как сходимость является сходиомстью к константе, то такие же 
+условия накладываются и на сходимость по вероятности. 
+Исследуем сходиомсть в $L_2$: 
+\[
+    E \xi_n = p_n \to 0 \leftrightarrow p_n \to 0. 
+\]    
+Остаётся сходимость почти наверное. ((((пока не знаю))))
+
+\section{Т4}
+Доделать.
+
+
+\section{Т7}
+а) \, Исследуем на слабую сходимость к $\xi \equiv 1$. 
+Распределение $F_{\max \xi_1, \xi_2, \dots \xi_n} = \prod_{k=1}^{n} F_k$. 
+Каждое из этих распределений равно $F_k = t$ на $(0, 1)$, тогда их произведение: 
+\[
+    \prod_{k=1}^n F_k = \prod_{k=1}^n t = t^n \to 
+    \begin{dcases}
+        0, t < 1 \\
+        1, t \geq 1
+    \end{dcases}
+\]  
+Функция распределения $\xi = 1$ имеет такой же вид, потому по теореме Александрова имеет место слабая 
+сходимость. \\
+б) \, Согласно задаче T2 слабая сходимость эквивалента сходмости по вероятности в случае сходимости к константе, 
+поэтому сходимость по вероятности также имеет место. \\
+в) \, Существует теорема о том, что если последовательность сходится по вероятности, то из неё можно 
+выбрать подпоследовательность, которая будет сходится почти всюду, тогда так как все элементы нашей последовательности 
+одинаковы, то почти всюду сходящаяся подпоследовательность будет совпадать с исходной последовательностью, из чего следует 
+сходиомсть почти всюду. 
+г) \, Исследуем на сходимость в среднем, как известно: 
+\[
+    F_{\max \xi_1, \xi_2, \dots \xi_n} = t^n \implies \rho_{\max \xi_1, \xi_2, \dots \xi_n} = 
+    n t^{n-1} I(0, 1)
+\] 
+Тогда достаточно доказать, что $E \max (\xi_1, \xi_2, \dots \xi_n) \to 1$: 
+\[
+    E \max (\xi_1, \xi_2, \dots \xi_n) = \int_{0}^{1} n t^{n-1} \,\mathrm{d}t = 1
+\]
+
+
+\end{document}
