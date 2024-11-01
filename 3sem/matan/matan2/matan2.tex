@@ -162,7 +162,8 @@
 \[
     Q(x, y) = Ax^2 + 2Bxy + Cy^2 + Dx + Ey + F
 \]
-Не знаю((()))
+Судя по всему единственным случаем, когда нули не являются многообразием это случай пересекающихся прямых, 
+так как выбросив точку пересечения получим 4 компоненты связности, чего невозможно получить на прямой выбросом одной точки.
 
 \section{Т8}
 Введём 2 карты, соответствующие двум стереографическим проекциям сферы на две плоскости. 
@@ -208,5 +209,169 @@ $\phi_A: V_A \to U_A$, $V_A = \mathbb{R}^2$, $U_A = \mathbb{S}^2 \setminus (0, 0
 Такие функции очевидно бесконечно гладкие, а значит такой набор карт будет являтся 
 атласом для сферы ранга 2.
 
+\section{Т11}
+б) 
+$\gamma: \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$. 
+\[
+    \int_{\gamma} (2xy - y) dx + x^2 dy = \int_{\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1} \left( 2x - (2x - 1) \right) dx \wedge dy = 
+    \int_{\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1} dx \wedge dy = \mu \left\{ \frac{x^2}{a^2} + \frac{y^2}{b^2} \right\} = \pi a b
+\]
 
+
+\section{Т12}
+a) 
+По формуле Остроградского-Гаусса
+\[
+    \iint_S x^2 y^2 z dy \wedge dz = \int_{x^2 + y^2 + z^2 = a^2, z \geq 0} 2xzy^2 dx \wedge dy \wedge dz
+\]
+В сферических координатах
+\[
+    2 \int_{-a \leq r \leq a, z \geq 0} r^6 \cos \theta \sin^4 \theta \cos \varphi \sin^2 \varphi dr d \theta d \varphi = 
+    4 \frac{a^7}{7} \int_{0}^{\frac{\pi}{2}} \sin^4 \theta \cos \theta dr d \theta \int_{0}^{2\pi} \sin^2 \varphi \cos \varphi d \varphi = 0
+\]
+((((Странный ответ))))\\
+в)
+Перейдём к интегралу по циллиндру по формуле Остроградского 
+\[
+    \int_{x^2 + y^2 = a^2, 0 \leq z \leq b, x \geq 0, y \geq 0} (x + y + z) dx \wedge dy \wedge dz = 
+    2 \int_{x^2 + y^2 = a^2, 0 \leq z \leq b, x \geq 0, y \geq 0} x dx dy dz + \int_{x^2 + y^2 = a^2, 0 \leq z \leq b, x \geq 0, y \geq 0} z dx dy dz
+\]
+В цилиндрических координатах первый интеграл равен
+\[
+    \int_{0 < r \leq a, 0 < z < b, x \geq 0, y \geq 0} r^2 \cos \theta dr d \theta dz = 
+    b \frac{a^3}{3}
+\]
+Второй интеграл равен $I_2 = \frac{b^2}{2} \cdot \frac{\pi a^2}{4}$ 
+Тогда ответ: 
+\[
+    I = \frac{a^3 b}{3} + \pi \frac{a^2 b^2}{8}
+\]
+
+% г)
+% По формуле Остроградского 
+% \[
+%     \int_{x^2 + y^2 = z^2, 0 \leq z \leq a} (x + y + z) dx \wedge dy \wedge dz = 
+% \]
+% Перейдём в циллиндрические координаты: 
+% \[
+%     \int_{r < z < a} r^2 (\sin \theta + \cos \theta) + zr dr d \theta dz = 
+%     2\pi \int_{0}^{a} z dz \int_{0}^{z} r dr = \frac{\pi a^3}{3}
+% \]
+
+
+д)
+\[
+    \int_{x^2 + y^2 + z^2 = a^2, x,y,z \geq 0} (x + y + z) dx \wedge dy \wedge dz = 
+    3 \int_{x^2 + y^2 + z^2 = a^2, x,y,z \geq 0} x dx dy dz = 3I
+\]
+Перейдём в сферические координаты 
+\[
+    I = \int_{a}^{0} r^3 dr \int_{0}^{\frac{\pi}{2}} \sin \theta d \theta \int_{0}^{\frac{\pi}{2}} d \varphi = 
+    \frac{a^4}{4} \cdot 1 \cdot \frac{\pi}{2} = \frac{\pi a^4}{8}
+\]
+И исходный интеграл равен 
+\[
+    3I = \frac{3 \pi a^4}{8}
+\] 
+(((Тут ещё вычесть интегралы через боковые поверхности)))
+\section{Т18}
+Докажем лемму о том, что у замкнутой гладкой кривой существует точка, в которой касательная к кривой делит 
+пространство на две части, одна из которых полностью содержит кривую. 
+Так как кривая замкнута, то она ограничена, тогда рассмотрим расстояние от точки $(0, 0)$ до кривой, по теореме 1 
+семестра максимальное и минимальное расстояние достигается. Тогда расстморим окружность $B((0, 0), \rho_{\max})$. 
+Такая окружность касается кривой и кривая полностью лежит внутри окружности, в таком случае вся кривая лежит в 
+одном полупространстве от касательной к окружности в этой точке. 
+
+Далее перейдём к доказательству того, что вектор скорости делает только один поворот на замкнутой гладкой кривой без 
+пересечений. Рассмотрим кривую $\gamma(t)$, где $t \in [0, 1]$ --- натуральный параметр. Тогда введём вектор 
+\[
+    e(t, s) = \frac{\gamma(s) - \gamma(t)}{\vert \gamma(s) - \gamma(t) \vert}
+\]   
+Рассмотрим треугольник $D = \left\{ (t, s) \mid 0 \leq t \leq s \leq 1 \right\} $. Так как кривая не имеет 
+самопересечений, то на внутренности $D$ вектор $e$ всегда определён. Доопределим $e$ на диагонали по непрерывности: 
+\[
+    e(t, s) = \frac{\gamma(s) - \gamma(t)}{s - t} : \left\vert \frac{\gamma(s) - \gamma(t)}{ s - t } \right\vert \to \frac{\dot{\gamma(t)}}{\vert \dot{\gamma(t)} \vert } = \dot{\gamma(t)}
+\]    
+Аналогично показывается, что при $s \to 1, t \to 0, \, e \to -\gamma(0)$. 
+Мы определили непрерывную функцию на треугольнике $D$, тогда так как $\vert e \vert = 1$, можем представить 
+$e = (\cos \phi(t, s), \sin \phi(t, s))$. Вращение вектора скорости есть число оборотов $e$ вдоль диагонали $D$:  
+\[
+    \alpha = \phi(1, 1) - \phi(0, 0) = (\phi(1, 1) - \phi(0, 1)) + (\phi(0, 1) - \phi(0, 0))
+\]
+Согласно лемме найдётся точка, что кривая лежит по одну сторону от касательной, если определить эту точку за $t = 0$, 
+тогда $\phi(1, 1) - \phi(0, 1) = \pm \pi$ и аналогично $\phi(0, 1) - \phi(0, 0) = \pm \pi$ тогда 
+\[
+    \alpha = \pm 2\pi 
+\]
+Что и требовалось доказать.
+
+\section{Т.20}
+Пусть $d \omega_1 = 0$ и $\omega_2 = d \omega$, 
+Тогда 
+\[
+    d( (-1)^{\text{deg}} \omega_1 \wedge \omega) = 
+    (-1)^{\text{deg}} d \omega_1 \wedge \omega + \omega_1 \wedge d \omega = 0 + \omega_1 \wedge \omega_2 = \omega_1 \wedge \omega_2
+\]
+Всё, форма точная.
+
+\section{11.68}
+Рассмотрим кривую заданную пересечением уравнений 
+\[
+    \begin{dcases}
+        2x^2 - y^2 + z^2 = a^2 \\ 
+        x + y = 0
+    \end{dcases} \implies 
+    \begin{dcases}
+        x^2 + x^2 - y^2 + z^2 = a^2 \\ 
+        x + y = 0
+    \end{dcases} \implies 
+    \begin{dcases}
+        x^2 + z^2 = a^2 \\ 
+        x + y = 0
+    \end{dcases}
+\]
+Тогда введём параметризацию: 
+\[
+    \begin{dcases}
+        x = a \cos \varphi \\
+        z = a \sin \varphi \\
+        y = - a \cos \varphi
+    \end{dcases}
+\]
+где $\varphi \in [0, 2\pi]$. У такой параметризации другая ориентация, поэтому 
+при переходе к ней поставим перед инетгралом знак минус.
+\[
+    \int_{L} z^3 dx + x^3 dy + y^3 dz = 
+    -a^4 \int_{0}^{2\pi} (-\sin^4 \varphi + \cos^3 \varphi \sin \varphi - \cos^4 \varphi) d \varphi = 
+    -a^4 \left( - \frac{3\pi}{4} - \frac{3\pi}{4}  \right) = 
+    \frac{3\pi a^4}{2}
+\]
+
+\section{11.67}
+\[
+    \int_{L} (y^2 + z^2)dx + (z^2 + x^2)dy + (x^2 + y^2) dz = 
+    2 \int_{S} (y - z) dy \wedge dz + z dz \wedge dx + x dx \wedge dy
+\]
+\[
+    \begin{dcases}
+        x^2 + y^2 + z^2 = 2ax \\
+        x^2 + y^2 = 2bx
+    \end{dcases} \implies 
+    \begin{dcases}
+        2x(b - a) = z^2 \\
+        (x - b)^2 + y^2 = b^2
+    \end{dcases}
+\]
+Возьмём карту $\varphi(t, p) = (\frac{p^2}{2(b - a)}, t, p)$, 
+Из чего следует: $dx = \frac{p}{(b - a)} dp$.
+Интеграл: 
+\[
+    2 \int_{S} (y - z) dy \wedge dz + z dz \wedge dx + x dx \wedge dy = 
+    2 \int_{\left( \frac{p^2}{2(b - a)} - b \right)^2 + t^2 = b^2 } (t - p) dt \wedge dp + 0 + \frac{p^2}{2(b - a)} \cdot \frac{p}{(b - a)} dp \wedge dt
+\]
+Что равно: 
+\[
+    2 \int_{\left( \frac{p^2}{2(b - a)} - b \right)^2 + t^2 = b^2 } \left( t - p - \frac{p^3}{2(b - a)^2} \right)  dt dp
+\]
+((((НУ дальше в полярне и что-то получится...))))
 \end{document}

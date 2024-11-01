@@ -1,0 +1,452 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[top = 1.5cm, left = 1.5 cm, right = 1.5 cm, bottom = 3 cm]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Дифференциальные уравнения 2.}
+\author{Шахматов Андрей, Б02-304}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Линейные уравнения с постоянными коэффициентами}
+\subsection*{8.5}
+\[
+    y^{\prime\prime} + 5y^{\prime} + 6y = 0
+\]
+Характеристическое уравнение имеет вид: 
+\[
+    \lambda^2 + 5\lambda + 6 = 0 \implies 
+    \begin{dcases}
+        \lambda = -2 \\
+        \lambda = -3
+    \end{dcases}
+\]
+Тогда общее решение имеет вид 
+\[
+    y = C_1 e^{- 2x} + C_2 e^{-3x}
+\]
+
+\subsection*{8.8}
+\[
+    y^{\prime\prime} - 2y^{\prime} + 10y = 0
+\]
+Характеристическое уравнение имеет вид: 
+\[
+    \lambda^2 - 2\lambda + 10 = 0 \implies 
+    \begin{dcases}
+        \lambda = 1 + 3i \\
+        \lambda = 1 - 3i
+    \end{dcases}
+\]
+Общее решение имеет вид: 
+\[
+    y = C_1 e^{\lambda x} \cos 3x + C_2 e^{\lambda x} \sin 3x
+\]
+\subsection*{8.25}
+\[
+    y^{\prime\prime\prime\prime} - 5 y^{\prime\prime\prime} + 7 y^{\prime\prime} - 3y^{\prime} = 0
+\]
+Сделаем замену $z = y^{\prime}$, тогда 
+\[
+    z^{\prime\prime\prime} - 5 z^{\prime\prime} + 7z^{\prime} - 3z = 0
+\] 
+Характеристическое уравнение имеет вид: 
+\[
+    \lambda^3 - 5\lambda^2 + 7z - 3 = 0 \implies 
+    \begin{dcases}
+        \lambda = 3 \\
+        \lambda = 1 - \text{кратный корень} 
+    \end{dcases}
+\]
+Решением будет являться
+\[
+    z = C_1 e^{3x} + C_2 x e^x + C_3 e^x
+\]
+Проинтегрируем это уравнение и получим вырадение для $y$:
+\[
+    y = C_1^{\prime} e^{3x} + C_2^{\prime} x e^x + C_3^{\prime} e^x + C_4
+\] 
+\subsection*{8.36}
+\[
+    y^{\prime\prime\prime\prime} + 3y^{\prime\prime} + 2y = 0
+\]
+Характеристическое уравнение имеет вид: 
+\[
+    \lambda^4 + 3\lambda^2 + 2 = 0 \implies 
+    \begin{dcases}
+        \lambda^2 = -2 \\
+        \lambda^2 = -1
+    \end{dcases} \implies 
+    \begin{dcases}
+        \lambda = -\sqrt{2} i \\
+        \lambda = \sqrt{2} i \\
+        \lambda = -i \\
+        \lambda = i
+    \end{dcases}
+\]
+Решение уравнения будет иметь вид: 
+\[
+    y = C_1 \cos x\sqrt{2}  + C_2 \sin x\sqrt{2}  + C_3 \cos x + C_4 \sin x
+\]
+\subsection*{8.47}
+\[
+    y^{\prime\prime} + 4y = 4xe^{-2x} - \sin 2x
+\]
+Сначала найдём общее решение 
+\[
+    y^{\prime\prime} + 4y = 0
+\]
+С учётом решений характеристических уравнений $\lambda^2 = -4$ общее решение имеет вид 
+\[
+    y = C_1 \sin 2x + C_2 \cos 2x
+\]
+(((((Доделать)))))
+
+\subsection*{8.69}
+\[
+    y^{\prime\prime} + 2y^{\prime} + y = xe^{-x}
+\]
+Характеристическое уравнение имеет вид: 
+\[
+    \lambda^2 + 2\lambda + 1 = 0 \implies \lambda = -1 - \text{кратный корень} 
+\]
+Общее решение имеет вид: 
+\[
+    y = (C_1 + x C_2) e^{-x}
+\]
+Методом вариации постоянной 
+\[
+    \begin{dcases}
+        C_1^{\prime} e^{-x} + C_2^{\prime} (1 + x) e^{-x} = 0 \implies C_1^{\prime} + (1 + x) C_2^{\prime} = 0  \\
+        -C_1^{\prime} e^{-x} - C_2^{\prime} x e^{-x} = x e^{-x} \implies -C_1^{\prime} - C_2^{\prime} x = x
+    \end{dcases}
+\]
+Тогда 
+\[
+    \begin{dcases}
+        C_2^{\prime} = x \\
+        C_1^{\prime} = -x - x^2
+    \end{dcases} \implies 
+    \begin{dcases}
+        C_2 = \frac{x^2}{2} + A \\
+        C_1 = -\frac{x^2}{2} - \frac{x^3}{3} + B
+    \end{dcases}
+\]
+И финальное решение имеет вид
+\[
+    y = \left( \frac{x^2}{2} + A \right) x e^{-x} + \left( -\frac{x^2}{2} - \frac{x^3}{3} + B \right) e^{-x}  
+\]
+((((Не понятно чёт не сошлось))))
+
+\subsection*{8.159}
+\[
+    y^{\prime\prime} + y = -\frac{\cos^2 x}{\sin^2 x}
+\]
+Сделаем замену $z = - y + 1$, тогда 
+\[
+    -z^{\prime\prime} - z + 1 = -\frac{\cos^2 x}{\sin^2 x} \implies z^{\prime\prime} + z = 1 + \frac{\cos^2 x}{\sin^2 x} = \frac{1}{\sin^2 x}
+\] 
+После замены $q \leftrightarrow x - \frac{\pi}{2}$ имеем уравнение 
+\[
+    z^{\prime\prime} + z = \frac{1}{\cos^2 q}
+\] 
+Такой пример был разобран перед параграфом, а значит решение: 
+\[
+    - y + 1 = A \sin x + B \cos x + \frac{1}{2} \ln \left\vert \frac{\cos x + 1}{\cos x -1} \right\vert \cos x - 1 
+\]
+\subsection*{8.195}
+\[
+    x^2 y^{\prime\prime} - 3xy^{\prime} + 4y = 4x^3
+\]
+Подставим $x = e^t, y^{\prime} = e^{-t} y^{\prime}_t, y^{\prime\prime} = e^{-2t} (y^{\prime\prime}_t - y^{\prime}_t)$. 
+Тогда 
+\[
+    y^{\prime\prime} - 4y^{\prime} + 4y = 4e^{3t}
+\] 
+Общее решение имеет вид 
+\[
+    y = (A + Bt) e^{2t}
+\]
+Частное решение ищем в виде $y = a e^{3t}$: 
+\[
+    9a e^{3t} - 12 a e^{3t} + 4a e^{3t} = 4e^{3t} \implies 
+    a = 4   
+\]
+Тогда решение: 
+\[
+    y = (A + Bt) e^{2t} + 4 e^{3t} = \left( A + \frac{B}{\ln x} \right) x^2 + 4x^3  
+\]
+\subsection*{8.196}
+\[
+    x^2 y^{\prime\prime} + xy^{\prime} + y = 10x^2
+\]
+Подставим $x = e^t, y^{\prime} = e^{-t} y^{\prime}_t, y^{\prime\prime} = e^{-2t} (y^{\prime\prime}_t - y^{\prime}_t)$. 
+\[
+    y^{\prime\prime} + y = 10 e^{2t} 
+\]
+Общее решение иммет вид: 
+\[
+    y = A \cos x + B \sin x
+\]
+В качестве частного решение подойдёт $y = 2 e^{2t}$
+Тогда решение: 
+\[
+    y = A \cos \ln x + B \sin \ln x + 2 x
+\] 
+\subsection*{T.1}
+\[
+    y^{\prime\prime} + ay = \sin x
+\]
+Отдельно рассмотрим случай $a = 1$: 
+\[
+    y^{\prime\prime} + y = \sin x
+\]
+В таком случае решением будет являтся 
+\[
+    y = A\sin x + B\cos x - \frac{1}{2} x \sin x
+\] 
+Такие решения всегда являются неограниченными и апериодическими. 
+В другом случае частным решением является $y = \frac{1}{a - 1} \sin x$, 
+которое является ограниченным и периодическим.
+А таком случае рассмотрим $a < 0$, тогда общее решение будет: 
+\[
+    y = A e^{-\sqrt{a} x} + B e^{\sqrt{a} x} + \frac{1}{a - 1} \sin x
+\]    
+В таком случае существует ограниченное решение при $B = 0$, и имеет единственное периодическое решение при $A = B = 0$. 
+При $a = 0$ решение будет иметь вид: 
+\[
+    y = A + Bt + \frac{1}{a - 1} \sin x
+\]
+Что также являются ограниченным и периодическим при $B = 0, A \in \mathbb{R}$. 
+При $a > 0$ решение имеет вид: 
+\[
+    y = A \sin \sqrt{a} x + B \cos \sqrt{a} x + \frac{1}{a - 1} \sin x 
+\]  
+Такое решение всегда является ограниченным и периодическим. 
+Подведём итоги, существует хотя бы одно ограниченное решение при
+\[
+    a \neq 1
+\] 
+Тогда как существует единственное периодическое решение при 
+\[
+    a \in (-\infty, 0)
+\]
+
+\subsection*{614}
+Подойдёт уравнение: 
+\[
+    y^{\prime\prime} - 4y^{\prime}  + 5y = 0
+\]
+Проверим:
+\[
+    \begin{dcases}
+        y = e^{2x}\cos x \\
+        y^{\prime} = 2e^{2x}\cos x - e^{2x} \sin x \\
+        y^{\prime\prime} = 3e^{2x}\cos x - 4e^{2x} \sin x  
+    \end{dcases}
+\]
+Легко убедится, что при подстановке в уравнение выполняется торждество.
+
+\subsection*{617}
+Тогда общее решение уравнения должно иметь вид: 
+\[
+    y = A x e^x + B e^x + C e^{-x} 
+\]
+т.е характеристическое уравнение иммет вид: 
+\[
+    0 = (x - 1)^2 (x + 1) = x^3 - x^2 - x + 1
+\]
+Тогда исходное дифференциальные уравнение можно записать как 
+\[
+    y^{\prime\prime\prime} - y^{\prime\prime} - y^{\prime} + y = 0
+\]
+
+\subsection*{618}
+Аналогично предыдущей задаче общее решение имеет вид: 
+\[
+    y = A + Bx + C \sin x
+\]
+С характеристическим уравнением 
+\[
+    0 = x^2 (x - i) (x + i) = x^2(x^2 + 1) = x^4 + x^2
+\]
+В таком случае дифференциальное уравнение имеет вид: 
+\[
+    y^{\prime\prime\prime\prime} + y^{\prime\prime} = 0
+\]
+
+\section{Элементы вариационного исчисления}
+\subsection*{19.14}
+\[
+    J(y) = \int_{1}^{2} \left[ x(y^{\prime})^2 + \frac{y^2}{x} + 4y \right] dx, \, y(1) = 0, \, y(2) = 2\ln 2 
+\]
+Уравнение Лагранжа: 
+\[
+    \frac{2y}{x} + 4 = \frac{d}{dx} \left( 2x y^{\prime} \right) = 2y^{\prime} + 2x y^{\prime\prime} \implies x^2 y^{\prime\prime} + xy^{\prime} - y = 2x
+\]
+Подставим $x = e^t, y^{\prime} = e^{-t} y^{\prime}_t, y^{\prime\prime} = e^{-2t} (y^{\prime\prime}_t - y^{\prime}_t)$. 
+\[
+    y^{\prime\prime} - y = 2e^{t}
+\]
+Его общим решением является: 
+\[
+    y = A e^t + B e^{-t}
+\]
+Тогда как частное решение ищем в виде $y = at e^t$:
+\[
+    y^{\prime} = ae^t + at e^t 
+\] 
+\[
+    y^{\prime\prime} = 2ae^t + at e^t
+\]
+Подставляя в исходное уравнение: 
+\[
+    2ae^t + at e^t - ate^t = 2ae^t = 2 e^t \implies a = 1
+\]
+Тогда уравнение имеет решение: 
+\[
+    y = A e^t + B e^{-t} + t e^t
+\]
+Переходя к перемнной $x$: 
+\[
+    y = Ax + \frac{B}{x} + x \ln x 
+\] 
+Подставляя граничные условия найдём экстремальную функцию: 
+\[
+    y = x \ln x
+\]
+Исследуем на максимум-минимум: 
+\[
+    J(y + h) - J(y) = 
+    \int_{1}^{2} x (y^{\prime} + h^{\prime} )^2 + \frac{(y + h)^2}{x} + 4(y + h) - x(y^{\prime})^2 - \frac{y^2}{x} - 4y dx
+\]
+Первые степени по $h$ сокращаются в силу уравнения Лагранжа: 
+\[
+    \Delta J(y, h) = \int_{1}^{2} x (h^{\prime})^2 + \frac{h^2}{x} dx \geq 0
+\] 
+Значит существует минимум на $y = x \ln x$. 
+\subsection*{19.39}
+\[
+    J(y) = \int_{-2}^{-1} [x^3 (y^{\prime})^2 + 3xy^2]dx, \, y(-2) = \frac{15}{2}, \, y(-1) = 0
+\]
+Уравнение Лагранжа: 
+\[
+    6xy = \frac{d}{dx} (2x^3 y^{\prime}) = 6 x^2 y^{\prime} + 2x^3 y^{\prime\prime} \implies 
+    x^3 y^{\prime\prime} + 3 x^2 y^{\prime} - 3xy = 0 \implies 
+    x^2 y^{\prime\prime} + 3x y^{\prime} - 3y = 0
+\]
+Подставим $x = e^t, y^{\prime} = e^{-t} y^{\prime}_t, y^{\prime\prime} = e^{-2t} (y^{\prime\prime}_t - y^{\prime}_t)$. 
+\[
+    y^{\prime\prime} + 2y^{\prime} - 3y = 0
+\]
+Решениями хар. уравнения являются $\lambda = 1, \, \lambda = -3$: 
+\[
+    y = A e^t + B e^{-3t} \implies 
+    y = A x + \frac{B}{x^3}
+\] 
+Подставляя граничные условия находим: 
+\[
+    y = \frac{1}{x^3} - x
+\]
+Проверим на максимум и минимум, сразу сократим члены первого порядка по $h$: 
+\[
+    \Delta J(x, h) = 
+    \int_{-2}^{-1} x^3 (h^{\prime})^2 + 3x h^2 dx = 
+    \int_{-2}^{-1} x \left( x^2 (h^{\prime})^2 + 3 h^2 \right) dx \leq 0, \, \text{так как $x < 0$}  
+\]
+Существует максимум на решении $y = \frac{1}{x^3} - x$. 
+\subsection*{19.58}
+\[
+    J(y) = \int_{1}^{2} \left[ x^2 (y^{\prime})^2 + y y^{\prime} + 12xy \right] dx, \, y(1) = 1, \, y(2) = 5
+\]
+Уравнение Лагранжа: 
+\[
+    12x + y^{\prime} = \frac{d}{dt} \left( y + 2 x^2 y^{\prime} \right) = 
+    y^{\prime} + 2x^2 y^{\prime\prime} + 4 x y^{\prime} \implies 
+    x y^{\prime\prime} + 2 y^{\prime} - 6 = 0 
+\]
+Введя замену $z = y^{\prime}$ решаем уравнение: 
+\[
+    xz^{\prime} + 2z - 6 = 0
+\] 
+Решением является: 
+\[
+    z = \frac{A}{x^2} + 3
+\]
+Тогда относительно $y$: 
+\[
+    y = \frac{A}{x} + B + 3x
+\]
+Подставляя граничные условия получим: 
+\[
+    y = 3x - \frac{2}{x}
+\]
+Проверим на минимум-максимум:
+\[
+    \Delta J(y, h) = \int_{1}^{2} x^2(h^{\prime})^2 + h h^{\prime} dx = 
+    \int_{1}^{2} \left( xh^{\prime} + \frac{h}{2x} \right)^2 - \frac{h^2}{4x^2} dx 
+\]  
+(((((А как дальше не ясно)))))
+\subsection*{19.102}
+\[
+    J(y) = \int_{0}^{\pi} \left[ (y^{\prime})^2 - \frac{16}{9} y^2 + 2y \sin x \right] dx, \, y(0) = 0, \, y(\pi) = \frac{-\sqrt{3} }{2} 
+\]
+Уравнение Лагранжа: 
+\[
+    2\sin x - \frac{32}{9} y = 2y^{\prime\prime} \implies 
+    y^{\prime\prime} + \frac{16}{9} y = \sin x
+\]
+Общее решение имеет вид: 
+\[
+    y = A \sin \frac{4}{3} x + B \cos \frac{4}{3} x
+\]
+Частное решение найдём в виде $a \sin x$: 
+\[
+    -a \sin x + \frac{16}{9} a \sin x = \sin x \implies 
+    \frac{7}{9} a = 1 \implies a = \frac{9}{7}
+\]
+Всё решение выглядит как 
+\[
+    y = A \sin \frac{4x}{3} + B \cos \frac{4x}{3} + \frac{9}{7} \sin x
+\]
+Подставим начальные условия: 
+\[
+    y = \sin \frac{4x}{3}
+\]
+Такс: 
+\[
+    \Delta J(y, h) = 
+    \int_{0}^{\pi} \left[ (h^{\prime})^2 - \frac{16}{9} h^2 \right] dx
+\]
+Заменим $x \leftrightarrow \frac{x}{\pi} \implies h^{\prime} \leftrightarrow \frac{h^{\prime}}{\pi}$: 
+\[
+    \Delta J(y, h) = \frac{1}{\pi} \int_{0}^{1} \left[ (h^{\prime})^2 - \frac{16 \pi^2}{9} h^2  \right]  dx
+\] 
+Так как $\frac{4\pi}{3} > \pi$, то согласно упражнению из параграфа к задаче нет ни минимума ни максимума. 
+
+\end{document}
