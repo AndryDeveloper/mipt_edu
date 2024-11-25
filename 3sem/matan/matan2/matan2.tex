@@ -374,4 +374,43 @@ $e = (\cos \phi(t, s), \sin \phi(t, s))$. Вращение вектора ско
     2 \int_{\left( \frac{p^2}{2(b - a)} - b \right)^2 + t^2 = b^2 } \left( t - p - \frac{p^3}{2(b - a)^2} \right)  dt dp
 \]
 ((((НУ дальше в полярне и что-то получится...))))
+
+\section{Т.24}
+а) 
+\[
+    (\grad r)_\alpha = r^{\prime}(r) \frac{x_\alpha}{r} = \frac{x_\alpha}{r} \implies 
+    \grad r = e_r
+\]
+
+б) 
+\[
+    (\grad \vert a, r \vert^2)_\sigma = 
+    \partial_\sigma (\varepsilon_{\alpha \beta \gamma} a_\beta r_\gamma \varepsilon_{\alpha \mu \nu} a_\mu r_\nu) = 
+    2\varepsilon_{\alpha \beta \gamma} a_\beta \delta_{\sigma \gamma} \varepsilon_{\alpha \mu \nu} a_\mu r_\nu = 
+    2 \varepsilon_{\alpha \beta \sigma} \varepsilon_{\alpha \mu \nu} a_\beta a_\mu r_\nu = 
+\]
+Что равно 
+\[
+    2(\delta_{\beta \mu} \delta_{\sigma \nu} - \delta_{\beta \nu} \delta_{\sigma \mu}) a_\beta a_\mu r_\nu = 
+    2 r_\sigma a^2 - 2a_\sigma (r, a)
+\]
+И тогда в векторной форме: 
+\[
+    \grad \vert a, r \vert^2 = 2 [r (a, a) - a (r, a)]
+\]
+
+\section{T.25}
+б) 
+\[
+    \div [a, r] = (r, rot \, a) - (a, rot \, r) = 
+    0 - 0 = 0
+\]
+
+\section{T.26}
+б)
+\[
+    rot [a, r] = a \div r - (a \nabla) r = 
+    3a - (a \nabla) r
+\]
+
 \end{document}

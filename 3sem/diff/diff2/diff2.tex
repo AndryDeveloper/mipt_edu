@@ -409,9 +409,9 @@
 Проверим на минимум-максимум:
 \[
     \Delta J(y, h) = \int_{1}^{2} x^2(h^{\prime})^2 + h h^{\prime} dx = 
-    \int_{1}^{2} \left( xh^{\prime} + \frac{h}{2x} \right)^2 - \frac{h^2}{4x^2} dx 
+    \int_{1}^{2} x^2(h^{\prime})^2 dx + 
+    \int_{1}^{2} d (h^2) \geq 0
 \]  
-(((((А как дальше не ясно)))))
 \subsection*{19.102}
 \[
     J(y) = \int_{0}^{\pi} \left[ (y^{\prime})^2 - \frac{16}{9} y^2 + 2y \sin x \right] dx, \, y(0) = 0, \, y(\pi) = \frac{-\sqrt{3} }{2} 
@@ -515,7 +515,7 @@
 \[
     \Delta J(y, h) = \int_{1}^{3} [8 h h^{\prime} \ln x - x (h^{\prime})^2] dx < 
     \int_{1}^{3} [8 (x - 1) h h^{\prime} - x (h^{\prime})^2] dx = 
-    \int_{1}^{3} [x (8h h^{\prime} - (h^{\prime})^2) - 8h h^{\prime}]dx < 0
+    \int_{1}^{3} [x (8h h^{\prime} - (h^{\prime})^2) - 8h h^{\prime}]dx
 \]
 (((((А я не знаю что делать....)))))
 \subsection*{20.14}
@@ -544,5 +544,138 @@
 \]
 
 (((((Ну чёт как-то не пошло)))))
+
+\section{Линейные уравнения с переменными коэффициентами}
+\subsection*{668}
+Если два решения $\phi$ и $\psi$ имеют максимум при одном и том же аргументе $x$, то $\exists x_0 \, \phi^{\prime}(x_0) = \psi^{\prime}(x_0)$. 
+Тогда в некоторой точке вронскиан имеет вид: 
+\[
+    \begin{vmatrix}
+        \phi(x_0) & \psi(x_0) \\
+        0 & 0
+    \end{vmatrix} = 
+    0
+\]  
+Что означает линейную зависимость $\phi$ и $\psi$. 
+\subsection*{679}
+Решением может быть только дифференциальное уравнение 3 порядка: 
+\[
+    y^{\prime\prime\prime} + a y^{\prime\prime} + b y^{\prime} + c y = 0
+\] 
+Тогда так как $x, x^2, e^x$ являются решениеми, то 
+\[
+    \begin{dcases}
+        1 + a + b + c = 0 \\
+        b + cx = 0 \\
+        2a + 2b x + c x^2 = 0
+    \end{dcases} \implies 
+    \begin{dcases}
+        1 + a + b + c = 0 \\
+        b + cx = 0 \\
+        2a + bx = 0
+    \end{dcases} \implies 
+    \begin{dcases}
+        a = -\frac{1}{2} \cdot \frac{x^2}{x - \frac{x^2}{2} - 1} \\
+        b = \frac{x}{\frac{x^2}{2} + 1 - x} \\
+        c = \frac{1}{x - \frac{x^2}{2} - 1}
+    \end{dcases}
+\] 
+
+\subsection*{723}
+\[
+    y^{\prime\prime} + q y = 0
+\]
+Имеет матрицу: 
+\[
+    A = \begin{pmatrix}
+        0 & -q \\
+        1 & 0
+    \end{pmatrix}
+\]
+Которая всегда больше нуля, что означает при начальных $y^{\prime} > 0$ и $y > 0$ их производные и вторые производные  
+будут оставаться положительными, а значит и $y$ и $y^{\prime}$ будут возрастающими функциями. 
+
+\subsection*{9.11}
+\[
+    xy^{\prime\prime} - (6x + 2) y^{\prime} + (9x + 6) y = 12 x^3 e^{3x}
+\]
+Поищем решение в виде $y = e^{ax}$, подходит $a = 3$. 
+Посчитаем $\int \frac{6x + 2}{x} dx = 6x + 2\ln x + C$. 
+Тогда по формуле Лиувилля-Остроградского: 
+\[
+    \begin{vmatrix}
+        e^{3x} & u \\ 
+        3 e^{3x} &  u^{\prime}  
+    \end{vmatrix} = 
+    C x^2 e^{6x} \implies 
+    \left( \frac{u}{e^{3x}} \right)^{\prime} = C x^2 
+\] 
+Тогда общее решение имеет вид: 
+\[
+    y = e^{3x} (C_1 x^3 + C_2) 
+\]
+Заметим, что $y = 3 x^4 e^{3x}$ является частным решением, тогда общее решением имеет вид: 
+\[
+    y = e^{3x}(C_1 x^3 + C_2 + 3x^4) 
+\] 
+
+
+\subsection*{9.24}
+\[
+    x^2 (x - 1) y^{\prime\prime} + 2x y^{\prime} - 2y = x^3 e^x 
+\]
+Одним частным решением будет $y = x$, 
+тогда так как $e^{-\int \frac{2}{x(x - 1)} dx } = (\frac{x}{x - 1})^2$. 
+\[
+    \left( \frac{y}{x} \right)^{\prime} = C \frac{1}{(x - 1)^2}
+\] 
+Тогда общее решение имеет вид: 
+\[
+    y = x (C_1 + \frac{C_2}{x - 1})
+\]
+Ну и частное решение неоднородного уравнения подбиваем: 
+\[
+    y = \frac{x}{x - 1} e^x
+\]
+
+\subsection*{9.52}
+\[
+    x(x - 1) y^{\prime\prime} + (4x - 2)y^{\prime} + 2y = e^{-x} 
+\]
+Одно из решений подбираем $y = \frac{1}{x}$. 
+
+
+\subsection*{9.74}
+\[
+    y^{\prime\prime} + \frac{2}{x} y^{\prime} + y = 2
+\]
+Сделаем замену $yx = t \implies y^{\prime} = \frac{t^{\prime} x - t}{x^2} \implies y^{\prime\prime} = \frac{x t^{\prime\prime} - t^{\prime} }{x^2} - \frac{x^2 t^{\prime} - 2x t}{x^4}$: 
+\[
+    \frac{x t^{\prime\prime} - t^{\prime} }{x^2} - \frac{x^2 t^{\prime} - 2x t}{x^4} + 2\frac{t^{\prime} x - t}{x^3} + \frac{t}{x} = 0
+\] 
+Сокращая подобные слагаемы получим: 
+\[
+    t^{\prime\prime} + t = 0
+\]
+Такое уравнение имеем решения вида: 
+\[
+    t = yx = A \cos x + B \sin x
+\]
+Тогда полное решение исходного уравнения имеет вид: 
+\[
+    y = \frac{1}{x} (A \sin x + B \cos x) + 2
+\]
+
+\subsection*{Т.5}
+Пусть существует такие два линейно независимые $\phi$ и $\psi$, тогда вронскиан должен быть ограничен, однако: 
+\[
+    Vr = C e^{\int a(x) dx} = C e^{-\int \frac{1}{x} dx} = \frac{C}{x} \to \infty, \, x \to 0
+\]  
+Противоречие. 
+
+
+
+
+
 
 \end{document}
